@@ -3,13 +3,9 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - <p>© 2021 Oxygen</p>
 
 includes:
   - errors
@@ -21,80 +17,78 @@ code_clipboard: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Patten One Platform third party organization API! You can use our API to access student registry API endpoints, which can get information on student enrollment information, grades, and so on in our database.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Request base url(baseUrl): 
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+`https://app.patten.edu:4000/api/`
+
 
 # Authentication
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: Bear <token>"
 ```
 
-```javascript
-const kittn = require('kittn');
+> Make sure to replace `token` with your API key.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+One Platform uses API token to allow access to the API. You can register a new One Platform API token by contacting our tech support team: [support@sv.patten.edu](support@sv.patten.edu).
 
-> Make sure to replace `meowmeowmeow` with your API key.
+Kittn expects for the API token to be included in all API requests to the server in a header that looks like the following:
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Authorization: Bear <token>`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>token</code> with your personal API token.
 </aside>
 
-# Kittens
+# Students
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Enroll new student
 
 ```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
+curl "<baseUrl>/student/enroll" \
+  -X POST \
+  -H "Authorization: Bear <token>"
 ```
 
-```javascript
-const kittn = require('kittn');
+> The above command returns JSON structured like this:
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+```json
+{
+  "status": 200,
+  "success" : "True"
+}
+```
+
+This endpoint enroll a new student.
+
+### HTTP Request
+
+`POST baseUrl/student/enroll`
+
+### URL Parameters
+
+Parameter | Example | Description
+--------- | ----------- | -----------
+first_name | 'Jack' | The first name of the student to be added
+last_name | 'Ma' | The last name of the student to be added
+major | 'Master of Business Administration' | The major of the student to be added
+concentration | 'Finance' | The concentration of the student to be added
+birthday | '02/15/76' | The birthday of the student to be added
+country | 'China' | The country of citizenship of the student to be added 
+email | 'jm@patten.edu' | The email of the student to be added 
+phone | '+12012312' | The phone number of the student to be added 
+
+## Get All Students
+
+```shell
+curl "<baseUrl>/student/all" \
+  -H "Authorization: Bear <token>"
 ```
 
 > The above command returns JSON structured like this:
@@ -102,140 +96,349 @@ let kittens = api.kittens.get();
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "SID": "000-A600861001",
+    "first_name": "Jack",
+    "last_name": "Ma",
+    "major": "Master of Business Administration",
+    "concentration": "Finance",
+    "birthday": "02/15/76",
+    "enroll_date": "07/28/20",
+    "status": "Registered"
   },
   {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "SID": "000-A600861002",
+    "first_name": "Yu",
+    "last_name": "Dong",
+    "major": "Master of Business Administration",
+    "concentration": "Finance",
+    "birthday": "12/05/93",
+    "enroll_date": "07/28/20",
+    "status": "Registered"
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all students registered by this organization account.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET baseUrl/student/all`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+status | 'Registered' | The result will include kittens that have the same register status.
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Get a Specific Student
 
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
+curl "<baseUrl>/student/000-A600861002" \
+  -H "Authorization: Bear <token>"
 ```
 
-```javascript
-const kittn = require('kittn');
+> The above command returns JSON structured like this:
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+```json
+  [{
+    "SID": "000-A600861002",
+    "first_name": "Yu",
+    "last_name": "Dong",
+    "major": "Master of Business Administration",
+    "concentration": "Finance",
+    "birthday": "12/05/93",
+    "enroll_date": "07/28/20",
+    "status": "Registered"
+  }]
+```
+
+This endpoint retrieves a specific student.
+
+### HTTP Request
+
+`GET http://example.com/student/<SID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+SID | The SID of the student to retrieve
+
+## Update specific student
+
+```shell
+curl "<baseUrl>/student/enroll" \
+  -X UPDATE \
+  -H "Authorization: Bear <token>"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "status": 200,
+  "success" : "True"
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint update a specific student enrollment info.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`UPDATE baseUrl/student/enroll`
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Parameter | Example | Description
+--------- | ----------- | -----------
+first_name | 'Jack' | The first name of the student to be added
+last_name | 'Ma' | The last name of the student to be added
+major | 'Master of Business Administration' | The major of the student to be added
+concentration | 'Finance' | The concentration of the student to be added
+birthday | '02/15/76' | The birthday of the student to be added
+country | 'China' | The country of citizenship of the student to be added 
+email | 'jm@patten.edu' | The email of the student to be added 
+phone | '+12012312' | The phone number of the student to be added 
 
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+## Delete a Specific Student
 
 ```shell
-curl "http://example.com/api/kittens/2" \
+curl "<baseUrl>/student/000-A600861002" \
   -X DELETE \
   -H "Authorization: meowmeowmeow"
 ```
 
-```javascript
-const kittn = require('kittn');
+> The above command returns JSON structured like this:
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+```json
+{
+  "status": 200,
+  "success" : "True"
+}
+```
+
+This endpoint deletes a specific student.
+
+### HTTP Request
+
+`DELETE <baseUrl>/student/<SID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+SID | The SID of the student to delete
+
+# Grades
+
+## Insert new grade record
+
+```shell
+curl "<baseUrl>/student/enroll" \
+  -X POST \
+  -H "Authorization: Bear <token>"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "status": 200,
+  "success" : "True"
 }
 ```
 
-This endpoint deletes a specific kitten.
+This endpoint enroll a new student.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`POST baseUrl/grade`
+
+### URL Parameters
+
+Parameter | Example | Description
+--------- | ----------- | -----------
+first_name | 'Jack' | The first name of the student to be added
+last_name | 'Ma' | The last name of the student to be added
+major | 'Master of Business Administration' | The major of the student to be added
+concentration | 'Finance' | The concentration of the student to be added
+birthday | '02/15/76' | The birthday of the student to be added
+country | 'China' | The country of citizenship of the student to be added 
+email | 'jm@patten.edu' | The email of the student to be added 
+phone | '+12012312' | The phone number of the student to be added 
+
+## Get All Students's Grades
+
+```shell
+curl "<baseUrl>/grade/all" \
+  -H "Authorization: Bear <token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "SID": "000-A600861001",
+    "first_name": "Jack",
+    "last_name": "Ma",
+    "major": "Master of Business Administration",
+    "concentration": "Finance",
+    "birthday": "02/15/76",
+    "enroll_date": "07/28/20",
+    "status": "Registered"
+  },
+  {
+    "SID": "000-A600861002",
+    "first_name": "Yu",
+    "last_name": "Dong",
+    "major": "Master of Business Administration",
+    "concentration": "Finance",
+    "birthday": "12/05/93",
+    "enroll_date": "07/28/20",
+    "status": "Registered"
+  }
+]
+```
+
+This endpoint retrieves all students registered by this organization account.
+
+### HTTP Request
+
+`GET baseUrl/grade`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+status | 'Registered' | The result will include kittens that have the same register status.
+
+
+## Get a Specific Student
+
+```shell
+curl "<baseUrl>/grade/000-A600861002" \
+  -H "Authorization: Bear <token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+  [{
+    "SID": "000-A600861002",
+    "first_name": "Yu",
+    "last_name": "Dong",
+    "major": "Master of Business Administration",
+    "concentration": "Finance",
+    "birthday": "12/05/93",
+    "enroll_date": "07/28/20",
+    "status": "Registered"
+  }]
+```
+
+This endpoint retrieves a specific student.
+
+### HTTP Request
+
+`GET http://example.com/grade/<SID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+SID | The SID of the student to retrieve
 
+## Update specific student
+
+```shell
+curl "<baseUrl>/grade/<SID>" \
+  -X UPDATE \
+  -H "Authorization: Bear <token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": 200,
+  "success" : "True"
+}
+```
+
+This endpoint update a specific student enrollment info.
+
+### HTTP Request
+
+`UPDATE <baseUrl>/grade/<SID>`
+
+### URL Parameters
+
+Parameter | Example | Description
+--------- | ----------- | -----------
+first_name | 'Jack' | The first name of the student to be added
+last_name | 'Ma' | The last name of the student to be added
+major | 'Master of Business Administration' | The major of the student to be added
+concentration | 'Finance' | The concentration of the student to be added
+birthday | '02/15/76' | The birthday of the student to be added
+country | 'China' | The country of citizenship of the student to be added 
+email | 'jm@patten.edu' | The email of the student to be added 
+phone | '+12012312' | The phone number of the student to be added 
+
+## Delete a Specific grade record
+
+```shell
+curl "<baseUrl>/grade/000-A600861002" \
+  -X DELETE \
+  -H "Authorization: meowmeowmeow"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": 200,
+  "success" : "True"
+}
+```
+
+This endpoint deletes a specific student.
+
+### HTTP Request
+
+`DELETE <baseUrl>/student/<SID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+SID | The SID of the student to delete
+
+## Upload final paper
+
+```shell
+curl "<baseUrl>/grade/000-A600861002" \
+  -X DELETE \
+  -H "Authorization: meowmeowmeow"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": 200,
+  "success" : "True"
+}
+```
+
+This endpoint deletes a specific student.
+
+### HTTP Request
+
+`DELETE <baseUrl>/student/<SID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+SID | The SID of the student to delete
