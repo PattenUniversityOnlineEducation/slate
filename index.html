@@ -338,16 +338,13 @@
                     <a href="#insert-new-grade-record" class="toc-h2 toc-link" data-title="Insert new grade record">Insert new grade record</a>
                   </li>
                   <li>
-                    <a href="#get-all-students-39-s-grades" class="toc-h2 toc-link" data-title="Get All Students's Grades">Get All Students's Grades</a>
+                    <a href="#get-a-specific-grade-record" class="toc-h2 toc-link" data-title="Get a specific grade record">Get a specific grade record</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-student-2" class="toc-h2 toc-link" data-title="Get a Specific Student">Get a Specific Student</a>
+                    <a href="#get-all-grade-records-of-a-specific-student" class="toc-h2 toc-link" data-title="Get all grade records of a specific student">Get all grade records of a specific student</a>
                   </li>
                   <li>
-                    <a href="#update-specific-student-2" class="toc-h2 toc-link" data-title="Update specific student">Update specific student</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-grade-record" class="toc-h2 toc-link" data-title="Delete a Specific grade record">Delete a Specific grade record</a>
+                    <a href="#update-a-specific-grade-record" class="toc-h2 toc-link" data-title="Update a specific grade record">Update a specific grade record</a>
                   </li>
                   <li>
                     <a href="#upload-final-paper" class="toc-h2 toc-link" data-title="Upload final paper">Upload final paper</a>
@@ -510,8 +507,8 @@ You must replace <code>token</code> with your personal API token.
 </code></pre></div>
 <p>This endpoint retrieves a specific student.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/student/&lt;SID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<p><code>GET http://example.com/student</code></p>
+<h3 id='request-body-parameters-2'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -526,7 +523,7 @@ You must replace <code>token</code> with your personal API token.
 <td>SID</td>
 <td>Required</td>
 <td>String</td>
-<td>Validate 14-digit student ID</td>
+<td>Valid 14-digit student ID</td>
 <td>&#39;000-A600861002&#39;</td>
 <td>The SID of the student to retrieve</td>
 </tr>
@@ -567,98 +564,121 @@ You must replace <code>token</code> with your personal API token.
 <td>If the student with the SID is not exist, return value will be an empty array</td>
 </tr>
 </tbody></table>
-<h2 id='update-specific-student'>Update specific student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/student/enroll"</span> <span class="se">\</span>
-  <span class="nt">-X</span> UPDATE <span class="se">\</span>
+<h2 id='update-specific-student'>Update specific student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/student/update"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
 </code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"success"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
 <p>This endpoint update a specific student enrollment info.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>UPDATE baseUrl/student/enroll</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<p><code>POST baseUrl/student/update</code></p>
+<h3 id='request-body-parameters-3'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Validation</th>
 <th>Example</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
+<td>SID</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid 14-digit student ID</td>
+<td>&#39;000-A600861002&#39;</td>
+<td>The SID of the student to be updated</td>
+</tr>
+<tr>
 <td>first_name</td>
+<td>Optional</td>
+<td>String</td>
+<td>Only alphabet (a~z) allowed with first letter capitalized</td>
 <td>&#39;Jack&#39;</td>
-<td>The first name of the student to be added</td>
+<td>The first name of the student to be updated</td>
 </tr>
 <tr>
 <td>last_name</td>
+<td>Optional</td>
+<td>String</td>
+<td>Only alphabet (a~z) allowed with first letter capitalized</td>
 <td>&#39;Ma&#39;</td>
-<td>The last name of the student to be added</td>
+<td>The last name of the student to be updated</td>
 </tr>
 <tr>
 <td>major</td>
+<td>Optional</td>
+<td>String</td>
+<td>&#39;Master of Business Administration&#39;(Or other registered major full name with all first letters capitalized)</td>
 <td>&#39;Master of Business Administration&#39;</td>
-<td>The major of the student to be added</td>
+<td>The major of the student to be updated</td>
 </tr>
 <tr>
 <td>concentration</td>
+<td>Optional</td>
+<td>String</td>
+<td>&#39;Finance&#39;/&#39;Sales Management&#39;/... (Or other allowed concentration full name with all first letters capitalized)</td>
 <td>&#39;Finance&#39;</td>
-<td>The concentration of the student to be added</td>
+<td>The concentration of the student to be updated</td>
 </tr>
 <tr>
 <td>birthday</td>
+<td>Optional</td>
+<td>String</td>
+<td>Date format in &#39;MM/DD/YY&#39;</td>
 <td>&#39;02/15/76&#39;</td>
-<td>The birthday of the student to be added</td>
+<td>The birthday of the student to be updated</td>
 </tr>
 <tr>
 <td>country</td>
+<td>Optional</td>
+<td>String</td>
+<td>Country official name in English</td>
 <td>&#39;China&#39;</td>
-<td>The country of citizenship of the student to be added</td>
+<td>The country of citizenship for the student to be updated</td>
 </tr>
 <tr>
 <td>email</td>
+<td>Optional</td>
+<td>String</td>
+<td>Student&#39;s confirmed email address with all lower case</td>
 <td>&#39;jm@patten.edu&#39;</td>
-<td>The email of the student to be added</td>
+<td>The email of the student to be updated</td>
 </tr>
 <tr>
 <td>phone</td>
+<td>Optional</td>
+<td>String</td>
+<td>Student&#39;s personal phone number with country code (&#39;+1: USA/Canada; +86: China; ...&#39;)</td>
 <td>&#39;+12012312&#39;</td>
-<td>The phone number of the student to be added</td>
+<td>The phone number of the student to be updated</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-student'>Delete a Specific Student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/student/000-A600861002"</span> <span class="se">\</span>
-  <span class="nt">-X</span> DELETE <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div>
+<h3 id='response-body-3'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"success"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint deletes a specific student.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
-<p><code>DELETE &lt;baseUrl&gt;/student/&lt;SID&gt;</code></p>
-<h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Description</th>
+<th>Type</th>
+<th>Example</th>
+<th>Possible Return Type</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>SID</td>
-<td>The SID of the student to delete</td>
+<td>status</td>
+<td>Number</td>
+<td>200</td>
+<td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
 </tr>
 </tbody></table>
-<h1 id='grades'>Grades</h1><h2 id='insert-new-grade-record'>Insert new grade record</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/student/enroll"</span> <span class="se">\</span>
+<h2 id='delete-a-specific-student'>Delete a Specific Student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/student/delete"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
 </code></pre></div>
@@ -670,252 +690,435 @@ You must replace <code>token</code> with your personal API token.
   </span><span class="nl">"success"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint enroll a new student.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
-<p><code>POST baseUrl/grade</code></p>
-<h3 id='url-parameters-4'>URL Parameters</h3>
+<p>This endpoint deletes a specific student.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST &lt;baseUrl&gt;/student/delete/&lt;SID&gt;</code></p>
+<h3 id='request-body-parameters-4'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Validation</th>
 <th>Example</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>first_name</td>
-<td>&#39;Jack&#39;</td>
-<td>The first name of the student to be added</td>
-</tr>
-<tr>
-<td>last_name</td>
-<td>&#39;Ma&#39;</td>
-<td>The last name of the student to be added</td>
-</tr>
-<tr>
-<td>major</td>
-<td>&#39;Master of Business Administration&#39;</td>
-<td>The major of the student to be added</td>
-</tr>
-<tr>
-<td>concentration</td>
-<td>&#39;Finance&#39;</td>
-<td>The concentration of the student to be added</td>
-</tr>
-<tr>
-<td>birthday</td>
-<td>&#39;02/15/76&#39;</td>
-<td>The birthday of the student to be added</td>
-</tr>
-<tr>
-<td>country</td>
-<td>&#39;China&#39;</td>
-<td>The country of citizenship of the student to be added</td>
-</tr>
-<tr>
-<td>email</td>
-<td>&#39;jm@patten.edu&#39;</td>
-<td>The email of the student to be added</td>
-</tr>
-<tr>
-<td>phone</td>
-<td>&#39;+12012312&#39;</td>
-<td>The phone number of the student to be added</td>
+<td>SID</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid 14-digit student ID</td>
+<td>&#39;000-A600861002&#39;</td>
+<td>The SID of the student to be updated</td>
 </tr>
 </tbody></table>
-<h2 id='get-all-students-39-s-grades'>Get All Students&#39;s Grades</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade/all"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
-</code></pre></div>
+<h3 id='response-body-4'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"SID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000-A600861001"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ma"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"concentration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finance"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02/15/76"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"enroll_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/28/20"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Registered"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"SID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000-A600861002"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yu"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dong"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"concentration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finance"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/05/93"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"enroll_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/28/20"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Registered"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves all students registered by this organization account.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
-<p><code>GET baseUrl/grade</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
+<th>Type</th>
+<th>Example</th>
+<th>Possible Return Type</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>status</td>
-<td>&#39;Registered&#39;</td>
-<td>The result will include kittens that have the same register status.</td>
+<td>Number</td>
+<td>200</td>
+<td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
 </tr>
 </tbody></table>
-<h2 id='get-a-specific-student-2'>Get a Specific Student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade/000-A600861002"</span> <span class="se">\</span>
+<h1 id='grades'>Grades</h1><h2 id='insert-new-grade-record'>Insert new grade record</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
 </code></pre></div>
+<p>This endpoint enroll a new student.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>POST baseUrl/grade</code></p>
+<h3 id='request-body-parameters-5'>Request Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Validation</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>SID</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid 14-digit student ID</td>
+<td>&#39;000-A600861002&#39;</td>
+<td>The SID of the student grade to be inserted</td>
+</tr>
+<tr>
+<td>courseId</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid courseId (e.g.: mba500, mba600...)</td>
+<td>&#39;mba500&#39;</td>
+<td>The course ID of the student grade to be inserted</td>
+</tr>
+<tr>
+<td>unitId</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid unitId (e.g.: u1, u2...)</td>
+<td>&#39;u1&#39;</td>
+<td>The unit ID of the student grade to be inserted</td>
+</tr>
+<tr>
+<td>questionId</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid unique global question ID (1123, 1134...)</td>
+<td>&#39;000101&#39;</td>
+<td>The unique question ID of the student grade to be inserted</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>Required</td>
+<td>Number</td>
+<td>Integer in range 0~100</td>
+<td>87</td>
+<td>The grade of the question to be inserted</td>
+</tr>
+</tbody></table>
+<h3 id='response-body-5'>Response Body</h3>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Possible Return Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>Number</td>
+<td>200</td>
+<td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-specific-grade-record'>Get a specific grade record</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
+</code></pre></div>
+<p>This endpoint fetch a specific grade record by using SID, courseID, unitID and questionID.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET baseUrl/grade</code></p>
+<h3 id='request-body-parameters-6'>Request Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Validation</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>SID</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid 14-digit student ID</td>
+<td>&#39;000-A600861002&#39;</td>
+<td>The SID of the student grade to be fetched</td>
+</tr>
+<tr>
+<td>courseId</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid courseId (e.g.: mba500, mba600...)</td>
+<td>&#39;mba500&#39;</td>
+<td>The course ID of the student grade to be fetched</td>
+</tr>
+<tr>
+<td>unitId</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid unitId (e.g.: u1, u2...)</td>
+<td>&#39;u1&#39;</td>
+<td>The unit ID of the student grade to be fetched</td>
+</tr>
+<tr>
+<td>questionId</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid unique global question ID (1123, 1134...)</td>
+<td>&#39;000101&#39;</td>
+<td>The unique question ID of the student grade to be fetched</td>
+</tr>
+</tbody></table>
+<h3 id='response-body-6'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">[{</span><span class="w">
     </span><span class="nl">"SID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000-A600861002"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yu"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dong"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"concentration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finance"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/05/93"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"enroll_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/28/20"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Registered"</span><span class="w">
+    </span><span class="nl">"courseId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mba500"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"unitId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"u1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"questionID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000101"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"grade"</span><span class="p">:</span><span class="w"> </span><span class="mi">87</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lastUpdateTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618729540</span><span class="p">,</span><span class="w">
   </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves a specific student.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
-<p><code>GET http://example.com/grade/&lt;SID&gt;</code></p>
-<h3 id='url-parameters-5'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Description</th>
+<th>Type</th>
+<th>Example</th>
+<th>Possible Return Type</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>SID</td>
-<td>The SID of the student to retrieve</td>
+<td>status</td>
+<td>Number</td>
+<td>200</td>
+<td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
+</tr>
+<tr>
+<td>grades</td>
+<td>Array of Object</td>
+<td>&#39;[]&#39;</td>
+<td>If the grade with the SID,unitId, questionId does not exist, return value will be an empty array</td>
 </tr>
 </tbody></table>
-<h2 id='update-specific-student-2'>Update specific student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade/&lt;SID&gt;"</span> <span class="se">\</span>
-  <span class="nt">-X</span> UPDATE <span class="se">\</span>
+<h2 id='get-all-grade-records-of-a-specific-student'>Get all grade records of a specific student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade/all"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
 </code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"success"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint update a specific student enrollment info.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
-<p><code>UPDATE &lt;baseUrl&gt;/grade/&lt;SID&gt;</code></p>
-<h3 id='url-parameters-6'>URL Parameters</h3>
+<p>This endpoint fetch all grade records by using SID.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET baseUrl/grade/all</code></p>
+<h3 id='request-body-parameters-7'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Validation</th>
 <th>Example</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>first_name</td>
-<td>&#39;Jack&#39;</td>
-<td>The first name of the student to be added</td>
-</tr>
-<tr>
-<td>last_name</td>
-<td>&#39;Ma&#39;</td>
-<td>The last name of the student to be added</td>
-</tr>
-<tr>
-<td>major</td>
-<td>&#39;Master of Business Administration&#39;</td>
-<td>The major of the student to be added</td>
-</tr>
-<tr>
-<td>concentration</td>
-<td>&#39;Finance&#39;</td>
-<td>The concentration of the student to be added</td>
-</tr>
-<tr>
-<td>birthday</td>
-<td>&#39;02/15/76&#39;</td>
-<td>The birthday of the student to be added</td>
-</tr>
-<tr>
-<td>country</td>
-<td>&#39;China&#39;</td>
-<td>The country of citizenship of the student to be added</td>
-</tr>
-<tr>
-<td>email</td>
-<td>&#39;jm@patten.edu&#39;</td>
-<td>The email of the student to be added</td>
-</tr>
-<tr>
-<td>phone</td>
-<td>&#39;+12012312&#39;</td>
-<td>The phone number of the student to be added</td>
+<td>SID</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid 14-digit student ID</td>
+<td>&#39;000-A600861002&#39;</td>
+<td>The SID of the student grade to be fetched</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-grade-record'>Delete a Specific grade record</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade/000-A600861002"</span> <span class="se">\</span>
-  <span class="nt">-X</span> DELETE <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
+<h3 id='response-body-7'>Response Body</h3>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">[{</span><span class="w">
+    </span><span class="nl">"SID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000-A600861002"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"courseId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mba500"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"unitId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"u1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"questionID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000101"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"grade"</span><span class="p">:</span><span class="w"> </span><span class="mi">87</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lastUpdateTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618729540</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"SID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000-A600861002"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"courseId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mba500"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"unitId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"u2"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"questionID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000201"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"grade"</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lastUpdateTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618733649</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Possible Return Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>Number</td>
+<td>200</td>
+<td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
+</tr>
+<tr>
+<td>grades</td>
+<td>Array of Object</td>
+<td>&#39;[]&#39;</td>
+<td>If the grade with the SID,unitId, questionId does not exist, return value will be an empty array</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-specific-grade-record'>Update a specific grade record</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade/update"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
 </code></pre></div>
+<p>This endpoint update a specific grade record.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>POST &lt;baseUrl&gt;/grade/update</code></p>
+<h3 id='request-body-parameters-8'>Request Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Validation</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>SID</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid 14-digit student ID</td>
+<td>&#39;000-A600861002&#39;</td>
+<td>The SID of the student grade to be fetched</td>
+</tr>
+<tr>
+<td>courseId</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid courseId (e.g.: mba500, mba600...)</td>
+<td>&#39;mba500&#39;</td>
+<td>The course ID of the student grade to be fetched</td>
+</tr>
+<tr>
+<td>unitId</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid unitId (e.g.: u1, u2...)</td>
+<td>&#39;u1&#39;</td>
+<td>The unit ID of the student grade to be fetched</td>
+</tr>
+<tr>
+<td>questionId</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid unique global question ID (1123, 1134...)</td>
+<td>&#39;000101&#39;</td>
+<td>The unique question ID of the student grade to be fetched</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>Required</td>
+<td>Number</td>
+<td>Integer in range 0~100</td>
+<td>87</td>
+<td>The grade of the question to be inserted</td>
+</tr>
+</tbody></table>
+<h3 id='response-body-8'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"success"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint deletes a specific student.</p>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Possible Return Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>Number</td>
+<td>200</td>
+<td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
+</tr>
+</tbody></table>
+<h2 id='upload-final-paper'>Upload final paper</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade/finalpaper"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt; Content-Type: multipart/form-data;"</span> <span class="se">\</span>
+  <span class="nt">-F</span> <span class="s2">"file[]=/path/to/file"</span>
+</code></pre></div>
+<p>This endpoint upload final paper for a specific course.</p>
 <h3 id='http-request-9'>HTTP Request</h3>
-<p><code>DELETE &lt;baseUrl&gt;/student/&lt;SID&gt;</code></p>
-<h3 id='url-parameters-7'>URL Parameters</h3>
+<p><code>POST &lt;baseUrl&gt;/grade/finalpaper</code></p>
+<h3 id='request-body-parameters-9'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Validation</th>
+<th>Example</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>SID</td>
-<td>The SID of the student to delete</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid 14-digit student ID</td>
+<td>&#39;000-A600861002&#39;</td>
+<td>The SID of the student grade to be fetched</td>
+</tr>
+<tr>
+<td>courseId</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid courseId (e.g.: mba500, mba600...)</td>
+<td>&#39;mba500&#39;</td>
+<td>The course ID of the student grade to be fetched</td>
+</tr>
+<tr>
+<td>file</td>
+<td>Required</td>
+<td>String</td>
+<td>Available file local path</td>
+<td>&#39;example.pdf&#39;</td>
+<td>The local path of file to be uploaded</td>
 </tr>
 </tbody></table>
-<h2 id='upload-final-paper'>Upload final paper</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade/000-A600861002"</span> <span class="se">\</span>
-  <span class="nt">-X</span> DELETE <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div>
+<h3 id='response-body-9'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"success"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint deletes a specific student.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
-<p><code>DELETE &lt;baseUrl&gt;/student/&lt;SID&gt;</code></p>
-<h3 id='url-parameters-8'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Description</th>
+<th>Type</th>
+<th>Example</th>
+<th>Possible Return Type</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>SID</td>
-<td>The SID of the student to delete</td>
+<td>status</td>
+<td>Number</td>
+<td>200</td>
+<td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
@@ -941,15 +1144,15 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>Forbidden -- The resource requested is prohibited.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>Not Found -- The specified url could not be found.</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>Method Not Allowed -- You tried to access a record with an invalid method.</td>
 </tr>
 <tr>
 <td>406</td>
@@ -957,15 +1160,15 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 <tr>
 <td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
+<td>Gone -- The record requested has not found in our database.</td>
 </tr>
 <tr>
 <td>418</td>
-<td>I&#39;m a teapot.</td>
+<td>Duplicate -- The record inserted has duplicate in our databse.</td>
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>Too Many Requests -- You&#39;re requesting too often! Slow down!</td>
 </tr>
 <tr>
 <td>500</td>
