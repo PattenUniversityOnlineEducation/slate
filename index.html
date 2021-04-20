@@ -321,9 +321,6 @@
                     <a href="#enroll-new-student" class="toc-h2 toc-link" data-title="Enroll new student">Enroll new student</a>
                   </li>
                   <li>
-                    <a href="#get-all-students" class="toc-h2 toc-link" data-title="Get All Students">Get All Students</a>
-                  </li>
-                  <li>
                     <a href="#get-a-specific-student" class="toc-h2 toc-link" data-title="Get a Specific Student">Get a Specific Student</a>
                   </li>
                   <li>
@@ -399,115 +396,142 @@ You must replace <code>token</code> with your personal API token.
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
 </code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"success"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
 <p>This endpoint enroll a new student.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST baseUrl/student/enroll</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<h3 id='request-body-parameters'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Validation</th>
 <th>Example</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>first_name</td>
+<td>Required</td>
+<td>String</td>
+<td>Only alphabet (a~z) allowed with first letter capitalized</td>
 <td>&#39;Jack&#39;</td>
 <td>The first name of the student to be added</td>
 </tr>
 <tr>
 <td>last_name</td>
+<td>Required</td>
+<td>String</td>
+<td>Only alphabet (a~z) allowed with first letter capitalized</td>
 <td>&#39;Ma&#39;</td>
 <td>The last name of the student to be added</td>
 </tr>
 <tr>
 <td>major</td>
+<td>Required</td>
+<td>String</td>
+<td>&#39;Master of Business Administration&#39;(Or other registered major full name with all first letters capitalized)</td>
 <td>&#39;Master of Business Administration&#39;</td>
 <td>The major of the student to be added</td>
 </tr>
 <tr>
 <td>concentration</td>
+<td>Required</td>
+<td>String</td>
+<td>&#39;Finance&#39;/&#39;Sales Management&#39;/... (Or other allowed concentration full name with all first letters capitalized)</td>
 <td>&#39;Finance&#39;</td>
 <td>The concentration of the student to be added</td>
 </tr>
 <tr>
 <td>birthday</td>
+<td>Required</td>
+<td>String</td>
+<td>Date format in &#39;MM/DD/YY&#39;</td>
 <td>&#39;02/15/76&#39;</td>
 <td>The birthday of the student to be added</td>
 </tr>
 <tr>
 <td>country</td>
+<td>Required</td>
+<td>String</td>
+<td>Country official name in English</td>
 <td>&#39;China&#39;</td>
-<td>The country of citizenship of the student to be added</td>
+<td>The country of citizenship for the student to be added</td>
 </tr>
 <tr>
 <td>email</td>
+<td>Required</td>
+<td>String</td>
+<td>Student&#39;s confirmed email address with all lower case</td>
 <td>&#39;jm@patten.edu&#39;</td>
 <td>The email of the student to be added</td>
 </tr>
 <tr>
 <td>phone</td>
+<td>Required</td>
+<td>String</td>
+<td>Student&#39;s personal phone number with country code (&#39;+1: USA/Canada; +86: China; ...&#39;)</td>
 <td>&#39;+12012312&#39;</td>
 <td>The phone number of the student to be added</td>
 </tr>
 </tbody></table>
-<h2 id='get-all-students'>Get All Students</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/student/all"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
-</code></pre></div>
+<h3 id='response-body'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"SID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000-A600861001"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ma"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"concentration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finance"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02/15/76"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"enroll_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/28/20"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Registered"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"SID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000-A600861002"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yu"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dong"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"concentration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finance"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/05/93"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"enroll_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/28/20"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Registered"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"SID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"000-A600861001"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves all students registered by this organization account.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET baseUrl/student/all</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
+<th>Type</th>
+<th>Example</th>
+<th>Possible Return Type</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>status</td>
-<td>&#39;Registered&#39;</td>
-<td>The result will include kittens that have the same register status.</td>
+<td>Number</td>
+<td>200</td>
+<td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
+</tr>
+<tr>
+<td>SID</td>
+<td>String</td>
+<td>&#39;000-XXXXXXX&#39;</td>
+<td>New student ID is 14-digit long (includes &quot;-&quot;, e.g. : XXX-X60000XXXX). Old ID can be converted to new ID by insert &quot;1&quot; in front of the last 3 digits (e.g. : old id is 999-N60000234, new ID should be 999-N600001234).</td>
 </tr>
 </tbody></table>
 <h2 id='get-a-specific-student'>Get a Specific Student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/student/000-A600861002"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
 </code></pre></div>
+<p>This endpoint retrieves a specific student.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET http://example.com/student/&lt;SID&gt;</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Validation</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>SID</td>
+<td>Required</td>
+<td>String</td>
+<td>Validate 14-digit student ID</td>
+<td>&#39;000-A600861002&#39;</td>
+<td>The SID of the student to retrieve</td>
+</tr>
+</tbody></table>
+<h3 id='response-body-2'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -522,19 +546,25 @@ You must replace <code>token</code> with your personal API token.
     </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Registered"</span><span class="w">
   </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves a specific student.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET http://example.com/student/&lt;SID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Description</th>
+<th>Type</th>
+<th>Example</th>
+<th>Possible Return Type</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>SID</td>
-<td>The SID of the student to retrieve</td>
+<td>status</td>
+<td>Number</td>
+<td>200</td>
+<td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
+</tr>
+<tr>
+<td>student</td>
+<td>Array of Object</td>
+<td>&#39;[]&#39;</td>
+<td>If the student with the SID is not exist, return value will be an empty array</td>
 </tr>
 </tbody></table>
 <h2 id='update-specific-student'>Update specific student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/student/enroll"</span> <span class="se">\</span>
@@ -550,9 +580,9 @@ You must replace <code>token</code> with your personal API token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint update a specific student enrollment info.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>UPDATE baseUrl/student/enroll</code></p>
-<h3 id='url-parameters-3'>URL Parameters</h3>
+<h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -614,9 +644,9 @@ You must replace <code>token</code> with your personal API token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint deletes a specific student.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>DELETE &lt;baseUrl&gt;/student/&lt;SID&gt;</code></p>
-<h3 id='url-parameters-4'>URL Parameters</h3>
+<h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -641,9 +671,9 @@ You must replace <code>token</code> with your personal API token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint enroll a new student.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST baseUrl/grade</code></p>
-<h3 id='url-parameters-5'>URL Parameters</h3>
+<h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -722,9 +752,9 @@ You must replace <code>token</code> with your personal API token.
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint retrieves all students registered by this organization account.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET baseUrl/grade</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -756,9 +786,9 @@ You must replace <code>token</code> with your personal API token.
   </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint retrieves a specific student.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET http://example.com/grade/&lt;SID&gt;</code></p>
-<h3 id='url-parameters-6'>URL Parameters</h3>
+<h3 id='url-parameters-5'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -783,9 +813,9 @@ You must replace <code>token</code> with your personal API token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint update a specific student enrollment info.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>UPDATE &lt;baseUrl&gt;/grade/&lt;SID&gt;</code></p>
-<h3 id='url-parameters-7'>URL Parameters</h3>
+<h3 id='url-parameters-6'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -847,9 +877,9 @@ You must replace <code>token</code> with your personal API token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint deletes a specific student.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>DELETE &lt;baseUrl&gt;/student/&lt;SID&gt;</code></p>
-<h3 id='url-parameters-8'>URL Parameters</h3>
+<h3 id='url-parameters-7'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -874,9 +904,9 @@ You must replace <code>token</code> with your personal API token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint deletes a specific student.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>DELETE &lt;baseUrl&gt;/student/&lt;SID&gt;</code></p>
-<h3 id='url-parameters-9'>URL Parameters</h3>
+<h3 id='url-parameters-8'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
