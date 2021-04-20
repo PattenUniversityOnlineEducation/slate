@@ -272,7 +272,6 @@ This endpoint fetch a specific grade record by using SID, courseID, unitID and q
 
 ### Request Body Parameters
 
-
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
 SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be fetched 
@@ -358,88 +357,67 @@ curl "<baseUrl>/grade/update" \
   -H "Authorization: Bear <token>"
 ```
 
-> The above command returns JSON structured like this:
-
-```json
-{
-  "status": 200,
-  "success" : "True"
-}
-```
-
-This endpoint update a specific student enrollment info.
+This endpoint update a specific grade record.
 
 ### HTTP Request
 
-`UPDATE <baseUrl>/grade/<SID>`
+`POST <baseUrl>/grade/update`
 
-### URL Parameters
+### Request Body Parameters
 
-Parameter | Example | Description
---------- | ----------- | -----------
-first_name | 'Jack' | The first name of the student to be added
-last_name | 'Ma' | The last name of the student to be added
-major | 'Master of Business Administration' | The major of the student to be added
-concentration | 'Finance' | The concentration of the student to be added
-birthday | '02/15/76' | The birthday of the student to be added
-country | 'China' | The country of citizenship of the student to be added 
-email | 'jm@patten.edu' | The email of the student to be added 
-phone | '+12012312' | The phone number of the student to be added 
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be fetched 
+courseId | Required | String | Valid courseId (e.g.: mba500, mba600...) | 'mba500' | The course ID of the student grade to be fetched
+unitId | Required | String | Valid unitId (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be fetched
+questionId | Required | String | Valid unique global question ID (1123, 1134...) | '000101' | The unique question ID of the student grade to be fetched
+grade | Required | Number | Integer in range 0~100 | 87 | The grade of the question to be inserted
 
-## Delete a Specific grade record
-
-```shell
-curl "<baseUrl>/grade/000-A600861002" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
-```
+### Response Body
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "status": 200,
-  "success" : "True"
+  "status": 200
 }
 ```
-
-This endpoint deletes a specific student.
-
-### HTTP Request
-
-`DELETE <baseUrl>/student/<SID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-SID | The SID of the student to delete
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
 
 ## Upload final paper
 
 ```shell
-curl "<baseUrl>/grade/000-A600861002" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
+curl "<baseUrl>/grade/finalpaper" \
+  -X POST \
+  -H "Authorization: Bear <token> Content-Type: multipart/form-data;" \
+  -F "file[]=/path/to/file"
 ```
+
+This endpoint upload final paper for a specific course.
+
+### HTTP Request
+
+`POST <baseUrl>/grade/finalpaper`
+
+### Request Body Parameters
+
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be fetched 
+courseId | Required | String | Valid courseId (e.g.: mba500, mba600...) | 'mba500' | The course ID of the student grade to be fetched
+file | Required | String | Available file local path | 'example.pdf' | The local path of file to be uploaded
+
+### Response Body
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "status": 200,
-  "success" : "True"
+  "status": 200
 }
 ```
-
-This endpoint deletes a specific student.
-
-### HTTP Request
-
-`DELETE <baseUrl>/student/<SID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-SID | The SID of the student to delete
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
