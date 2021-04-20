@@ -102,13 +102,13 @@ This endpoint retrieves a specific student.
 
 ### HTTP Request
 
-`GET http://example.com/student/<SID>`
+`GET http://example.com/student`
 
-### URL Parameters
+### Request Body Parameters
 
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
-SID | Required | String | Validate 14-digit student ID | '000-A600861002' | The SID of the student to retrieve
+SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student to retrieve
 
 
 ### Response Body
@@ -136,45 +136,51 @@ student | Array of Object | '[]' | If the student with the SID is not exist, ret
 ## Update specific student
 
 ```shell
-curl "<baseUrl>/student/enroll" \
-  -X UPDATE \
+curl "<baseUrl>/student/update" \
+  -X POST \
   -H "Authorization: Bear <token>"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "status": 200,
-  "success" : "True"
-}
 ```
 
 This endpoint update a specific student enrollment info.
 
 ### HTTP Request
 
-`UPDATE baseUrl/student/enroll`
+`POST baseUrl/student/update`
 
-### URL Parameters
+### Request Body Parameters
 
-Parameter | Example | Description
---------- | ----------- | -----------
-first_name | 'Jack' | The first name of the student to be added
-last_name | 'Ma' | The last name of the student to be added
-major | 'Master of Business Administration' | The major of the student to be added
-concentration | 'Finance' | The concentration of the student to be added
-birthday | '02/15/76' | The birthday of the student to be added
-country | 'China' | The country of citizenship of the student to be added 
-email | 'jm@patten.edu' | The email of the student to be added 
-phone | '+12012312' | The phone number of the student to be added 
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student to be updated
+first_name | Optional | String | Only alphabet (a~z) allowed with first letter capitalized | 'Jack' | The first name of the student to be updated
+last_name | Optional | String | Only alphabet (a~z) allowed with first letter capitalized | 'Ma' | The last name of the student to be updated
+major | Optional | String | 'Master of Business Administration'(Or other registered major full name with all first letters capitalized) | 'Master of Business Administration' | The major of the student to be updated
+concentration | Optional | String | 'Finance'/'Sales Management'/... (Or other allowed concentration full name with all first letters capitalized) | 'Finance' | The concentration of the student to be updated
+birthday | Optional |  String | Date format in 'MM/DD/YY'| '02/15/76' | The birthday of the student to be updated
+country | Optional | String | Country official name in English | 'China' | The country of citizenship for the student to be updated 
+email | Optional | String | Student's confirmed email address with all lower case | 'jm@patten.edu' | The email of the student to be updated 
+phone | Optional | String | Student's personal phone number with country code ('+1: USA/Canada; +86: China; ...') | '+12012312' | The phone number of the student to be updated
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": 200
+}
+```
+
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
 
 ## Delete a Specific Student
 
 ```shell
-curl "<baseUrl>/student/000-A600861002" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
+curl "<baseUrl>/student/delete" \
+  -X POST \
+  -H "Authorization: Bear <token>"
 ```
 
 > The above command returns JSON structured like this:
@@ -190,31 +196,35 @@ This endpoint deletes a specific student.
 
 ### HTTP Request
 
-`DELETE <baseUrl>/student/<SID>`
+`POST <baseUrl>/student/delete/<SID>`
 
-### URL Parameters
+### Request Body Parameters
 
-Parameter | Description
---------- | -----------
-SID | The SID of the student to delete
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student to be updated
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": 200
+}
+```
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
 
 # Grades
 
 ## Insert new grade record
 
 ```shell
-curl "<baseUrl>/student/enroll" \
+curl "<baseUrl>/grade" \
   -X POST \
   -H "Authorization: Bear <token>"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "status": 200,
-  "success" : "True"
-}
 ```
 
 This endpoint enroll a new student.
@@ -223,105 +233,128 @@ This endpoint enroll a new student.
 
 `POST baseUrl/grade`
 
-### URL Parameters
+### Request Body Parameters
 
-Parameter | Example | Description
---------- | ----------- | -----------
-first_name | 'Jack' | The first name of the student to be added
-last_name | 'Ma' | The last name of the student to be added
-major | 'Master of Business Administration' | The major of the student to be added
-concentration | 'Finance' | The concentration of the student to be added
-birthday | '02/15/76' | The birthday of the student to be added
-country | 'China' | The country of citizenship of the student to be added 
-email | 'jm@patten.edu' | The email of the student to be added 
-phone | '+12012312' | The phone number of the student to be added 
 
-## Get All Students's Grades
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be inserted 
+courseId | Required | String | Valid courseId (e.g.: mba500, mba600...) | 'mba500' | The course ID of the student grade to be inserted
+unitId | Required | String | Valid unitId (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be inserted
+questionId | Required | String | Valid unique global question ID (1123, 1134...) | '000101' | The unique question ID of the student grade to be inserted
+grade | Required | Number | Integer in range 0~100 | 87 | The grade of the question to be inserted
 
-```shell
-curl "<baseUrl>/grade/all" \
-  -H "Authorization: Bear <token>"
-```
+### Response Body
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "SID": "000-A600861001",
-    "first_name": "Jack",
-    "last_name": "Ma",
-    "major": "Master of Business Administration",
-    "concentration": "Finance",
-    "birthday": "02/15/76",
-    "enroll_date": "07/28/20",
-    "status": "Registered"
-  },
-  {
-    "SID": "000-A600861002",
-    "first_name": "Yu",
-    "last_name": "Dong",
-    "major": "Master of Business Administration",
-    "concentration": "Finance",
-    "birthday": "12/05/93",
-    "enroll_date": "07/28/20",
-    "status": "Registered"
-  }
-]
+{
+  "status": 200
+}
+```
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+
+## Get a specific grade record
+
+```shell
+curl "<baseUrl>/grade" \
+  -H "Authorization: Bear <token>"
 ```
 
-This endpoint retrieves all students registered by this organization account.
+This endpoint fetch a specific grade record by using SID, courseID, unitID and questionID.
 
 ### HTTP Request
 
 `GET baseUrl/grade`
 
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-status | 'Registered' | The result will include kittens that have the same register status.
+### Request Body Parameters
 
 
-## Get a Specific Student
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be fetched 
+courseId | Required | String | Valid courseId (e.g.: mba500, mba600...) | 'mba500' | The course ID of the student grade to be fetched
+unitId | Required | String | Valid unitId (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be fetched
+questionId | Required | String | Valid unique global question ID (1123, 1134...) | '000101' | The unique question ID of the student grade to be fetched
 
-```shell
-curl "<baseUrl>/grade/000-A600861002" \
-  -H "Authorization: Bear <token>"
-```
+### Response Body
 
 > The above command returns JSON structured like this:
 
 ```json
   [{
     "SID": "000-A600861002",
-    "first_name": "Yu",
-    "last_name": "Dong",
-    "major": "Master of Business Administration",
-    "concentration": "Finance",
-    "birthday": "12/05/93",
-    "enroll_date": "07/28/20",
-    "status": "Registered"
+    "courseId": "mba500",
+    "unitId": "u1",
+    "questionID": "000101",
+    "grade": 87,
+    "lastUpdateTimestamp": 1618729540,
   }]
 ```
 
-This endpoint retrieves a specific student.
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+grades | Array of Object | '[]' | If the grade with the SID,unitId, questionId does not exist, return value will be an empty array
+
+## Get all grade records of a specific student
+
+```shell
+curl "<baseUrl>/grade/all" \
+  -H "Authorization: Bear <token>"
+```
+
+This endpoint fetch all grade records by using SID.
 
 ### HTTP Request
 
-`GET http://example.com/grade/<SID>`
+`GET baseUrl/grade/all`
 
-### URL Parameters
+### Request Body Parameters
 
-Parameter | Description
---------- | -----------
-SID | The SID of the student to retrieve
 
-## Update specific student
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be fetched
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+```json
+  [{
+    "SID": "000-A600861002",
+    "courseId": "mba500",
+    "unitId": "u1",
+    "questionID": "000101",
+    "grade": 87,
+    "lastUpdateTimestamp": 1618729540,
+  },
+  {
+    "SID": "000-A600861002",
+    "courseId": "mba500",
+    "unitId": "u2",
+    "questionID": "000201",
+    "grade": 90,
+    "lastUpdateTimestamp": 1618733649,
+  },
+  ...
+  ]
+```
+
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+grades | Array of Object | '[]' | If the grade with the SID,unitId, questionId does not exist, return value will be an empty array
+
+## Update a specific grade record
 
 ```shell
-curl "<baseUrl>/grade/<SID>" \
-  -X UPDATE \
+curl "<baseUrl>/grade/update" \
+  -X POST \
   -H "Authorization: Bear <token>"
 ```
 
