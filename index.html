@@ -313,6 +313,11 @@
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-token" class="toc-h2 toc-link" data-title="Get token">Get token</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#students" class="toc-h1 toc-link" data-title="Students">Students</a>
@@ -369,6 +374,97 @@
 
 <p><code>https://app.patten.edu:4000/api/</code></p>
 <h1 id='authentication'>Authentication</h1>
+<p>One Platform uses industry-standard protocol OAuth 2.0 to allow access to the API. You can register a new One Platform client ID and client secret pair by contacting our tech support team: <a href="support@sv.patten.edu">support@sv.patten.edu</a>.</p>
+<h2 id='get-token'>Get token</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/auth/token"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'cache-control: no-cache'</span> <span class="se">\</span>
+</code></pre></div>
+<p>This endpoint retrieves a api token.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST baseUrl/auth/token</code></p>
+<h3 id='request-body-parameters'>Request Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Validation</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_id</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid official client id</td>
+<td>&#39;STG38RC&#39;</td>
+<td>The Id of the client</td>
+</tr>
+<tr>
+<td>client_secret</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid client secret</td>
+<td>&#39;dBTqGQRvA8HHx6D36Ovq&#39;</td>
+<td>The secret key of the client</td>
+</tr>
+<tr>
+<td>grant_type</td>
+<td>Required</td>
+<td>String</td>
+<td>&#39;client_credentials&#39;</td>
+<td>&#39;client_credentials&#39;</td>
+<td>Must be &quot;client_credentials&quot; for 3rd party Oauth</td>
+</tr>
+</tbody></table>
+<h3 id='response-body'>Response Body</h3>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HHx6D36OvqJ0QIYfbvDQ"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"expire"</span><span class="p">:</span><span class="w"> </span><span class="mi">78000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Possible Return Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>Number</td>
+<td>200</td>
+<td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
+</tr>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>&#39;HHx6D36OvqJ0QIYfbvDQ&#39;</td>
+<td>API access token</td>
+</tr>
+<tr>
+<td>expire</td>
+<td>Number</td>
+<td>78000</td>
+<td>Token get expired in seconds.</td>
+</tr>
+</tbody></table>
+
+<p>We expect the API token to be included in all API requests to the server in a header that looks like the following:</p>
+
+<p><code>Authorization: Bear &lt;token&gt;</code></p>
+
+<aside class="notice">
+You must replace <code>token</code> with your personal API token.
+</aside>
+
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
@@ -379,24 +475,14 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <blockquote>
 <p>Make sure to replace <code>token</code> with your API key.</p>
 </blockquote>
-
-<p>One Platform uses API token to allow access to the API. You can register a new One Platform API token by contacting our tech support team: <a href="support@sv.patten.edu">support@sv.patten.edu</a>.</p>
-
-<p>Kittn expects for the API token to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: Bear &lt;token&gt;</code></p>
-
-<aside class="notice">
-You must replace <code>token</code> with your personal API token.
-</aside>
 <h1 id='students'>Students</h1><h2 id='enroll-new-student'>Enroll new student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/student/enroll"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
 </code></pre></div>
-<p>This endpoint enroll a new student.</p>
-<h3 id='http-request'>HTTP Request</h3>
+<p>This endpoint enrolls a new student.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST baseUrl/student/enroll</code></p>
-<h3 id='request-body-parameters'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-2'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -472,7 +558,7 @@ You must replace <code>token</code> with your personal API token.
 <td>The phone number of the student to be added</td>
 </tr>
 </tbody></table>
-<h3 id='response-body'>Response Body</h3>
+<h3 id='response-body-2'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -506,9 +592,9 @@ You must replace <code>token</code> with your personal API token.
   <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint retrieves a specific student.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET http://example.com/student</code></p>
-<h3 id='request-body-parameters-2'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-3'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -528,7 +614,7 @@ You must replace <code>token</code> with your personal API token.
 <td>The SID of the student to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-2'>Response Body</h3>
+<h3 id='response-body-3'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -569,9 +655,9 @@ You must replace <code>token</code> with your personal API token.
   <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint update a specific student enrollment info.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST baseUrl/student/update</code></p>
-<h3 id='request-body-parameters-3'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-4'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -655,7 +741,7 @@ You must replace <code>token</code> with your personal API token.
 <td>The phone number of the student to be updated</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-3'>Response Body</h3>
+<h3 id='response-body-4'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -691,9 +777,9 @@ You must replace <code>token</code> with your personal API token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint deletes a specific student.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST &lt;baseUrl&gt;/student/delete/&lt;SID&gt;</code></p>
-<h3 id='request-body-parameters-4'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-5'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -713,7 +799,7 @@ You must replace <code>token</code> with your personal API token.
 <td>The SID of the student to be updated</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-4'>Response Body</h3>
+<h3 id='response-body-5'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -741,9 +827,9 @@ You must replace <code>token</code> with your personal API token.
   <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint enroll a new student.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>POST baseUrl/grade</code></p>
-<h3 id='request-body-parameters-5'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-6'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -795,7 +881,7 @@ You must replace <code>token</code> with your personal API token.
 <td>The grade of the question to be inserted</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-5'>Response Body</h3>
+<h3 id='response-body-6'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -822,9 +908,9 @@ You must replace <code>token</code> with your personal API token.
   <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint fetch a specific grade record by using SID, courseID, unitID and questionID.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET baseUrl/grade</code></p>
-<h3 id='request-body-parameters-6'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-7'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -868,7 +954,7 @@ You must replace <code>token</code> with your personal API token.
 <td>The unique question ID of the student grade to be fetched</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-6'>Response Body</h3>
+<h3 id='response-body-7'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -906,9 +992,9 @@ You must replace <code>token</code> with your personal API token.
   <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint fetch all grade records by using SID.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET baseUrl/grade/all</code></p>
-<h3 id='request-body-parameters-7'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-8'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -928,7 +1014,7 @@ You must replace <code>token</code> with your personal API token.
 <td>The SID of the student grade to be fetched</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-7'>Response Body</h3>
+<h3 id='response-body-8'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -977,9 +1063,9 @@ You must replace <code>token</code> with your personal API token.
   <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint update a specific grade record.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>POST &lt;baseUrl&gt;/grade/update</code></p>
-<h3 id='request-body-parameters-8'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-9'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1031,7 +1117,7 @@ You must replace <code>token</code> with your personal API token.
 <td>The grade of the question to be inserted</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-8'>Response Body</h3>
+<h3 id='response-body-9'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1060,9 +1146,9 @@ You must replace <code>token</code> with your personal API token.
   <span class="nt">-F</span> <span class="s2">"file[]=/path/to/file"</span>
 </code></pre></div>
 <p>This endpoint upload final paper for a specific course.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>POST &lt;baseUrl&gt;/grade/finalpaper</code></p>
-<h3 id='request-body-parameters-9'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-10'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1093,12 +1179,12 @@ You must replace <code>token</code> with your personal API token.
 <td>file</td>
 <td>Required</td>
 <td>String</td>
-<td>Available file local path</td>
+<td>Available file local path. File must in fomart of doc, docx or pdf. File size must be less than 5M.</td>
 <td>&#39;example.pdf&#39;</td>
 <td>The local path of file to be uploaded</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-9'>Response Body</h3>
+<h3 id='response-body-10'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
