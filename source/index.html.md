@@ -26,6 +26,58 @@ Request base url(baseUrl):
 
 # Authentication
 
+
+One Platform uses industry-standard protocol OAuth 2.0 to allow access to the API. You can register a new One Platform client ID and client secret pair by contacting our tech support team: [support@sv.patten.edu](support@sv.patten.edu).
+
+## Get token
+
+```shell
+curl "<baseUrl>/auth/token" \
+  -X POST \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -H 'cache-control: no-cache' \
+```
+
+This endpoint retrieves a api token.
+
+### HTTP Request
+
+`POST baseUrl/auth/token`
+
+### Request Body Parameters
+
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+client_id | Required | String | Valid official client id | 'STG38RC' | The Id of the client
+client_secret | Required | String | Valid client secret | 'dBTqGQRvA8HHx6D36Ovq' | The secret key of the client
+grant_type | Required | String | 'client_credentials' | 'client_credentials' | Must be "client_credentials" for 3rd party Oauth
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": 200,
+  "token": "HHx6D36OvqJ0QIYfbvDQ",
+  "expire": 78000
+}
+```
+
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+token | String | 'HHx6D36OvqJ0QIYfbvDQ' | API access token
+expire | Number | 78000 | Token get expired in seconds.
+
+We expect the API token to be included in all API requests to the server in a header that looks like the following:
+
+`Authorization: Bear <token>`
+
+<aside class="notice">
+You must replace <code>token</code> with your personal API token.
+</aside>
+
 > To authorize, use this code:
 
 ```shell
@@ -36,15 +88,6 @@ curl "api_endpoint_here" \
 
 > Make sure to replace `token` with your API key.
 
-One Platform uses API token to allow access to the API. You can register a new One Platform API token by contacting our tech support team: [support@sv.patten.edu](support@sv.patten.edu).
-
-Kittn expects for the API token to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: Bear <token>`
-
-<aside class="notice">
-You must replace <code>token</code> with your personal API token.
-</aside>
 
 # Students
 
@@ -56,7 +99,7 @@ curl "<baseUrl>/student/enroll" \
   -H "Authorization: Bear <token>"
 ```
 
-This endpoint enroll a new student.
+This endpoint enrolls a new student.
 
 ### HTTP Request
 
@@ -407,7 +450,7 @@ Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
 SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be fetched 
 courseId | Required | String | Valid courseId (e.g.: mba500, mba600...) | 'mba500' | The course ID of the student grade to be fetched
-file | Required | String | Available file local path | 'example.pdf' | The local path of file to be uploaded
+file | Required | String | Available file local path. File must in fomart of doc, docx or pdf. File size must be less than 5M. | 'example.pdf' | The local path of file to be uploaded
 
 ### Response Body
 
