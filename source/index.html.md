@@ -44,7 +44,7 @@ This endpoint retrieves a api token.
 
 `POST baseUrl/auth/token`
 
-### Request Body Parameters
+### Request Query Parameters
 
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
