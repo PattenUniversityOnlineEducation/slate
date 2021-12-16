@@ -72,7 +72,7 @@ expire | Number | 78000 | Token get expired in seconds.
 
 We expect the API token to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: Bear <token>`
+`Authorization: JWT <token>`
 
 <aside class="notice">
 You must replace <code>token</code> with your personal API token.
@@ -83,7 +83,7 @@ You must replace <code>token</code> with your personal API token.
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here" \
-  -H "Authorization: Bear <token>"
+  -H "Authorization: JWT <token>"
 ```
 
 > Make sure to replace `token` with your API key.
@@ -96,7 +96,7 @@ curl "api_endpoint_here" \
 ```shell
 curl "<baseUrl>/student/enroll" \
   -X POST \
-  -H "Authorization: Bear <token>"
+  -H "Authorization: JWT <token>"
 ```
 
 This endpoint enrolls a new student.
@@ -138,7 +138,7 @@ SID | String | '000-XXXXXXX' | New student ID is 14-digit long (includes "-", e.
 
 ```shell
 curl "<baseUrl>/student/000-A600861002" \
-  -H "Authorization: Bear <token>"
+  -H "Authorization: JWT <token>"
 ```
 
 This endpoint retrieves a specific student.
@@ -181,7 +181,7 @@ student | Array of Object | '[]' | If the student with the SID is not exist, ret
 ```shell
 curl "<baseUrl>/student/update" \
   -X POST \
-  -H "Authorization: Bear <token>"
+  -H "Authorization: JWT <token>"
 ```
 
 This endpoint update a specific student enrollment info.
@@ -223,7 +223,7 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 ```shell
 curl "<baseUrl>/student/delete" \
   -X POST \
-  -H "Authorization: Bear <token>"
+  -H "Authorization: JWT <token>"
 ```
 
 > The above command returns JSON structured like this:
@@ -267,7 +267,7 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 ```shell
 curl "<baseUrl>/grade" \
   -X POST \
-  -H "Authorization: Bear <token>"
+  -H "Authorization: JWT <token>"
 ```
 
 This endpoint enroll a new student.
@@ -304,7 +304,7 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 
 ```shell
 curl "<baseUrl>/grade" \
-  -H "Authorization: Bear <token>"
+  -H "Authorization: JWT <token>"
 ```
 
 This endpoint fetch a specific grade record by using SID, courseID, unitID and questionID.
@@ -346,7 +346,7 @@ grades | Array of Object | '[]' | If the grade with the SID,unitId, questionId d
 
 ```shell
 curl "<baseUrl>/grade/all" \
-  -H "Authorization: Bear <token>"
+  -H "Authorization: JWT <token>"
 ```
 
 This endpoint fetch all grade records by using SID.
@@ -397,7 +397,7 @@ grades | Array of Object | '[]' | If the grade with the SID,unitId, questionId d
 ```shell
 curl "<baseUrl>/grade/update" \
   -X POST \
-  -H "Authorization: Bear <token>"
+  -H "Authorization: JWT <token>"
 ```
 
 This endpoint update a specific grade record.
@@ -434,7 +434,7 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 ```shell
 curl "<baseUrl>/grade/finalpaper" \
   -X POST \
-  -H "Authorization: Bear <token> Content-Type: multipart/form-data;" \
+  -H "Authorization: JWT <token> Content-Type: multipart/form-data;" \
   -F "file[]=/path/to/file"
 ```
 
