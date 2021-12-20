@@ -116,6 +116,7 @@ concentration | Required | String | 'Finance'/'Sales Management'/... (Or other a
 birthday | Required |  String | Date format in 'MM/DD/YY'| '02/15/76' | The birthday of the student to be added
 country | Required | String | Country official name in English | 'China' | The country of citizenship for the student to be added 
 email | Required | String | Student's confirmed email address with all lower case | 'jm@patten.edu' | The email of the student to be added 
+enroll_date | Required | String | SDate format in 'MM/DD/YY' | '05/15/20' | The date of the enrollment 
 phone | Required | String | Student's personal phone number with country code ('+1: USA/Canada; +86: China; ...') | '+12012312' | The phone number of the student to be added 
 
 ### Response Body
