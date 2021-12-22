@@ -383,7 +383,7 @@
 <p>This endpoint retrieves a api token.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST baseUrl/auth/token</code></p>
-<h3 id='request-body-parameters'>Request Body Parameters</h3>
+<h3 id='request-query-parameters'>Request Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -459,7 +459,7 @@
 
 <p>We expect the API token to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code>Authorization: Bear &lt;token&gt;</code></p>
+<p><code>Authorization: JWT &lt;token&gt;</code></p>
 
 <aside class="notice">
 You must replace <code>token</code> with your personal API token.
@@ -470,19 +470,19 @@ You must replace <code>token</code> with your personal API token.
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
 </code></pre></div>
 <blockquote>
 <p>Make sure to replace <code>token</code> with your API key.</p>
 </blockquote>
 <h1 id='students'>Students</h1><h2 id='enroll-new-student'>Enroll new student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/student/enroll"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint enrolls a new student.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST baseUrl/student/enroll</code></p>
-<h3 id='request-body-parameters-2'>Request Body Parameters</h3>
+<h3 id='request-body-parameters'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -550,6 +550,14 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The email of the student to be added</td>
 </tr>
 <tr>
+<td>enroll_date</td>
+<td>Required</td>
+<td>String</td>
+<td>SDate format in &#39;MM/DD/YY&#39;</td>
+<td>&#39;05/15/20&#39;</td>
+<td>The date of the enrollment</td>
+</tr>
+<tr>
 <td>phone</td>
 <td>Required</td>
 <td>String</td>
@@ -589,12 +597,12 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </tbody></table>
 <h2 id='get-a-specific-student'>Get a Specific Student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/student/000-A600861002"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint retrieves a specific student.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET http://example.com/student</code></p>
-<h3 id='request-body-parameters-3'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-2'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -652,12 +660,12 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tbody></table>
 <h2 id='update-specific-student'>Update specific student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/student/update"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint update a specific student enrollment info.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST baseUrl/student/update</code></p>
-<h3 id='request-body-parameters-4'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-3'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -766,7 +774,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tbody></table>
 <h2 id='delete-a-specific-student'>Delete a Specific Student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/student/delete"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -779,7 +787,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <p>This endpoint deletes a specific student.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST &lt;baseUrl&gt;/student/delete/&lt;SID&gt;</code></p>
-<h3 id='request-body-parameters-5'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-4'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -824,12 +832,12 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tbody></table>
 <h1 id='grades'>Grades</h1><h2 id='insert-new-grade-record'>Insert new grade record</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint enroll a new student.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>POST baseUrl/grade</code></p>
-<h3 id='request-body-parameters-6'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-5'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -905,12 +913,12 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </tbody></table>
 <h2 id='get-a-specific-grade-record'>Get a specific grade record</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint fetch a specific grade record by using SID, courseID, unitID and questionID.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET baseUrl/grade</code></p>
-<h3 id='request-body-parameters-7'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-6'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -989,12 +997,12 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </tbody></table>
 <h2 id='get-all-grade-records-of-a-specific-student'>Get all grade records of a specific student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade/all"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint fetch all grade records by using SID.</p>
 <h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET baseUrl/grade/all</code></p>
-<h3 id='request-body-parameters-8'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-7'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1060,12 +1068,12 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tbody></table>
 <h2 id='update-a-specific-grade-record'>Update a specific grade record</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade/update"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt;"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint update a specific grade record.</p>
 <h3 id='http-request-9'>HTTP Request</h3>
 <p><code>POST &lt;baseUrl&gt;/grade/update</code></p>
-<h3 id='request-body-parameters-9'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-8'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1142,13 +1150,13 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tbody></table>
 <h2 id='upload-final-paper'>Upload final paper</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade/finalpaper"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bear &lt;token&gt; Content-Type: multipart/form-data;"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt; Content-Type: multipart/form-data;"</span> <span class="se">\</span>
   <span class="nt">-F</span> <span class="s2">"file[]=/path/to/file"</span>
 </code></pre></div>
 <p>This endpoint upload final paper for a specific course.</p>
 <h3 id='http-request-10'>HTTP Request</h3>
 <p><code>POST &lt;baseUrl&gt;/grade/finalpaper</code></p>
-<h3 id='request-body-parameters-10'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-9'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
