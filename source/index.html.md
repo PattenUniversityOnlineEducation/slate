@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <p>© 2021 Oxygen</p>
+  - <p>© 2022 Oxygen</p>
 
 includes:
   - errors
@@ -17,17 +17,17 @@ code_clipboard: true
 
 # Introduction
 
-Welcome to the Patten One Platform third party organization API! You can use our API to access student registry API endpoints, which can get information on student enrollment information, grades, and so on in our database.
+Welcome to the Patten One Platform Student Management API document! You can use these APIs to access student registry API endpoints, which can get information on student enrollment information, grades, and so on in our database.
 
 Request base url(baseUrl): 
 
-`https://app.patten.edu:4000/api/`
+`https://1.1.1.1/api/`
 
 
 # Authentication
 
 
-One Platform uses industry-standard protocol OAuth 2.0 to allow access to the API. You can register a new One Platform client ID and client secret pair by contacting our tech support team: [support@sv.patten.edu](support@sv.patten.edu).
+One Platform uses session token to allow access to the API. You can register a new One Platform client ID and client secret pair by contacting our tech support team: [support@sv.patten.edu](support@sv.patten.edu).
 
 ## Get token
 
@@ -50,7 +50,7 @@ Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
 client_id | Required | String | Valid official client id | 'STG38RC' | The Id of the client
 client_secret | Required | String | Valid client secret | 'dBTqGQRvA8HHx6D36Ovq' | The secret key of the client
-grant_type | Required | String | 'client_credentials' | 'client_credentials' | Must be "client_credentials" for 3rd party Oauth
+grant_type | Required | String | 'client_credentials' | 'client_credentials' | Must be "client_credentials"
 
 ### Response Body
 
@@ -88,13 +88,229 @@ curl "api_endpoint_here" \
 
 > Make sure to replace `token` with your API key.
 
+# Application
 
-# Students
-
-## Enroll new student
+## Create new application
 
 ```shell
-curl "<baseUrl>/student/enroll" \
+curl "<baseUrl>/application/create" \
+  -X POST \
+  -H "Authorization: JWT <token>"
+```
+
+This endpoint create a new application.
+
+### HTTP Request
+
+`POST baseUrl/application/create`
+
+### Request Body Parameters
+
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+first_name | Required | String | Only alphabet (a~z) allowed with first letter capitalized | 'Jack' | The first name of the student to be added
+last_name | Required | String | Only alphabet (a~z) allowed with first letter capitalized | 'Ma' | The last name of the student to be added
+major | Required | String | 'Master of Business Administration'(Or other registered major full name with all first letters capitalized) | 'Master of Business Administration' | The major of the student to be added
+concentration | Required | String | 'Finance'/'Sales Management'/... (Or other allowed concentration full name with all first letters capitalized) | 'Finance' | The concentration of the student to be added
+birthday | Required |  String | Date format in 'MM/DD/YY'| '02/15/76' | The birthday of the student to be added
+country | Required | String | Country official name in English | 'China' | The country of citizenship for the student to be added 
+email | Required | String | Student's confirmed email address with all lower case | 'jm@patten.edu' | The email of the student to be added 
+phone | Required | String | Student's personal phone number with country code ('+1: USA/Canada; +86: China; ...') | '+12012312' | The phone number of the student to be added 
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": 200,
+  "appID" : "62"
+}
+```
+
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+appID | String | '62' | Unique number.
+
+## Retrieve a specific application
+
+```shell
+curl "<baseUrl>/application/62" \
+  -H "Authorization: JWT <token>"
+```
+
+This endpoint retrieve an application
+
+### HTTP Request
+
+`GET baseUrl/application/62`
+
+### Request Body Parameters
+
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+appID | Required | String | Valid application ID | '62' | The appID of the application to retrieve
+
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+```json
+  [{
+    "appID": "62",
+    "first_name": "Yu",
+    "last_name": "Dong",
+    "major": "Master of Business Administration",
+    "concentration": "Finance",
+    "birthday": "12/05/93",
+    "status": "Registered",
+    "create_timestamp": "2020-07-26T23:47:59.598Z"
+  }]
+```
+
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+student | Array of Object | '[]' | If the application with the appID is not exist, return value will be an empty array
+
+## Retrieve all applications created by the client
+
+```shell
+curl "<baseUrl>/application/all" \
+  -H "Authorization: JWT <token>"
+```
+
+This endpoint retrieve an application
+
+### HTTP Request
+
+`GET baseUrl/application/all`
+
+### Request Body Parameters
+
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+```json
+  [{
+    "appID": "62",
+    "first_name": "Yu",
+    "last_name": "Dong",
+    "major": "Master of Business Administration",
+    "concentration": "Finance",
+    "birthday": "12/05/93",
+    "status": "Registered",
+    "create_timestamp": "2020-07-26T23:47:59.598Z"
+  },
+  {
+    "appID": "63",
+    "first_name": "Ma",
+    "last_name": "Jack",
+    "major": "Master of Business Administration",
+    "concentration": "Finance",
+    "birthday": "01/03/92",
+    "status": "Registered",
+    "create_timestamp": "2020-07-26T23:47:59.598Z"
+  },
+  ]
+```
+
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+student | Array of Object | '[]' | If no exist applications, return an empty array
+
+## Update a specific application
+
+```shell
+curl "<baseUrl>/application/update" \
+  -X POST \
+  -H "Authorization: JWT <token>"
+```
+
+This endpoint update a specific application info.
+
+### HTTP Request
+
+`POST baseUrl/application/update`
+
+### Request Body Parameters
+
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+appID | Required | String | Valid application ID | '62' | The appID of the application to be updated
+first_name | Optional | String | Only alphabet (a~z) allowed with first letter capitalized | 'Jack' | The first name of the student to be updated
+last_name | Optional | String | Only alphabet (a~z) allowed with first letter capitalized | 'Ma' | The last name of the student to be updated
+major | Optional | String | 'Master of Business Administration'(Or other registered major full name with all first letters capitalized) | 'Master of Business Administration' | The major of the student to be updated
+concentration | Optional | String | 'Finance'/'Sales Management'/... (Or other allowed concentration full name with all first letters capitalized) | 'Finance' | The concentration of the student to be updated
+birthday | Optional |  String | Date format in 'MM/DD/YY'| '02/15/76' | The birthday of the student to be updated
+country | Optional | String | Country official name in English | 'China' | The country of citizenship for the student to be updated 
+email | Optional | String | Student's confirmed email address with all lower case | 'jm@patten.edu' | The email of the student to be updated 
+phone | Optional | String | Student's personal phone number with country code ('+1: USA/Canada; +86: China; ...') | '+12012312' | The phone number of the student to be updated
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": 200
+}
+```
+
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+
+## Upload required documents
+
+```shell
+curl "<baseUrl>/application/fileupload" \
+  -X POST \
+  -H "Authorization: JWT <token> Content-Type: multipart/form-data;" \
+  -F "file[]=/path/to/file"
+```
+
+This endpoint update a specific student enrollment info.
+
+### HTTP Request
+
+`POST baseUrl/application/fileupload`
+
+### Request Body Parameters
+
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+appID | Required | String | Valid application ID | '62' | The appID of the application to be updated
+file_type | Required | String | allowed string: 'resume'/'photo_id'/'enlish_language_proficiency' | 'photo_id' | The type of the uploaded file
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": 200
+}
+```
+
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+
+# Admin
+
+## Change application status
+
+```shell
+curl "<baseUrl>/admin/application/update" \
   -X POST \
   -H "Authorization: JWT <token>"
 ```
@@ -103,7 +319,7 @@ This endpoint enrolls a new student.
 
 ### HTTP Request
 
-`POST baseUrl/student/enroll`
+`POST baseUrl/admin/application/update`
 
 ### Request Body Parameters
 
