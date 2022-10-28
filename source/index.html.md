@@ -165,7 +165,8 @@ appID | Required | String | Valid application ID | '62' | The appID of the appli
     "major": "Master of Business Administration",
     "concentration": "Finance",
     "birthday": "12/05/93",
-    "status": "Registered",
+    "status": "pending_review",
+    "committee_comment": "",
     "create_timestamp": "2020-07-26T23:47:59.598Z"
   }]
 ```
@@ -206,7 +207,8 @@ Parameter | Required | Type | Validation | Example | Description
     "major": "Master of Business Administration",
     "concentration": "Finance",
     "birthday": "12/05/93",
-    "status": "Registered",
+    "status": "pending_review",
+    "committee_comment": "",
     "create_timestamp": "2020-07-26T23:47:59.598Z"
   },
   {
@@ -216,7 +218,8 @@ Parameter | Required | Type | Validation | Example | Description
     "major": "Master of Business Administration",
     "concentration": "Finance",
     "birthday": "01/03/92",
-    "status": "Registered",
+    "status": "accepted",
+    "committee_comment": "",
     "create_timestamp": "2020-07-26T23:47:59.598Z"
   },
   ]
@@ -289,7 +292,7 @@ This endpoint update a specific student enrollment info.
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
 appID | Required | String | Valid application ID | '62' | The appID of the application to be updated
-file_type | Required | String | allowed string: 'resume'/'photo_id'/'enlish_language_proficiency' | 'photo_id' | The type of the uploaded file
+file_type | Required | String | Allowed predefined type: 'resume'/'photo_id'/'english_language_proficiency' | 'photo_id' | The type of the uploaded file
 
 ### Response Body
 
@@ -301,178 +304,6 @@ file_type | Required | String | allowed string: 'resume'/'photo_id'/'enlish_lang
 }
 ```
 
-Parameter | Type | Example | Possible Return Type
---------- | ----------- | ----------- | -----------
-status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
-
-# Admin
-
-## Change application status
-
-```shell
-curl "<baseUrl>/admin/application/update" \
-  -X POST \
-  -H "Authorization: JWT <token>"
-```
-
-This endpoint enrolls a new student.
-
-### HTTP Request
-
-`POST baseUrl/admin/application/update`
-
-### Request Body Parameters
-
-Parameter | Required | Type | Validation | Example | Description
---------- | ----------- | ----------- | ----------- | ----------- | -----------
-first_name | Required | String | Only alphabet (a~z) allowed with first letter capitalized | 'Jack' | The first name of the student to be added
-last_name | Required | String | Only alphabet (a~z) allowed with first letter capitalized | 'Ma' | The last name of the student to be added
-major | Required | String | 'Master of Business Administration'(Or other registered major full name with all first letters capitalized) | 'Master of Business Administration' | The major of the student to be added
-concentration | Required | String | 'Finance'/'Sales Management'/... (Or other allowed concentration full name with all first letters capitalized) | 'Finance' | The concentration of the student to be added
-birthday | Required |  String | Date format in 'MM/DD/YY'| '02/15/76' | The birthday of the student to be added
-country | Required | String | Country official name in English | 'China' | The country of citizenship for the student to be added 
-email | Required | String | Student's confirmed email address with all lower case | 'jm@patten.edu' | The email of the student to be added 
-enroll_date | Required | String | SDate format in 'MM/DD/YY' | '05/15/20' | The date of the enrollment 
-phone | Required | String | Student's personal phone number with country code ('+1: USA/Canada; +86: China; ...') | '+12012312' | The phone number of the student to be added 
-
-### Response Body
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "status": 200,
-  "SID" : "000-A600861001"
-}
-```
-
-Parameter | Type | Example | Possible Return Type
---------- | ----------- | ----------- | -----------
-status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
-SID | String | '000-XXXXXXX' | New student ID is 14-digit long (includes "-", e.g. : XXX-X60000XXXX). Old ID can be converted to new ID by insert "1" in front of the last 3 digits (e.g. : old id is 999-N60000234, new ID should be 999-N600001234).
-
-## Get a Specific Student
-
-```shell
-curl "<baseUrl>/student/000-A600861002" \
-  -H "Authorization: JWT <token>"
-```
-
-This endpoint retrieves a specific student.
-
-### HTTP Request
-
-`GET http://example.com/student`
-
-### Request Body Parameters
-
-Parameter | Required | Type | Validation | Example | Description
---------- | ----------- | ----------- | ----------- | ----------- | -----------
-SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student to retrieve
-
-
-### Response Body
-
-> The above command returns JSON structured like this:
-
-```json
-  [{
-    "SID": "000-A600861002",
-    "first_name": "Yu",
-    "last_name": "Dong",
-    "major": "Master of Business Administration",
-    "concentration": "Finance",
-    "birthday": "12/05/93",
-    "enroll_date": "07/28/20",
-    "status": "Registered"
-  }]
-```
-
-Parameter | Type | Example | Possible Return Type
---------- | ----------- | ----------- | -----------
-status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
-student | Array of Object | '[]' | If the student with the SID is not exist, return value will be an empty array
-
-## Update specific student
-
-```shell
-curl "<baseUrl>/student/update" \
-  -X POST \
-  -H "Authorization: JWT <token>"
-```
-
-This endpoint update a specific student enrollment info.
-
-### HTTP Request
-
-`POST baseUrl/student/update`
-
-### Request Body Parameters
-
-Parameter | Required | Type | Validation | Example | Description
---------- | ----------- | ----------- | ----------- | ----------- | -----------
-SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student to be updated
-first_name | Optional | String | Only alphabet (a~z) allowed with first letter capitalized | 'Jack' | The first name of the student to be updated
-last_name | Optional | String | Only alphabet (a~z) allowed with first letter capitalized | 'Ma' | The last name of the student to be updated
-major | Optional | String | 'Master of Business Administration'(Or other registered major full name with all first letters capitalized) | 'Master of Business Administration' | The major of the student to be updated
-concentration | Optional | String | 'Finance'/'Sales Management'/... (Or other allowed concentration full name with all first letters capitalized) | 'Finance' | The concentration of the student to be updated
-birthday | Optional |  String | Date format in 'MM/DD/YY'| '02/15/76' | The birthday of the student to be updated
-country | Optional | String | Country official name in English | 'China' | The country of citizenship for the student to be updated 
-email | Optional | String | Student's confirmed email address with all lower case | 'jm@patten.edu' | The email of the student to be updated 
-phone | Optional | String | Student's personal phone number with country code ('+1: USA/Canada; +86: China; ...') | '+12012312' | The phone number of the student to be updated
-
-### Response Body
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "status": 200
-}
-```
-
-Parameter | Type | Example | Possible Return Type
---------- | ----------- | ----------- | -----------
-status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
-
-## Delete a Specific Student
-
-```shell
-curl "<baseUrl>/student/delete" \
-  -X POST \
-  -H "Authorization: JWT <token>"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "status": 200,
-  "success" : "True"
-}
-```
-
-This endpoint deletes a specific student.
-
-### HTTP Request
-
-`POST <baseUrl>/student/delete/<SID>`
-
-### Request Body Parameters
-
-Parameter | Required | Type | Validation | Example | Description
---------- | ----------- | ----------- | ----------- | ----------- | -----------
-SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student to be updated
-
-### Response Body
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "status": 200
-}
-```
 Parameter | Type | Example | Possible Return Type
 --------- | ----------- | ----------- | -----------
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
@@ -600,7 +431,6 @@ SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID
     "grade": 90,
     "lastUpdateTimestamp": 1618733649,
   },
-  ...
   ]
 ```
 
@@ -668,6 +498,162 @@ Parameter | Required | Type | Validation | Example | Description
 SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be fetched 
 courseId | Required | String | Valid courseId (e.g.: mba500, mba600...) | 'mba500' | The course ID of the student grade to be fetched
 file | Required | String | Available file local path. File must in fomart of doc, docx or pdf. File size must be less than 5M. | 'example.pdf' | The local path of file to be uploaded
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": 200
+}
+```
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+
+# Academic Admin
+
+## Finalize application status
+
+```shell
+curl "<baseUrl>/admin/application/finalize" \
+  -X POST \
+  -H "Authorization: JWT <token>"
+```
+
+This endpoint finalize status of a new application.
+
+### HTTP Request
+
+`POST baseUrl/admin/application/finalize`
+
+### Request Body Parameters
+
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+appID | Required | String | Valid application ID | '62' | The unique number of the application to be updated
+status | Required | String | Allowed predefined status: 'pending_review'/'more_materials_needed'/ 'accepted'/'rejected' | 'accepted' | The final decision of the application by admission comittee
+committee_comment | Optional | String | maximum word length: 1024 bytes | 'need photo id' | The comment added by admission comittee
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": 200,
+  "SID": null
+}
+```
+
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+SID |  String | '000-A600861002' |  14-digit student ID or return null if not accepted
+
+## Retrieve uploaded files of  a specific student
+
+```shell
+curl "<baseUrl>/admin/application/62" \
+  -H "Authorization: JWT <token>"
+```
+
+This endpoint retrieves uploaded files of  a specific student.
+
+### HTTP Request
+
+`GET baseUrl/admin/application/62`
+
+### Request Body Parameters
+
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+appID | Required | String | Valid appID | '62' | The appID of the application to retrieve
+
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+```json
+  [{
+    "appID": "62",
+    "photo_id": null,
+    "resume": null,
+    "english_language_proficiency": null
+  }]
+```
+
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+files | Array of Object | '[]' | File Blob; If the student upload file is not exist, return null
+
+## Review and verify student's gradebook
+
+```shell
+curl "<baseUrl>/admin/grade/review" \
+  -X POST \
+  -H "Authorization: JWT <token>"
+```
+
+This endpoint review and verify a specific student gradebook.
+
+### HTTP Request
+
+`POST baseUrl/admin/grade/review`
+
+### Request Body Parameters
+
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student to be updated
+verify | Required | String | 'True'/'False' | 'True' | The verify status of the whole gradebook
+comment | Optional | String | maximum word length: 1024 bytes | '' | The comment added by the grade reviewer
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+```json
+  [{
+    "status": 200,
+  }]
+```
+
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+
+## Delete a Specific Student
+
+```shell
+curl "<baseUrl>/student/delete" \
+  -X POST \
+  -H "Authorization: JWT <token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": 200,
+  "success" : "True"
+}
+```
+
+This endpoint deletes a specific student.
+
+### HTTP Request
+
+`POST <baseUrl>/student/delete/<SID>`
+
+### Request Body Parameters
+
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student to be updated
 
 ### Response Body
 
