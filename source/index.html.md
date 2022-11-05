@@ -114,8 +114,7 @@ Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
 first_name | Required | String | Only alphabet (a~z) allowed with first letter capitalized | 'Jack' | The first name of the student to be added
 last_name | Required | String | Only alphabet (a~z) allowed with first letter capitalized | 'Ma' | The last name of the student to be added
-major | Required | String | 'Master of Business Administration'(Or other registered major full name with all first letters capitalized) | 'Master of Business Administration' | The major of the student to be added
-concentration | Required | String | 'Finance'/'Sales Management'/... (Or other allowed concentration full name with all first letters capitalized) | 'Finance' | The concentration of the student to be added
+major | Required | String | 'Master of Business Administration - General Management'(Or other registered major full name with all first letters capitalized) | 'Master of Business Administration - General Management' | The major of the student to be added
 birthday | Required |  String | Date format in 'MM/DD/YY'| '02/15/76' | The birthday of the student to be added
 country | Required | String | Country official name in English | 'China' | The country of citizenship for the student to be added 
 email | Required | String | Student's confirmed email address with all lower case | 'jm@patten.edu' | The email of the student to be added 
@@ -164,10 +163,10 @@ appID | Required | String | Valid application ID | '62' | The appID of the appli
 ```json
   [{
     "appID": "62",
+    "SID": "",
     "first_name": "Yu",
     "last_name": "Dong",
-    "major": "Master of Business Administration",
-    "concentration": "Finance",
+    "major": "Master of Business Administration - General Management",
     "birthday": "12/05/93",
     "status": "pending_review",
     "committee_comment": "",
@@ -206,10 +205,10 @@ Parameter | Required | Type | Validation | Example | Description
 ```json
   [{
     "appID": "62",
+    "SID": "",
     "first_name": "Yu",
     "last_name": "Dong",
-    "major": "Master of Business Administration",
-    "concentration": "Finance",
+    "major": "Master of Business Administration - General Management",
     "birthday": "12/05/93",
     "status": "pending_review",
     "committee_comment": "",
@@ -217,10 +216,10 @@ Parameter | Required | Type | Validation | Example | Description
   },
   {
     "appID": "63",
+    "SID": "000-A600861002",
     "first_name": "Ma",
     "last_name": "Jack",
-    "major": "Master of Business Administration",
-    "concentration": "Finance",
+    "major": "Master of Business Administration - General Management",
     "birthday": "01/03/92",
     "status": "accepted",
     "committee_comment": "",
@@ -255,8 +254,7 @@ Parameter | Required | Type | Validation | Example | Description
 appID | Required | String | Valid application ID | '62' | The appID of the application to be updated
 first_name | Optional | String | Only alphabet (a~z) allowed with first letter capitalized | 'Jack' | The first name of the student to be updated
 last_name | Optional | String | Only alphabet (a~z) allowed with first letter capitalized | 'Ma' | The last name of the student to be updated
-major | Optional | String | 'Master of Business Administration'(Or other registered major full name with all first letters capitalized) | 'Master of Business Administration' | The major of the student to be updated
-concentration | Optional | String | 'Finance'/'Sales Management'/... (Or other allowed concentration full name with all first letters capitalized) | 'Finance' | The concentration of the student to be updated
+major | Optional | String | 'Master of Business Administration - General Management'(Or other registered major full name with all first letters capitalized) | 'Master of Business Administration - General Management' | The major of the student to be updated
 birthday | Optional |  String | Date format in 'MM/DD/YY'| '02/15/76' | The birthday of the student to be updated
 country | Optional | String | Country official name in English | 'China' | The country of citizenship for the student to be updated 
 email | Optional | String | Student's confirmed email address with all lower case | 'jm@patten.edu' | The email of the student to be updated 
@@ -296,7 +294,8 @@ This endpoint update a specific student enrollment info.
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
 appID | Required | String | Valid application ID | '62' | The appID of the application to be updated
-file_type | Required | String | Allowed predefined type: 'resume'/'photo_id'/'english_language_proficiency' | 'photo_id' | The type of the uploaded file
+file_type | Required | String | Allowed predefined type: 'resume'/'photo_id'/'english_language_proficiency'/'undergraduate_degree'/'undergraduate_transcript' | 'photo_id' | The type of the uploaded file
+file | Required | String | Available file local path. File must in fomart of pdf only. File size must be less than 5M. | 'example.pdf' | The local path of file to be uploaded
 
 ### Response Body
 
@@ -308,6 +307,99 @@ file_type | Required | String | Allowed predefined type: 'resume'/'photo_id'/'en
 }
 ```
 
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+
+# Course
+
+## List courses open for enrollment
+
+```shell
+curl "<baseUrl>/course/list" \
+  -X POST \
+  -H "Authorization: JWT <token>"
+```
+
+This endpoint list currently available courses that are open for enrollment.
+
+### HTTP Request
+
+`POST baseUrl/course/list`
+
+### Request Body Parameters
+
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+
+```json
+  [{
+    "course_id": "mba500-2023spring",
+    "course_name": "MBA Foundations",
+    "semester": "2023 Spring",
+    "enrollment_open_at": "2023-01-26",
+    "enrollment_close_at": "2023-02-26",
+    "instructor": "",
+    "stg_ta_email": "stg@sv.patten.edu",
+    "course_start_at": "2023-03-01",
+    "course_end_at": "2023-06-01"
+  },
+  {
+    "course_id": "mba600-2023spring",
+    "course_name": "Decision Analysis",
+    "semester": "2023 Spring",
+    "enrollment_open_at": "2023-01-26",
+    "enrollment_close_at": "2023-02-26",
+    "instructor": "",
+    "stg_ta_email": "stg@sv.patten.edu",
+    "course_start_at": "2023-03-01",
+    "course_end_at": "2023-06-01"
+  },
+  ]
+```
+
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+courses | Array of Object | '[]' | If no available courses, return an empty array
+
+
+## Register into course
+
+```shell
+curl "<baseUrl>/course/enroll" \
+  -X POST \
+  -H "Authorization: JWT <token>"
+```
+
+This endpoint enroll a new student.
+
+### HTTP Request
+
+`POST baseUrl/course/enroll`
+
+### Request Body Parameters
+
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be inserted 
+courseId | Required | String | Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be inserted
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": 200
+}
+```
 Parameter | Type | Example | Possible Return Type
 --------- | ----------- | ----------- | -----------
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
@@ -501,7 +593,7 @@ Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
 SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be fetched 
 courseId | Required | String | Valid courseId (e.g.: mba500, mba600...) | 'mba500' | The course ID of the student grade to be fetched
-file | Required | String | Available file local path. File must in fomart of doc, docx or pdf. File size must be less than 5M. | 'example.pdf' | The local path of file to be uploaded
+file | Required | String | Available file local path. File must in fomart of pdf only. File size must be less than 5M. | 'example.pdf' | The local path of file to be uploaded
 
 ### Response Body
 
@@ -556,7 +648,7 @@ Parameter | Type | Example | Possible Return Type
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
 SID |  String | '000-A600861002' |  14-digit student ID or return null if not accepted
 
-## Retrieve uploaded files of  a specific student
+## Retrieve uploaded files of a specific student
 
 ```shell
 curl "<baseUrl>/admin/application/62" \
@@ -593,6 +685,47 @@ Parameter | Type | Example | Possible Return Type
 --------- | ----------- | ----------- | -----------
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
 files | Array of Object | '[]' | File Blob; If the student upload file is not exist, return null
+
+## Open a course
+
+```shell
+curl "<baseUrl>/admin/course/open" \
+  -H "Authorization: JWT <token>"
+```
+
+This endpoint opens new courses for enrollment.
+
+### HTTP Request
+
+`GET baseUrl/admin/course/open`
+
+### Request Body Parameters
+
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+courseID | Required | String | Valid courseID | 'mba600-2023spring' | The courseID
+courseName | Required | String | Valid course name | 'Decision Analysis' | The appID of the application to retrieve
+semester | Required | String | Valid semester | '2023 Spring' | The course open semester
+enrollment_open_at | Required | String | Valid timestamp | '2023-01-26' | The enrollment start date
+enrollment_close_at | Required | String | Valid timestamp | '2023-02-26' | The enrollment end date
+course_start_at | Required | String | Valid timestamp | '2023-03-01' | The course start date
+course_end_at | Required | String | Valid timestamp | '2023-06-26' | The course end date
+instructor | Required | String | Valid name | 'Jesse' | The instructor name
+stg_ta_email | Required | String | Valid email | 'stg@patten.edu' | The TA's email address to receive notification
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+```json
+  [{
+    "status": 200,
+  }]
+```
+
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
 
 ## Review and verify student's gradebook
 
