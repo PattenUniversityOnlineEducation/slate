@@ -344,6 +344,17 @@
               </ul>
           </li>
           <li>
+            <a href="#course" class="toc-h1 toc-link" data-title="Course">Course</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#list-courses-open-for-enrollment" class="toc-h2 toc-link" data-title="List courses open for enrollment">List courses open for enrollment</a>
+                  </li>
+                  <li>
+                    <a href="#register-into-course" class="toc-h2 toc-link" data-title="Register into course">Register into course</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#grades" class="toc-h1 toc-link" data-title="Grades">Grades</a>
               <ul class="toc-list-h2">
                   <li>
@@ -370,7 +381,10 @@
                     <a href="#finalize-application-status" class="toc-h2 toc-link" data-title="Finalize application status">Finalize application status</a>
                   </li>
                   <li>
-                    <a href="#retrieve-uploaded-files-of-a-specific-student" class="toc-h2 toc-link" data-title="Retrieve uploaded files of  a specific student">Retrieve uploaded files of  a specific student</a>
+                    <a href="#retrieve-uploaded-files-of-a-specific-student" class="toc-h2 toc-link" data-title="Retrieve uploaded files of a specific student">Retrieve uploaded files of a specific student</a>
+                  </li>
+                  <li>
+                    <a href="#open-a-course" class="toc-h2 toc-link" data-title="Open a course">Open a course</a>
                   </li>
                   <li>
                     <a href="#review-and-verify-student-39-s-gradebook" class="toc-h2 toc-link" data-title="Review and verify student's gradebook">Review and verify student's gradebook</a>
@@ -537,17 +551,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>major</td>
 <td>Required</td>
 <td>String</td>
-<td>&#39;Master of Business Administration&#39;(Or other registered major full name with all first letters capitalized)</td>
-<td>&#39;Master of Business Administration&#39;</td>
+<td>&#39;Master of Business Administration - General Management&#39;(Or other registered major full name with all first letters capitalized)</td>
+<td>&#39;Master of Business Administration - General Management&#39;</td>
 <td>The major of the student to be added</td>
-</tr>
-<tr>
-<td>concentration</td>
-<td>Required</td>
-<td>String</td>
-<td>&#39;Finance&#39;/&#39;Sales Management&#39;/... (Or other allowed concentration full name with all first letters capitalized)</td>
-<td>&#39;Finance&#39;</td>
-<td>The concentration of the student to be added</td>
 </tr>
 <tr>
 <td>birthday</td>
@@ -644,10 +650,10 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">[{</span><span class="w">
     </span><span class="nl">"appID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"SID"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yu"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dong"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"concentration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finance"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration - General Management"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/05/93"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending_review"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"committee_comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -699,10 +705,10 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">[{</span><span class="w">
     </span><span class="nl">"appID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"SID"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yu"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dong"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"concentration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finance"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration - General Management"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/05/93"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending_review"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"committee_comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -710,10 +716,10 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="nl">"appID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"63"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"SID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000-A600861002"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ma"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"concentration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finance"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration - General Management"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01/03/92"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accepted"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"committee_comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -788,17 +794,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>major</td>
 <td>Optional</td>
 <td>String</td>
-<td>&#39;Master of Business Administration&#39;(Or other registered major full name with all first letters capitalized)</td>
-<td>&#39;Master of Business Administration&#39;</td>
+<td>&#39;Master of Business Administration - General Management&#39;(Or other registered major full name with all first letters capitalized)</td>
+<td>&#39;Master of Business Administration - General Management&#39;</td>
 <td>The major of the student to be updated</td>
-</tr>
-<tr>
-<td>concentration</td>
-<td>Optional</td>
-<td>String</td>
-<td>&#39;Finance&#39;/&#39;Sales Management&#39;/... (Or other allowed concentration full name with all first letters capitalized)</td>
-<td>&#39;Finance&#39;</td>
-<td>The concentration of the student to be updated</td>
 </tr>
 <tr>
 <td>birthday</td>
@@ -887,12 +885,146 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>file_type</td>
 <td>Required</td>
 <td>String</td>
-<td>Allowed predefined type: &#39;resume&#39;/&#39;photo_id&#39;/&#39;english_language_proficiency&#39;</td>
+<td>Allowed predefined type: &#39;resume&#39;/&#39;photo_id&#39;/&#39;english_language_proficiency&#39;/&#39;undergraduate_degree&#39;/&#39;undergraduate_transcript&#39;</td>
 <td>&#39;photo_id&#39;</td>
 <td>The type of the uploaded file</td>
 </tr>
+<tr>
+<td>file</td>
+<td>Required</td>
+<td>String</td>
+<td>Available file local path. File must in fomart of pdf only. File size must be less than 5M.</td>
+<td>&#39;example.pdf&#39;</td>
+<td>The local path of file to be uploaded</td>
+</tr>
 </tbody></table>
 <h3 id='response-body-6'>Response Body</h3>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Possible Return Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>Number</td>
+<td>200</td>
+<td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
+</tr>
+</tbody></table>
+<h1 id='course'>Course</h1><h2 id='list-courses-open-for-enrollment'>List courses open for enrollment</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/course/list"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
+</code></pre></div>
+<p>This endpoint list currently available courses that are open for enrollment.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST baseUrl/course/list</code></p>
+<h3 id='request-body-parameters-6'>Request Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Validation</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+<h3 id='response-body-7'>Response Body</h3>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">[{</span><span class="w">
+    </span><span class="nl">"course_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mba500-2023spring"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"course_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MBA Foundations"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"semester"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023 Spring"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"enrollment_open_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-26"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"enrollment_close_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-02-26"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"instructor"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stg_ta_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stg@sv.patten.edu"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"course_start_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-03-01"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"course_end_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-06-01"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"course_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mba600-2023spring"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"course_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Decision Analysis"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"semester"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023 Spring"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"enrollment_open_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-26"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"enrollment_close_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-02-26"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"instructor"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stg_ta_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stg@sv.patten.edu"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"course_start_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-03-01"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"course_end_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-06-01"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Possible Return Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>Number</td>
+<td>200</td>
+<td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
+</tr>
+<tr>
+<td>courses</td>
+<td>Array of Object</td>
+<td>&#39;[]&#39;</td>
+<td>If no available courses, return an empty array</td>
+</tr>
+</tbody></table>
+<h2 id='register-into-course'>Register into course</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/course/enroll"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
+</code></pre></div>
+<p>This endpoint enroll a new student.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>POST baseUrl/course/enroll</code></p>
+<h3 id='request-body-parameters-7'>Request Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Validation</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>SID</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid 14-digit student ID</td>
+<td>&#39;000-A600861002&#39;</td>
+<td>The SID of the student grade to be inserted</td>
+</tr>
+<tr>
+<td>courseId</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...)</td>
+<td>&#39;mba500-2023spring&#39;</td>
+<td>The course ID of the student grade to be inserted</td>
+</tr>
+</tbody></table>
+<h3 id='response-body-8'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -920,9 +1052,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint enroll a new student.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>POST baseUrl/grade</code></p>
-<h3 id='request-body-parameters-6'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-8'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -974,7 +1106,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The grade of the question to be inserted</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-7'>Response Body</h3>
+<h3 id='response-body-9'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1001,9 +1133,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint fetch a specific grade record by using SID, courseID, unitID and questionID.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>GET baseUrl/grade</code></p>
-<h3 id='request-body-parameters-7'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-9'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1047,7 +1179,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The unique question ID of the student grade to be fetched</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-8'>Response Body</h3>
+<h3 id='response-body-10'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1085,9 +1217,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint fetch all grade records by using SID.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>GET baseUrl/grade/all</code></p>
-<h3 id='request-body-parameters-8'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-10'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1107,7 +1239,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The SID of the student grade to be fetched</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-9'>Response Body</h3>
+<h3 id='response-body-11'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1155,9 +1287,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint update a specific grade record.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>POST &lt;baseUrl&gt;/grade/update</code></p>
-<h3 id='request-body-parameters-9'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-11'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1209,7 +1341,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The grade of the question to be inserted</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-10'>Response Body</h3>
+<h3 id='response-body-12'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1238,9 +1370,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-F</span> <span class="s2">"file[]=/path/to/file"</span>
 </code></pre></div>
 <p>This endpoint upload final paper for a specific course.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>POST &lt;baseUrl&gt;/grade/finalpaper</code></p>
-<h3 id='request-body-parameters-10'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-12'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1271,12 +1403,12 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>file</td>
 <td>Required</td>
 <td>String</td>
-<td>Available file local path. File must in fomart of doc, docx or pdf. File size must be less than 5M.</td>
+<td>Available file local path. File must in fomart of pdf only. File size must be less than 5M.</td>
 <td>&#39;example.pdf&#39;</td>
 <td>The local path of file to be uploaded</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-11'>Response Body</h3>
+<h3 id='response-body-13'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1304,9 +1436,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint finalize status of a new application.</p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>POST baseUrl/admin/application/finalize</code></p>
-<h3 id='request-body-parameters-11'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-13'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1342,7 +1474,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The comment added by admission comittee</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-12'>Response Body</h3>
+<h3 id='response-body-14'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1372,13 +1504,13 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>14-digit student ID or return null if not accepted</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-uploaded-files-of-a-specific-student'>Retrieve uploaded files of  a specific student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/admin/application/62"</span> <span class="se">\</span>
+<h2 id='retrieve-uploaded-files-of-a-specific-student'>Retrieve uploaded files of a specific student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/admin/application/62"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint retrieves uploaded files of  a specific student.</p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>GET baseUrl/admin/application/62</code></p>
-<h3 id='request-body-parameters-12'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-14'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1398,7 +1530,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The appID of the application to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-13'>Response Body</h3>
+<h3 id='response-body-15'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1430,14 +1562,127 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>File Blob; If the student upload file is not exist, return null</td>
 </tr>
 </tbody></table>
+<h2 id='open-a-course'>Open a course</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/admin/course/open"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
+</code></pre></div>
+<p>This endpoint opens new courses for enrollment.</p>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code>GET baseUrl/admin/course/open</code></p>
+<h3 id='request-body-parameters-15'>Request Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Validation</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>courseID</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid courseID</td>
+<td>&#39;mba600-2023spring&#39;</td>
+<td>The courseID</td>
+</tr>
+<tr>
+<td>courseName</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid course name</td>
+<td>&#39;Decision Analysis&#39;</td>
+<td>The appID of the application to retrieve</td>
+</tr>
+<tr>
+<td>semester</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid semester</td>
+<td>&#39;2023 Spring&#39;</td>
+<td>The course open semester</td>
+</tr>
+<tr>
+<td>enrollment_open_at</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid timestamp</td>
+<td>&#39;2023-01-26&#39;</td>
+<td>The enrollment start date</td>
+</tr>
+<tr>
+<td>enrollment_close_at</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid timestamp</td>
+<td>&#39;2023-02-26&#39;</td>
+<td>The enrollment end date</td>
+</tr>
+<tr>
+<td>course_start_at</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid timestamp</td>
+<td>&#39;2023-03-01&#39;</td>
+<td>The course start date</td>
+</tr>
+<tr>
+<td>course_end_at</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid timestamp</td>
+<td>&#39;2023-06-26&#39;</td>
+<td>The course end date</td>
+</tr>
+<tr>
+<td>instructor</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid name</td>
+<td>&#39;Jesse&#39;</td>
+<td>The instructor name</td>
+</tr>
+<tr>
+<td>stg_ta_email</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid email</td>
+<td>&#39;stg@patten.edu&#39;</td>
+<td>The TA&#39;s email address to receive notification</td>
+</tr>
+</tbody></table>
+<h3 id='response-body-16'>Response Body</h3>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">[{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Possible Return Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>Number</td>
+<td>200</td>
+<td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
+</tr>
+</tbody></table>
 <h2 id='review-and-verify-student-39-s-gradebook'>Review and verify student&#39;s gradebook</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/admin/grade/review"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span>
 </code></pre></div>
 <p>This endpoint review and verify a specific student gradebook.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>POST baseUrl/admin/grade/review</code></p>
-<h3 id='request-body-parameters-13'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-16'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1473,7 +1718,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The comment added by the grade reviewer</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-14'>Response Body</h3>
+<h3 id='response-body-17'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1509,9 +1754,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint deletes a specific student.</p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>POST &lt;baseUrl&gt;/student/delete/&lt;SID&gt;</code></p>
-<h3 id='request-body-parameters-14'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-17'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1531,7 +1776,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The SID of the student to be updated</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-15'>Response Body</h3>
+<h3 id='response-body-18'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
