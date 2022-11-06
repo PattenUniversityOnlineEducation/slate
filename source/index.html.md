@@ -380,7 +380,7 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 courses | Array of Object | '[]' | If no available courses, return an empty array
 
 
-## Register into course
+## Register student into courses
 
 ```shell
 curl "<baseUrl>/course/enroll" \
@@ -428,7 +428,7 @@ curl "<baseUrl>/grade" \
   -d '{...}'
 ```
 
-This endpoint enroll a new student.
+This endpoint enroll a student grade record.
 
 ### HTTP Request
 
