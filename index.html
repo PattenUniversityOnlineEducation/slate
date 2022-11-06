@@ -350,7 +350,7 @@
                     <a href="#list-courses-open-for-enrollment" class="toc-h2 toc-link" data-title="List courses open for enrollment">List courses open for enrollment</a>
                   </li>
                   <li>
-                    <a href="#register-into-course" class="toc-h2 toc-link" data-title="Register into course">Register into course</a>
+                    <a href="#register-student-into-courses" class="toc-h2 toc-link" data-title="Register student into courses">Register student into courses</a>
                   </li>
               </ul>
           </li>
@@ -999,7 +999,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>If no available courses, return an empty array</td>
 </tr>
 </tbody></table>
-<h2 id='register-into-course'>Register into course</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/course/enroll"</span> <span class="se">\</span>
+<h2 id='register-student-into-courses'>Register student into courses</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/course/enroll"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
@@ -1065,7 +1065,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
-<p>This endpoint enroll a new student.</p>
+<p>This endpoint enroll a student grade record.</p>
 <h3 id='http-request-9'>HTTP Request</h3>
 <p><code>POST baseUrl/grade</code></p>
 <h3 id='request-body-parameters-8'>Request Body Parameters</h3>
@@ -1837,7 +1837,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
 
-<p>The Kittn API uses the following error codes:</p>
+<p>The Patten OEP API uses the following error codes:</p>
 
 <table><thead>
 <tr>
