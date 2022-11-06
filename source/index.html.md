@@ -16,7 +16,7 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for the Kittn API
+    content: Documentation for the Patten OEP API
 ---
 
 # Introduction
@@ -99,7 +99,9 @@ curl "api_endpoint_here" \
 ```shell
 curl "<baseUrl>/application/create" \
   -X POST \
-  -H "Authorization: JWT <token>"
+  -H "Authorization: JWT <token>" \
+  -H "Content-Type: application/json" \
+  -d '{"first_name":"xyz","last_name":"xyz",...}'
 ```
 
 This endpoint create a new application.
@@ -140,7 +142,9 @@ appID | String | '62' | Unique number.
 
 ```shell
 curl "<baseUrl>/application/62" \
-  -H "Authorization: JWT <token>"
+  -H "Authorization: JWT <token>" \ 
+  -H "Content-Type: application/json" \ 
+  -d '{...}'
 ```
 
 This endpoint retrieve an application
@@ -183,7 +187,9 @@ student | Array of Object | '[]' | If the application with the appID is not exis
 
 ```shell
 curl "<baseUrl>/application/all" \
-  -H "Authorization: JWT <token>"
+  -H "Authorization: JWT <token>" \
+  -H "Content-Type: application/json" \ 
+  -d '{...}'
 ```
 
 This endpoint retrieve an application
@@ -238,7 +244,9 @@ student | Array of Object | '[]' | If no exist applications, return an empty arr
 ```shell
 curl "<baseUrl>/application/update" \
   -X POST \
-  -H "Authorization: JWT <token>"
+  -H "Authorization: JWT <token>" \
+  -H "Content-Type: application/json" \ 
+  -d '{...}'
 ```
 
 This endpoint update a specific application info.
@@ -280,7 +288,7 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 curl "<baseUrl>/application/fileupload" \
   -X POST \
   -H "Authorization: JWT <token> Content-Type: multipart/form-data;" \
-  -F "file[]=/path/to/file"
+  -F "file=@/path/to/file"
 ```
 
 This endpoint update a specific student enrollment info.
@@ -318,7 +326,9 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 ```shell
 curl "<baseUrl>/course/list" \
   -X POST \
-  -H "Authorization: JWT <token>"
+  -H "Authorization: JWT <token>" \
+  -H "Content-Type: application/json" \ 
+  -d '{...}'
 ```
 
 This endpoint list currently available courses that are open for enrollment.
@@ -375,7 +385,9 @@ courses | Array of Object | '[]' | If no available courses, return an empty arra
 ```shell
 curl "<baseUrl>/course/enroll" \
   -X POST \
-  -H "Authorization: JWT <token>"
+  -H "Authorization: JWT <token>" \
+  -H "Content-Type: application/json" \ 
+  -d '{...}'
 ```
 
 This endpoint enroll a new student.
@@ -411,7 +423,9 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 ```shell
 curl "<baseUrl>/grade" \
   -X POST \
-  -H "Authorization: JWT <token>"
+  -H "Authorization: JWT <token>" \
+  -H "Content-Type: application/json" \ 
+  -d '{...}'
 ```
 
 This endpoint enroll a new student.
@@ -426,7 +440,7 @@ This endpoint enroll a new student.
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
 SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be inserted 
-courseId | Required | String | Valid courseId (e.g.: mba500, mba600...) | 'mba500' | The course ID of the student grade to be inserted
+courseId | Required | String | Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be inserted
 unitId | Required | String | Valid unitId (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be inserted
 questionId | Required | String | Valid unique global question ID (1123, 1134...) | '000101' | The unique question ID of the student grade to be inserted
 grade | Required | Number | Integer in range 0~100 | 87 | The grade of the question to be inserted
@@ -448,7 +462,9 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 
 ```shell
 curl "<baseUrl>/grade" \
-  -H "Authorization: JWT <token>"
+  -H "Authorization: JWT <token>" \
+  -H "Content-Type: application/json" \ 
+  -d '{...}'
 ```
 
 This endpoint fetch a specific grade record by using SID, courseID, unitID and questionID.
@@ -462,7 +478,7 @@ This endpoint fetch a specific grade record by using SID, courseID, unitID and q
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
 SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be fetched 
-courseId | Required | String | Valid courseId (e.g.: mba500, mba600...) | 'mba500' | The course ID of the student grade to be fetched
+courseId | Required | String | Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be fetched
 unitId | Required | String | Valid unitId (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be fetched
 questionId | Required | String | Valid unique global question ID (1123, 1134...) | '000101' | The unique question ID of the student grade to be fetched
 
@@ -473,7 +489,7 @@ questionId | Required | String | Valid unique global question ID (1123, 1134...)
 ```json
   [{
     "SID": "000-A600861002",
-    "courseId": "mba500",
+    "courseId": "mba500-2023spring",
     "unitId": "u1",
     "questionID": "000101",
     "grade": 87,
@@ -490,7 +506,9 @@ grades | Array of Object | '[]' | If the grade with the SID,unitId, questionId d
 
 ```shell
 curl "<baseUrl>/grade/all" \
-  -H "Authorization: JWT <token>"
+  -H "Authorization: JWT <token>" \
+  -H "Content-Type: application/json" \ 
+  -d '{...}'
 ```
 
 This endpoint fetch all grade records by using SID.
@@ -513,7 +531,7 @@ SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID
 ```json
   [{
     "SID": "000-A600861002",
-    "courseId": "mba500",
+    "courseId": "mba500-2023spring",
     "unitId": "u1",
     "questionID": "000101",
     "grade": 87,
@@ -521,7 +539,7 @@ SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID
   },
   {
     "SID": "000-A600861002",
-    "courseId": "mba500",
+    "courseId": "mba500-2023spring",
     "unitId": "u2",
     "questionID": "000201",
     "grade": 90,
@@ -540,7 +558,9 @@ grades | Array of Object | '[]' | If the grade with the SID,unitId, questionId d
 ```shell
 curl "<baseUrl>/grade/update" \
   -X POST \
-  -H "Authorization: JWT <token>"
+  -H "Authorization: JWT <token>" \
+  -H "Content-Type: application/json" \ 
+  -d '{...}'
 ```
 
 This endpoint update a specific grade record.
@@ -554,7 +574,7 @@ This endpoint update a specific grade record.
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
 SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be fetched 
-courseId | Required | String | Valid courseId (e.g.: mba500, mba600...) | 'mba500' | The course ID of the student grade to be fetched
+courseId | Required | String | Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be fetched
 unitId | Required | String | Valid unitId (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be fetched
 questionId | Required | String | Valid unique global question ID (1123, 1134...) | '000101' | The unique question ID of the student grade to be fetched
 grade | Required | Number | Integer in range 0~100 | 87 | The grade of the question to be inserted
@@ -578,7 +598,9 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 curl "<baseUrl>/grade/finalpaper" \
   -X POST \
   -H "Authorization: JWT <token> Content-Type: multipart/form-data;" \
-  -F "file[]=/path/to/file"
+  -F "SID=000-A600861002" \
+  -F "courseId=mba500-2023spring" \
+  -F "file=@/path/to/file"
 ```
 
 This endpoint upload final paper for a specific course.
@@ -592,7 +614,7 @@ This endpoint upload final paper for a specific course.
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
 SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be fetched 
-courseId | Required | String | Valid courseId (e.g.: mba500, mba600...) | 'mba500' | The course ID of the student grade to be fetched
+courseId | Required | String | Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be fetched
 file | Required | String | Available file local path. File must in fomart of pdf only. File size must be less than 5M. | 'example.pdf' | The local path of file to be uploaded
 
 ### Response Body
@@ -615,7 +637,9 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 ```shell
 curl "<baseUrl>/admin/application/finalize" \
   -X POST \
-  -H "Authorization: JWT <token>"
+  -H "Authorization: JWT <token>" \
+  -H "Content-Type: application/json" \ 
+  -d '{...}'
 ```
 
 This endpoint finalize status of a new application.
@@ -652,7 +676,9 @@ SID |  String | '000-A600861002' |  14-digit student ID or return null if not ac
 
 ```shell
 curl "<baseUrl>/admin/application/62" \
-  -H "Authorization: JWT <token>"
+  -H "Authorization: JWT <token>" \
+  -H "Content-Type: application/json" \ 
+  -d '{...}'
 ```
 
 This endpoint retrieves uploaded files of  a specific student.
@@ -690,14 +716,17 @@ files | Array of Object | '[]' | File Blob; If the student upload file is not ex
 
 ```shell
 curl "<baseUrl>/admin/course/open" \
-  -H "Authorization: JWT <token>"
+  -X POST \
+  -H "Authorization: JWT <token>" \
+  -H "Content-Type: application/json" \ 
+  -d '{...}'
 ```
 
 This endpoint opens new courses for enrollment.
 
 ### HTTP Request
 
-`GET baseUrl/admin/course/open`
+`POST baseUrl/admin/course/open`
 
 ### Request Body Parameters
 
@@ -732,7 +761,9 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 ```shell
 curl "<baseUrl>/admin/grade/review" \
   -X POST \
-  -H "Authorization: JWT <token>"
+  -H "Authorization: JWT <token>" \
+  -H "Content-Type: application/json" \ 
+  -d '{...}'
 ```
 
 This endpoint review and verify a specific student gradebook.
@@ -768,7 +799,9 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 ```shell
 curl "<baseUrl>/student/delete" \
   -X POST \
-  -H "Authorization: JWT <token>"
+  -H "Authorization: JWT <token>" \
+  -H "Content-Type: application/json" \ 
+  -d '{...}'
 ```
 
 > The above command returns JSON structured like this:
