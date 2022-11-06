@@ -115,7 +115,7 @@ Parameter | Required | Type | Validation | Example | Description
 first_name | Required | String | Only alphabet (a~z) allowed with first letter capitalized | 'Jack' | The first name of the student to be added
 last_name | Required | String | Only alphabet (a~z) allowed with first letter capitalized | 'Ma' | The last name of the student to be added
 major | Required | String | 'Master of Business Administration - General Management'(Or other registered major full name with all first letters capitalized) | 'Master of Business Administration - General Management' | The major of the student to be added
-birthday | Required |  String | Date format in 'MM/DD/YY'| '02/15/76' | The birthday of the student to be added
+birthday | Required |  String | Date format in 'MM/DD/YYYY'| '02/15/1976' | The birthday of the student to be added
 country | Required | String | Country official name in English | 'China' | The country of citizenship for the student to be added 
 email | Required | String | Student's confirmed email address with all lower case | 'jm@patten.edu' | The email of the student to be added 
 phone | Required | String | Student's personal phone number with country code ('+1: USA/Canada; +86: China; ...') | '+12012312' | The phone number of the student to be added 
@@ -255,7 +255,7 @@ appID | Required | String | Valid application ID | '62' | The appID of the appli
 first_name | Optional | String | Only alphabet (a~z) allowed with first letter capitalized | 'Jack' | The first name of the student to be updated
 last_name | Optional | String | Only alphabet (a~z) allowed with first letter capitalized | 'Ma' | The last name of the student to be updated
 major | Optional | String | 'Master of Business Administration - General Management'(Or other registered major full name with all first letters capitalized) | 'Master of Business Administration - General Management' | The major of the student to be updated
-birthday | Optional |  String | Date format in 'MM/DD/YY'| '02/15/76' | The birthday of the student to be updated
+birthday | Optional |  String | Date format in 'MM/DD/YYYY'| '02/15/1976' | The birthday of the student to be updated
 country | Optional | String | Country official name in English | 'China' | The country of citizenship for the student to be updated 
 email | Optional | String | Student's confirmed email address with all lower case | 'jm@patten.edu' | The email of the student to be updated 
 phone | Optional | String | Student's personal phone number with country code ('+1: USA/Canada; +86: China; ...') | '+12012312' | The phone number of the student to be updated
