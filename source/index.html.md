@@ -325,7 +325,7 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 
 ```shell
 curl "<baseUrl>/course/list" \
-  -X POST \
+  -X GET \
   -H "Authorization: JWT <token>" \
   -H "Content-Type: application/json" \ 
   -d '{...}'
@@ -335,7 +335,7 @@ This endpoint list currently available courses that are open for enrollment.
 
 ### HTTP Request
 
-`POST baseUrl/course/list`
+`GET baseUrl/course/list`
 
 ### Request Body Parameters
 
