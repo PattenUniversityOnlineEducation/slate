@@ -181,7 +181,7 @@ appID | Required | String | Valid application ID | '62' | The appID of the appli
 Parameter | Type | Example | Possible Return Type
 --------- | ----------- | ----------- | -----------
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
-student | Array of Object | '[]' | If the application with the appID is not exist, return value will be an empty array
+application | Array of Object | '[]' | If the application with the appID is not exist, return value will be an empty array
 
 ## Retrieve all applications created by the client
 
@@ -237,7 +237,7 @@ Parameter | Required | Type | Validation | Example | Description
 Parameter | Type | Example | Possible Return Type
 --------- | ----------- | ----------- | -----------
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
-student | Array of Object | '[]' | If no exist applications, return an empty array
+applications | Array of Object | '[]' | If no exist applications, return an empty array
 
 ## Update a specific application
 
