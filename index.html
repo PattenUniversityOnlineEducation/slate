@@ -930,14 +930,14 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </tbody></table>
 <h1 id='course'>Course</h1><h2 id='list-courses-open-for-enrollment'>List courses open for enrollment</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/course/list"</span> <span class="se">\</span>
-  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-X</span> GET <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint list currently available courses that are open for enrollment.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
-<p><code>POST baseUrl/course/list</code></p>
+<p><code>GET baseUrl/course/list</code></p>
 <h3 id='request-body-parameters-6'>Request Body Parameters</h3>
 <table><thead>
 <tr>
