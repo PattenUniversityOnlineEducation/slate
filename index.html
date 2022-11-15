@@ -350,7 +350,7 @@
                     <a href="#list-courses-open-for-enrollment" class="toc-h2 toc-link" data-title="List courses open for enrollment">List courses open for enrollment</a>
                   </li>
                   <li>
-                    <a href="#register-student-into-courses" class="toc-h2 toc-link" data-title="Register student into courses">Register student into courses</a>
+                    <a href="#enroll-student-into-courses" class="toc-h2 toc-link" data-title="Enroll student into courses">Enroll student into courses</a>
                   </li>
                   <li>
                     <a href="#drop-withdraw-extend-a-course" class="toc-h2 toc-link" data-title="Drop/Withdraw/Extend a course">Drop/Withdraw/Extend a course</a>
@@ -387,7 +387,7 @@
                     <a href="#retrieve-uploaded-files-of-a-specific-student" class="toc-h2 toc-link" data-title="Retrieve uploaded files of a specific student">Retrieve uploaded files of a specific student</a>
                   </li>
                   <li>
-                    <a href="#open-a-course" class="toc-h2 toc-link" data-title="Open a course">Open a course</a>
+                    <a href="#register-a-course" class="toc-h2 toc-link" data-title="Register a course">Register a course</a>
                   </li>
                   <li>
                     <a href="#review-and-verify-student-39-s-gradebook" class="toc-h2 toc-link" data-title="Review and verify student's gradebook">Review and verify student's gradebook</a>
@@ -1002,7 +1002,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>If no available courses, return an empty array</td>
 </tr>
 </tbody></table>
-<h2 id='register-student-into-courses'>Register student into courses</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/course/enroll"</span> <span class="se">\</span>
+<h2 id='enroll-student-into-courses'>Enroll student into courses</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/course/enroll"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
@@ -1659,7 +1659,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>File Blob; If the student upload file is not exist, return null</td>
 </tr>
 </tbody></table>
-<h2 id='open-a-course'>Open a course</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/admin/course/open"</span> <span class="se">\</span>
+<h2 id='register-a-course'>Register a course</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/admin/course/register"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
@@ -1667,7 +1667,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </code></pre></div>
 <p>This endpoint opens new courses for enrollment.</p>
 <h3 id='http-request-17'>HTTP Request</h3>
-<p><code>POST baseUrl/admin/course/open</code></p>
+<p><code>POST baseUrl/admin/course/register</code></p>
 <h3 id='request-body-parameters-16'>Request Body Parameters</h3>
 <table><thead>
 <tr>
