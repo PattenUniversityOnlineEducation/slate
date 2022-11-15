@@ -379,7 +379,7 @@ Parameter | Type | Example | Possible Return Type
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
 courses | Array of Object | '[]' | If no available courses, return an empty array
 
-## Register student into courses
+## Enroll student into courses
 
 ```shell
 curl "<baseUrl>/course/enroll" \
@@ -749,10 +749,10 @@ Parameter | Type | Example | Possible Return Type
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
 files | Array of Object | '[]' | File Blob; If the student upload file is not exist, return null
 
-## Open a course
+## Register a course
 
 ```shell
-curl "<baseUrl>/admin/course/open" \
+curl "<baseUrl>/admin/course/register" \
   -X POST \
   -H "Authorization: JWT <token>" \
   -H "Content-Type: application/json" \ 
@@ -763,7 +763,7 @@ This endpoint opens new courses for enrollment.
 
 ### HTTP Request
 
-`POST baseUrl/admin/course/open`
+`POST baseUrl/admin/course/register`
 
 ### Request Body Parameters
 
