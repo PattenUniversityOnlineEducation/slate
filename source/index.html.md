@@ -319,7 +319,7 @@ Parameter | Type | Example | Possible Return Type
 --------- | ----------- | ----------- | -----------
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
 
-# Course
+# Course Enrollment
 
 ## List courses open for enrollment
 
@@ -415,7 +415,7 @@ Parameter | Type | Example | Possible Return Type
 --------- | ----------- | ----------- | -----------
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
 
-## Drop/Withdraw/Extend a course
+## Drop/Withdraw/Extend
 
 ```shell
 curl "<baseUrl>/course/change" \
@@ -425,7 +425,7 @@ curl "<baseUrl>/course/change" \
   -d '{...}'
 ```
 
-This endpoint change a course.
+This endpoint change a course enrollment status.
 
 ### HTTP Request
 
