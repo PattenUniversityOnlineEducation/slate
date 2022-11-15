@@ -344,7 +344,7 @@
               </ul>
           </li>
           <li>
-            <a href="#course" class="toc-h1 toc-link" data-title="Course">Course</a>
+            <a href="#course-enrollment" class="toc-h1 toc-link" data-title="Course Enrollment">Course Enrollment</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#list-courses-open-for-enrollment" class="toc-h2 toc-link" data-title="List courses open for enrollment">List courses open for enrollment</a>
@@ -353,7 +353,7 @@
                     <a href="#enroll-student-into-courses" class="toc-h2 toc-link" data-title="Enroll student into courses">Enroll student into courses</a>
                   </li>
                   <li>
-                    <a href="#drop-withdraw-extend-a-course" class="toc-h2 toc-link" data-title="Drop/Withdraw/Extend a course">Drop/Withdraw/Extend a course</a>
+                    <a href="#drop-withdraw-extend" class="toc-h2 toc-link" data-title="Drop/Withdraw/Extend">Drop/Withdraw/Extend</a>
                   </li>
               </ul>
           </li>
@@ -932,7 +932,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
 </tr>
 </tbody></table>
-<h1 id='course'>Course</h1><h2 id='list-courses-open-for-enrollment'>List courses open for enrollment</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/course/list"</span> <span class="se">\</span>
+<h1 id='course-enrollment'>Course Enrollment</h1><h2 id='list-courses-open-for-enrollment'>List courses open for enrollment</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/course/list"</span> <span class="se">\</span>
   <span class="nt">-X</span> GET <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
@@ -1062,13 +1062,13 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
 </tr>
 </tbody></table>
-<h2 id='drop-withdraw-extend-a-course'>Drop/Withdraw/Extend a course</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/course/change"</span> <span class="se">\</span>
+<h2 id='drop-withdraw-extend'>Drop/Withdraw/Extend</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/course/change"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
-<p>This endpoint change a course.</p>
+<p>This endpoint change a course enrollment status.</p>
 <h3 id='http-request-9'>HTTP Request</h3>
 <p><code>POST baseUrl/course/change</code></p>
 <h3 id='request-body-parameters-8'>Request Body Parameters</h3>
