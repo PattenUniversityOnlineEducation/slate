@@ -379,7 +379,6 @@ Parameter | Type | Example | Possible Return Type
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
 courses | Array of Object | '[]' | If no available courses, return an empty array
 
-
 ## Register student into courses
 
 ```shell
@@ -415,6 +414,44 @@ courseId | Required | String | Valid courseId (e.g.: mba500-2023spring, mba600-2
 Parameter | Type | Example | Possible Return Type
 --------- | ----------- | ----------- | -----------
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+
+## Drop/Withdraw/Extend a course
+
+```shell
+curl "<baseUrl>/course/change" \
+  -X POST \
+  -H "Authorization: JWT <token>" \
+  -H "Content-Type: application/json" \ 
+  -d '{...}'
+```
+
+This endpoint change a course.
+
+### HTTP Request
+
+`POST baseUrl/course/change`
+
+### Request Body Parameters
+
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be inserted 
+courseId | Required | String | Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be inserted
+status | Required | String | Valid status ('drop'/'withdraw'/'extend') | 'drop' | The change of a course registration status (all changes are final).
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": 200
+}
+```
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+
 
 # Grades
 
