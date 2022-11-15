@@ -352,6 +352,9 @@
                   <li>
                     <a href="#register-student-into-courses" class="toc-h2 toc-link" data-title="Register student into courses">Register student into courses</a>
                   </li>
+                  <li>
+                    <a href="#drop-withdraw-extend-a-course" class="toc-h2 toc-link" data-title="Drop/Withdraw/Extend a course">Drop/Withdraw/Extend a course</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1059,6 +1062,74 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
 </tr>
 </tbody></table>
+<h2 id='drop-withdraw-extend-a-course'>Drop/Withdraw/Extend a course</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/course/change"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
+  <span class="nt">-d</span> <span class="s1">'{...}'</span>
+</code></pre></div>
+<p>This endpoint change a course.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>POST baseUrl/course/change</code></p>
+<h3 id='request-body-parameters-8'>Request Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Validation</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>SID</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid 14-digit student ID</td>
+<td>&#39;000-A600861002&#39;</td>
+<td>The SID of the student grade to be inserted</td>
+</tr>
+<tr>
+<td>courseId</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...)</td>
+<td>&#39;mba500-2023spring&#39;</td>
+<td>The course ID of the student grade to be inserted</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid status (&#39;drop&#39;/&#39;withdraw&#39;/&#39;extend&#39;)</td>
+<td>&#39;drop&#39;</td>
+<td>The change of a course registration status (all changes are final).</td>
+</tr>
+</tbody></table>
+<h3 id='response-body-9'>Response Body</h3>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Possible Return Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>Number</td>
+<td>200</td>
+<td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
+</tr>
+</tbody></table>
 <h1 id='grades'>Grades</h1><h2 id='insert-new-grade-record'>Insert new grade record</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
@@ -1066,9 +1137,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint enroll a student grade record.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>POST baseUrl/grade</code></p>
-<h3 id='request-body-parameters-8'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-9'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1120,7 +1191,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The grade of the question to be inserted</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-9'>Response Body</h3>
+<h3 id='response-body-10'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1149,9 +1220,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint fetch a specific grade record by using SID, courseID, unitID and questionID.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>GET baseUrl/grade</code></p>
-<h3 id='request-body-parameters-9'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-10'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1195,7 +1266,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The unique question ID of the student grade to be fetched</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-10'>Response Body</h3>
+<h3 id='response-body-11'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1235,9 +1306,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint fetch all grade records by using SID.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET baseUrl/grade/all</code></p>
-<h3 id='request-body-parameters-10'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-11'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1257,7 +1328,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The SID of the student grade to be fetched</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-11'>Response Body</h3>
+<h3 id='response-body-12'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1307,9 +1378,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint update a specific grade record.</p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>POST &lt;baseUrl&gt;/grade/update</code></p>
-<h3 id='request-body-parameters-11'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-12'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1361,7 +1432,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The grade of the question to be inserted</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-12'>Response Body</h3>
+<h3 id='response-body-13'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1392,9 +1463,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-F</span> <span class="s2">"file=@/path/to/file"</span>
 </code></pre></div>
 <p>This endpoint upload final paper for a specific course.</p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>POST &lt;baseUrl&gt;/grade/finalpaper</code></p>
-<h3 id='request-body-parameters-12'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-13'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1430,7 +1501,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The local path of file to be uploaded</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-13'>Response Body</h3>
+<h3 id='response-body-14'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1460,9 +1531,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint finalize status of a new application.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>POST baseUrl/admin/application/finalize</code></p>
-<h3 id='request-body-parameters-13'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-14'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1498,7 +1569,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The comment added by admission comittee</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-14'>Response Body</h3>
+<h3 id='response-body-15'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1534,9 +1605,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint retrieves uploaded files of  a specific student.</p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>GET baseUrl/admin/application/62</code></p>
-<h3 id='request-body-parameters-14'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-15'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1556,7 +1627,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The appID of the application to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-15'>Response Body</h3>
+<h3 id='response-body-16'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1595,9 +1666,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint opens new courses for enrollment.</p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>POST baseUrl/admin/course/open</code></p>
-<h3 id='request-body-parameters-15'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-16'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1681,7 +1752,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The TA&#39;s email address to receive notification</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-16'>Response Body</h3>
+<h3 id='response-body-17'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1711,9 +1782,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint review and verify a specific student gradebook.</p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>POST baseUrl/admin/grade/review</code></p>
-<h3 id='request-body-parameters-16'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-17'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1749,7 +1820,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The comment added by the grade reviewer</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-17'>Response Body</h3>
+<h3 id='response-body-18'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1787,9 +1858,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint deletes a specific student.</p>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <p><code>POST &lt;baseUrl&gt;/student/delete/&lt;SID&gt;</code></p>
-<h3 id='request-body-parameters-17'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-18'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1809,7 +1880,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The SID of the student to be updated</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-18'>Response Body</h3>
+<h3 id='response-body-19'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
