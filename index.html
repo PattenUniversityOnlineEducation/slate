@@ -1130,15 +1130,15 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
 </tr>
 </tbody></table>
-<h1 id='grades'>Grades</h1><h2 id='insert-new-grade-record'>Insert new grade record</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade"</span> <span class="se">\</span>
+<h1 id='grades'>Grades</h1><h2 id='insert-new-grade-record'>Insert new grade record</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade/create"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
-<p>This endpoint enroll a student grade record.</p>
+<p>This endpoint save a student grade record.</p>
 <h3 id='http-request-10'>HTTP Request</h3>
-<p><code>POST baseUrl/grade</code></p>
+<p><code>POST baseUrl/grade/create</code></p>
 <h3 id='request-body-parameters-9'>Request Body Parameters</h3>
 <table><thead>
 <tr>
@@ -1189,6 +1189,14 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>Integer in range 0~100</td>
 <td>87</td>
 <td>The grade of the question to be inserted</td>
+</tr>
+<tr>
+<td>note</td>
+<td>Optional</td>
+<td>String</td>
+<td>Any String</td>
+<td>&#39;&#39;</td>
+<td>The comment left by grader</td>
 </tr>
 </tbody></table>
 <h3 id='response-body-10'>Response Body</h3>
@@ -1276,6 +1284,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
     </span><span class="nl">"unitId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"u1"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"questionID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000101"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"grade"</span><span class="p">:</span><span class="w"> </span><span class="mi">87</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nl">"lastUpdateTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618729540</span><span class="p">,</span><span class="w">
   </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
@@ -1338,6 +1347,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
     </span><span class="nl">"unitId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"u1"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"questionID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000101"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"grade"</span><span class="p">:</span><span class="w"> </span><span class="mi">87</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nl">"lastUpdateTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618729540</span><span class="p">,</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
@@ -1346,6 +1356,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
     </span><span class="nl">"unitId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"u2"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"questionID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000201"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"grade"</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nl">"lastUpdateTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618733649</span><span class="p">,</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">]</span><span class="w">
