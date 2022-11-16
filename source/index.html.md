@@ -458,18 +458,18 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 ## Insert new grade record
 
 ```shell
-curl "<baseUrl>/grade" \
+curl "<baseUrl>/grade/create" \
   -X POST \
   -H "Authorization: JWT <token>" \
   -H "Content-Type: application/json" \ 
   -d '{...}'
 ```
 
-This endpoint enroll a student grade record.
+This endpoint save a student grade record.
 
 ### HTTP Request
 
-`POST baseUrl/grade`
+`POST baseUrl/grade/create`
 
 ### Request Body Parameters
 
@@ -481,6 +481,7 @@ courseId | Required | String | Valid courseId (e.g.: mba500-2023spring, mba600-2
 unitId | Required | String | Valid unitId (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be inserted
 questionId | Required | String | Valid unique global question ID (1123, 1134...) | '000101' | The unique question ID of the student grade to be inserted
 grade | Required | Number | Integer in range 0~100 | 87 | The grade of the question to be inserted
+note | Optional | String | Any String | '' | The comment left by grader
 
 ### Response Body
 
@@ -530,6 +531,7 @@ questionId | Required | String | Valid unique global question ID (1123, 1134...)
     "unitId": "u1",
     "questionID": "000101",
     "grade": 87,
+    "note": "",
     "lastUpdateTimestamp": 1618729540,
   }]
 ```
@@ -572,6 +574,7 @@ SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID
     "unitId": "u1",
     "questionID": "000101",
     "grade": 87,
+    "note": "",
     "lastUpdateTimestamp": 1618729540,
   },
   {
@@ -580,6 +583,7 @@ SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID
     "unitId": "u2",
     "questionID": "000201",
     "grade": 90,
+    "note": "",
     "lastUpdateTimestamp": 1618733649,
   },
   ]
