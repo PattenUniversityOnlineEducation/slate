@@ -599,7 +599,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"appID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"62"</span><span class="w">
+  </span><span class="nl">"app_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"62"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <table><thead>
@@ -617,7 +617,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
 </tr>
 <tr>
-<td>appID</td>
+<td>app_id</td>
 <td>String</td>
 <td>&#39;62&#39;</td>
 <td>Unique number.</td>
@@ -643,12 +643,12 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>appID</td>
+<td>app_id</td>
 <td>Required</td>
 <td>String</td>
 <td>Valid application ID</td>
 <td>&#39;62&#39;</td>
-<td>The appID of the application to retrieve</td>
+<td>The app_id of the application to retrieve</td>
 </tr>
 </tbody></table>
 <h3 id='response-body-3'>Response Body</h3>
@@ -656,8 +656,8 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">[{</span><span class="w">
-    </span><span class="nl">"appID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"SID"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"app_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yu"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dong"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration - General Management"</span><span class="p">,</span><span class="w">
@@ -685,7 +685,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>application</td>
 <td>Array of Object</td>
 <td>&#39;[]&#39;</td>
-<td>If the application with the appID is not exist, return value will be an empty array</td>
+<td>If the application with the app_id is not exist, return value will be an empty array</td>
 </tr>
 </tbody></table>
 <h2 id='retrieve-all-applications-created-by-the-client'>Retrieve all applications created by the client</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/application/all"</span> <span class="se">\</span>
@@ -713,8 +713,8 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">[{</span><span class="w">
-    </span><span class="nl">"appID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"SID"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"app_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yu"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dong"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration - General Management"</span><span class="p">,</span><span class="w">
@@ -724,8 +724,8 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
     </span><span class="nl">"create_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-26T23:47:59.598Z"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"appID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"63"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"SID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000-A600861002"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"app_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"63"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000-A600861002"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ma"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration - General Management"</span><span class="p">,</span><span class="w">
@@ -778,12 +778,12 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>appID</td>
+<td>app_id</td>
 <td>Required</td>
 <td>String</td>
 <td>Valid application ID</td>
 <td>&#39;62&#39;</td>
-<td>The appID of the application to be updated</td>
+<td>The app_id of the application to be updated</td>
 </tr>
 <tr>
 <td>first_name</td>
@@ -885,12 +885,12 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>appID</td>
+<td>app_id</td>
 <td>Required</td>
 <td>String</td>
 <td>Valid application ID</td>
 <td>&#39;62&#39;</td>
-<td>The appID of the application to be updated</td>
+<td>The app_id of the application to be updated</td>
 </tr>
 <tr>
 <td>file_type</td>
@@ -1023,18 +1023,18 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>SID</td>
+<td>sid</td>
 <td>Required</td>
 <td>String</td>
 <td>Valid 14-digit student ID</td>
 <td>&#39;000-A600861002&#39;</td>
-<td>The SID of the student grade to be inserted</td>
+<td>The sid of the student grade to be inserted</td>
 </tr>
 <tr>
-<td>courseId</td>
+<td>course_id</td>
 <td>Required</td>
 <td>String</td>
-<td>Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...)</td>
+<td>Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...)</td>
 <td>&#39;mba500-2023spring&#39;</td>
 <td>The course ID of the student grade to be inserted</td>
 </tr>
@@ -1083,18 +1083,18 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>SID</td>
+<td>sid</td>
 <td>Required</td>
 <td>String</td>
 <td>Valid 14-digit student ID</td>
 <td>&#39;000-A600861002&#39;</td>
-<td>The SID of the student grade to be inserted</td>
+<td>The sid of the student grade to be inserted</td>
 </tr>
 <tr>
-<td>courseId</td>
+<td>course_id</td>
 <td>Required</td>
 <td>String</td>
-<td>Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...)</td>
+<td>Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...)</td>
 <td>&#39;mba500-2023spring&#39;</td>
 <td>The course ID of the student grade to be inserted</td>
 </tr>
@@ -1151,31 +1151,31 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>SID</td>
+<td>sid</td>
 <td>Required</td>
 <td>String</td>
 <td>Valid 14-digit student ID</td>
 <td>&#39;000-A600861002&#39;</td>
-<td>The SID of the student grade to be inserted</td>
+<td>The sid of the student grade to be inserted</td>
 </tr>
 <tr>
-<td>courseId</td>
+<td>course_id</td>
 <td>Required</td>
 <td>String</td>
-<td>Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...)</td>
+<td>Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...)</td>
 <td>&#39;mba500-2023spring&#39;</td>
 <td>The course ID of the student grade to be inserted</td>
 </tr>
 <tr>
-<td>unitId</td>
+<td>unit_id</td>
 <td>Required</td>
 <td>String</td>
-<td>Valid unitId (e.g.: u1, u2...)</td>
+<td>Valid unit_id (e.g.: u1, u2...)</td>
 <td>&#39;u1&#39;</td>
 <td>The unit ID of the student grade to be inserted</td>
 </tr>
 <tr>
-<td>questionId</td>
+<td>question_id</td>
 <td>Required</td>
 <td>String</td>
 <td>Valid unique global question ID (1123, 1134...)</td>
@@ -1227,7 +1227,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
-<p>This endpoint fetch a specific grade record by using SID, courseID, unitID and questionID.</p>
+<p>This endpoint fetch a specific grade record by using sid, course_id, unit_id and question_id.</p>
 <h3 id='http-request-11'>HTTP Request</h3>
 <p><code>GET baseUrl/grade</code></p>
 <h3 id='request-body-parameters-10'>Request Body Parameters</h3>
@@ -1242,31 +1242,31 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>SID</td>
+<td>sid</td>
 <td>Required</td>
 <td>String</td>
 <td>Valid 14-digit student ID</td>
 <td>&#39;000-A600861002&#39;</td>
-<td>The SID of the student grade to be fetched</td>
+<td>The sid of the student grade to be fetched</td>
 </tr>
 <tr>
-<td>courseId</td>
+<td>course_id</td>
 <td>Required</td>
 <td>String</td>
-<td>Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...)</td>
+<td>Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...)</td>
 <td>&#39;mba500-2023spring&#39;</td>
 <td>The course ID of the student grade to be fetched</td>
 </tr>
 <tr>
-<td>unitId</td>
+<td>unit_id</td>
 <td>Required</td>
 <td>String</td>
-<td>Valid unitId (e.g.: u1, u2...)</td>
+<td>Valid unit_id (e.g.: u1, u2...)</td>
 <td>&#39;u1&#39;</td>
 <td>The unit ID of the student grade to be fetched</td>
 </tr>
 <tr>
-<td>questionId</td>
+<td>question_id</td>
 <td>Required</td>
 <td>String</td>
 <td>Valid unique global question ID (1123, 1134...)</td>
@@ -1279,13 +1279,14 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">[{</span><span class="w">
-    </span><span class="nl">"SID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000-A600861002"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"courseId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mba500-2023spring"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"unitId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"u1"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"questionID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000101"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000-A600861002"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"course_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mba500-2023spring"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"unit_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"u1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"question_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000101"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"grade"</span><span class="p">:</span><span class="w"> </span><span class="mi">87</span><span class="p">,</span><span class="w">
     </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"lastUpdateTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618729540</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"edit_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-11"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"edit_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client_API"</span><span class="p">,</span><span class="w">
   </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <table><thead>
@@ -1306,7 +1307,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>grades</td>
 <td>Array of Object</td>
 <td>&#39;[]&#39;</td>
-<td>If the grade with the SID,unitId, questionId does not exist, return value will be an empty array</td>
+<td>If the grade with the sid,unit_id, question_id does not exist, return value will be an empty array</td>
 </tr>
 </tbody></table>
 <h2 id='get-all-grade-records-of-a-specific-student'>Get all grade records of a specific student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade/all"</span> <span class="se">\</span>
@@ -1314,7 +1315,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
-<p>This endpoint fetch all grade records by using SID.</p>
+<p>This endpoint fetch all grade records by using sid.</p>
 <h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET baseUrl/grade/all</code></p>
 <h3 id='request-body-parameters-11'>Request Body Parameters</h3>
@@ -1329,12 +1330,12 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>SID</td>
+<td>sid</td>
 <td>Required</td>
 <td>String</td>
 <td>Valid 14-digit student ID</td>
 <td>&#39;000-A600861002&#39;</td>
-<td>The SID of the student grade to be fetched</td>
+<td>The sid of the student grade to be fetched</td>
 </tr>
 </tbody></table>
 <h3 id='response-body-12'>Response Body</h3>
@@ -1342,22 +1343,24 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">[{</span><span class="w">
-    </span><span class="nl">"SID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000-A600861002"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"courseId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mba500-2023spring"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"unitId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"u1"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"questionID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000101"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000-A600861002"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"course_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mba500-2023spring"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"unit_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"u1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"question_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000101"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"grade"</span><span class="p">:</span><span class="w"> </span><span class="mi">87</span><span class="p">,</span><span class="w">
     </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"lastUpdateTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618729540</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"edit_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-11"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"edit_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client_API"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"SID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000-A600861002"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"courseId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mba500-2023spring"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"unitId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"u2"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"questionID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000201"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000-A600861002"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"course_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mba500-2023spring"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"unit_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"u2"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"question_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000201"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"grade"</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w">
     </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"lastUpdateTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618733649</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"edit_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-11"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"edit_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client_API"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
@@ -1379,7 +1382,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>grades</td>
 <td>Array of Object</td>
 <td>&#39;[]&#39;</td>
-<td>If the grade with the SID,unitId, questionId does not exist, return value will be an empty array</td>
+<td>If the grade with the sid,unit_id, question_id does not exist, return value will be an empty array</td>
 </tr>
 </tbody></table>
 <h2 id='update-a-specific-grade-record'>Update a specific grade record</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade/update"</span> <span class="se">\</span>
@@ -1403,31 +1406,31 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>SID</td>
+<td>sid</td>
 <td>Required</td>
 <td>String</td>
 <td>Valid 14-digit student ID</td>
 <td>&#39;000-A600861002&#39;</td>
-<td>The SID of the student grade to be fetched</td>
+<td>The sid of the student grade to be fetched</td>
 </tr>
 <tr>
-<td>courseId</td>
+<td>course_id</td>
 <td>Required</td>
 <td>String</td>
-<td>Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...)</td>
+<td>Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...)</td>
 <td>&#39;mba500-2023spring&#39;</td>
 <td>The course ID of the student grade to be fetched</td>
 </tr>
 <tr>
-<td>unitId</td>
+<td>unit_id</td>
 <td>Required</td>
 <td>String</td>
-<td>Valid unitId (e.g.: u1, u2...)</td>
+<td>Valid unit_id (e.g.: u1, u2...)</td>
 <td>&#39;u1&#39;</td>
 <td>The unit ID of the student grade to be fetched</td>
 </tr>
 <tr>
-<td>questionId</td>
+<td>question_id</td>
 <td>Required</td>
 <td>String</td>
 <td>Valid unique global question ID (1123, 1134...)</td>
@@ -1469,8 +1472,8 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <h2 id='upload-final-paper'>Upload final paper</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade/finalpaper"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt; Content-Type: multipart/form-data;"</span> <span class="se">\</span>
-  <span class="nt">-F</span> <span class="s2">"SID=000-A600861002"</span> <span class="se">\</span>
-  <span class="nt">-F</span> <span class="s2">"courseId=mba500-2023spring"</span> <span class="se">\</span>
+  <span class="nt">-F</span> <span class="s2">"sid=000-A600861002"</span> <span class="se">\</span>
+  <span class="nt">-F</span> <span class="s2">"course_id=mba500-2023spring"</span> <span class="se">\</span>
   <span class="nt">-F</span> <span class="s2">"file=@/path/to/file"</span>
 </code></pre></div>
 <p>This endpoint upload final paper for a specific course.</p>
@@ -1488,18 +1491,18 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>SID</td>
+<td>sid</td>
 <td>Required</td>
 <td>String</td>
 <td>Valid 14-digit student ID</td>
 <td>&#39;000-A600861002&#39;</td>
-<td>The SID of the student grade to be fetched</td>
+<td>The sid of the student grade to be fetched</td>
 </tr>
 <tr>
-<td>courseId</td>
+<td>course_id</td>
 <td>Required</td>
 <td>String</td>
-<td>Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...)</td>
+<td>Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...)</td>
 <td>&#39;mba500-2023spring&#39;</td>
 <td>The course ID of the student grade to be fetched</td>
 </tr>
@@ -1556,7 +1559,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>appID</td>
+<td>app_id</td>
 <td>Required</td>
 <td>String</td>
 <td>Valid application ID</td>
@@ -1586,7 +1589,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"SID"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="nl">"sid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <table><thead>
@@ -1604,7 +1607,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
 </tr>
 <tr>
-<td>SID</td>
+<td>sid</td>
 <td>String</td>
 <td>&#39;000-A600861002&#39;</td>
 <td>14-digit student ID or return null if not accepted</td>
@@ -1630,12 +1633,12 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>appID</td>
+<td>app_id</td>
 <td>Required</td>
 <td>String</td>
-<td>Valid appID</td>
+<td>Valid app_id</td>
 <td>&#39;62&#39;</td>
-<td>The appID of the application to retrieve</td>
+<td>The app_id of the application to retrieve</td>
 </tr>
 </tbody></table>
 <h3 id='response-body-16'>Response Body</h3>
@@ -1643,7 +1646,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">[{</span><span class="w">
-    </span><span class="nl">"appID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"app_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"photo_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"resume"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"english_language_proficiency"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
@@ -1691,20 +1694,20 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>courseID</td>
+<td>course_id</td>
 <td>Required</td>
 <td>String</td>
-<td>Valid courseID</td>
+<td>Valid course_id</td>
 <td>&#39;mba600-2023spring&#39;</td>
-<td>The courseID</td>
+<td>The course_id</td>
 </tr>
 <tr>
-<td>courseName</td>
+<td>course_name</td>
 <td>Required</td>
 <td>String</td>
 <td>Valid course name</td>
 <td>&#39;Decision Analysis&#39;</td>
-<td>The appID of the application to retrieve</td>
+<td>The name of the course to register</td>
 </tr>
 <tr>
 <td>semester</td>
@@ -1718,7 +1721,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>enrollment_open_at</td>
 <td>Required</td>
 <td>String</td>
-<td>Valid timestamp</td>
+<td>Date format in &#39;YYYY-MM-DD&#39;</td>
 <td>&#39;2023-01-26&#39;</td>
 <td>The enrollment start date</td>
 </tr>
@@ -1726,7 +1729,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>enrollment_close_at</td>
 <td>Required</td>
 <td>String</td>
-<td>Valid timestamp</td>
+<td>Date format in &#39;YYYY-MM-DD&#39;</td>
 <td>&#39;2023-02-26&#39;</td>
 <td>The enrollment end date</td>
 </tr>
@@ -1734,7 +1737,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>course_start_at</td>
 <td>Required</td>
 <td>String</td>
-<td>Valid timestamp</td>
+<td>Date format in &#39;YYYY-MM-DD&#39;</td>
 <td>&#39;2023-03-01&#39;</td>
 <td>The course start date</td>
 </tr>
@@ -1742,7 +1745,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>course_end_at</td>
 <td>Required</td>
 <td>String</td>
-<td>Valid timestamp</td>
+<td>Date format in &#39;YYYY-MM-DD&#39;</td>
 <td>&#39;2023-06-26&#39;</td>
 <td>The course end date</td>
 </tr>
@@ -1761,6 +1764,14 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>Valid email</td>
 <td>&#39;stg@patten.edu&#39;</td>
 <td>The TA&#39;s email address to receive notification</td>
+</tr>
+<tr>
+<td>org</td>
+<td>Required</td>
+<td>String</td>
+<td>Valid string</td>
+<td>&#39;STG&#39;</td>
+<td>The partner organization ID</td>
 </tr>
 </tbody></table>
 <h3 id='response-body-17'>Response Body</h3>
@@ -1807,12 +1818,12 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>SID</td>
+<td>sid</td>
 <td>Required</td>
 <td>String</td>
 <td>Valid 14-digit student ID</td>
 <td>&#39;000-A600861002&#39;</td>
-<td>The SID of the student to be updated</td>
+<td>The sid of the student to be updated</td>
 </tr>
 <tr>
 <td>verify</td>
@@ -1870,7 +1881,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </span></code></pre></div>
 <p>This endpoint deletes a specific student.</p>
 <h3 id='http-request-19'>HTTP Request</h3>
-<p><code>POST &lt;baseUrl&gt;/student/delete/&lt;SID&gt;</code></p>
+<p><code>POST &lt;baseUrl&gt;/student/delete/&lt;sid&gt;</code></p>
 <h3 id='request-body-parameters-18'>Request Body Parameters</h3>
 <table><thead>
 <tr>
@@ -1883,12 +1894,12 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>SID</td>
+<td>sid</td>
 <td>Required</td>
 <td>String</td>
 <td>Valid 14-digit student ID</td>
 <td>&#39;000-A600861002&#39;</td>
-<td>The SID of the student to be updated</td>
+<td>The sid of the student to be updated</td>
 </tr>
 </tbody></table>
 <h3 id='response-body-19'>Response Body</h3>
