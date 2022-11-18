@@ -129,14 +129,14 @@ phone | Required | String | Student's personal phone number with country code ('
 ```json
 {
   "status": 200,
-  "appID" : "62"
+  "app_id" : "62"
 }
 ```
 
 Parameter | Type | Example | Possible Return Type
 --------- | ----------- | ----------- | -----------
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
-appID | String | '62' | Unique number.
+app_id | String | '62' | Unique number.
 
 ## Retrieve a specific application
 
@@ -157,7 +157,7 @@ This endpoint retrieve an application
 
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
-appID | Required | String | Valid application ID | '62' | The appID of the application to retrieve
+app_id | Required | String | Valid application ID | '62' | The app_id of the application to retrieve
 
 
 ### Response Body
@@ -166,8 +166,8 @@ appID | Required | String | Valid application ID | '62' | The appID of the appli
 
 ```json
   [{
-    "appID": "62",
-    "SID": "",
+    "app_id": "62",
+    "sid": "",
     "first_name": "Yu",
     "last_name": "Dong",
     "major": "Master of Business Administration - General Management",
@@ -181,7 +181,7 @@ appID | Required | String | Valid application ID | '62' | The appID of the appli
 Parameter | Type | Example | Possible Return Type
 --------- | ----------- | ----------- | -----------
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
-application | Array of Object | '[]' | If the application with the appID is not exist, return value will be an empty array
+application | Array of Object | '[]' | If the application with the app_id is not exist, return value will be an empty array
 
 ## Retrieve all applications created by the client
 
@@ -210,8 +210,8 @@ Parameter | Required | Type | Validation | Example | Description
 
 ```json
   [{
-    "appID": "62",
-    "SID": "",
+    "app_id": "62",
+    "sid": "",
     "first_name": "Yu",
     "last_name": "Dong",
     "major": "Master of Business Administration - General Management",
@@ -221,8 +221,8 @@ Parameter | Required | Type | Validation | Example | Description
     "create_timestamp": "2020-07-26T23:47:59.598Z"
   },
   {
-    "appID": "63",
-    "SID": "000-A600861002",
+    "app_id": "63",
+    "sid": "000-A600861002",
     "first_name": "Ma",
     "last_name": "Jack",
     "major": "Master of Business Administration - General Management",
@@ -259,7 +259,7 @@ This endpoint update a specific application info.
 
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
-appID | Required | String | Valid application ID | '62' | The appID of the application to be updated
+app_id | Required | String | Valid application ID | '62' | The app_id of the application to be updated
 first_name | Optional | String | Only alphabet (a~z) allowed with first letter capitalized | 'Jack' | The first name of the student to be updated
 last_name | Optional | String | Only alphabet (a~z) allowed with first letter capitalized | 'Ma' | The last name of the student to be updated
 major | Optional | String | 'Master of Business Administration - General Management'(Or other registered major full name with all first letters capitalized) | 'Master of Business Administration - General Management' | The major of the student to be updated
@@ -301,7 +301,7 @@ This endpoint update a specific student enrollment info.
 
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
-appID | Required | String | Valid application ID | '62' | The appID of the application to be updated
+app_id | Required | String | Valid application ID | '62' | The app_id of the application to be updated
 file_type | Required | String | Allowed predefined type: 'resume'/'photo_id'/'english_language_proficiency'/'undergraduate_degree'/'undergraduate_transcript' | 'photo_id' | The type of the uploaded file
 file | Required | String | Available file local path. File must in fomart of pdf only. File size must be less than 5M. | 'example.pdf' | The local path of file to be uploaded
 
@@ -399,8 +399,8 @@ This endpoint enroll a new student.
 
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
-SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be inserted 
-courseId | Required | String | Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be inserted
+sid | Required | String | Valid 14-digit student ID | '000-A600861002' | The sid of the student grade to be inserted 
+course_id | Required | String | Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be inserted
 
 ### Response Body
 
@@ -435,8 +435,8 @@ This endpoint change a course enrollment status.
 
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
-SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be inserted 
-courseId | Required | String | Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be inserted
+sid | Required | String | Valid 14-digit student ID | '000-A600861002' | The sid of the student grade to be inserted 
+course_id | Required | String | Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be inserted
 status | Required | String | Valid status ('drop'/'withdraw'/'extend') | 'drop' | The change of a course registration status (all changes are final).
 
 ### Response Body
@@ -476,10 +476,10 @@ This endpoint save a student grade record.
 
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
-SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be inserted 
-courseId | Required | String | Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be inserted
-unitId | Required | String | Valid unitId (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be inserted
-questionId | Required | String | Valid unique global question ID (1123, 1134...) | '000101' | The unique question ID of the student grade to be inserted
+sid | Required | String | Valid 14-digit student ID | '000-A600861002' | The sid of the student grade to be inserted 
+course_id | Required | String | Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be inserted
+unit_id | Required | String | Valid unit_id (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be inserted
+question_id | Required | String | Valid unique global question ID (1123, 1134...) | '000101' | The unique question ID of the student grade to be inserted
 grade | Required | Number | Integer in range 0~100 | 87 | The grade of the question to be inserted
 note | Optional | String | Any String | '' | The comment left by grader
 
@@ -505,7 +505,7 @@ curl "<baseUrl>/grade" \
   -d '{...}'
 ```
 
-This endpoint fetch a specific grade record by using SID, courseID, unitID and questionID.
+This endpoint fetch a specific grade record by using sid, course_id, unit_id and question_id.
 
 ### HTTP Request
 
@@ -515,10 +515,10 @@ This endpoint fetch a specific grade record by using SID, courseID, unitID and q
 
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
-SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be fetched 
-courseId | Required | String | Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be fetched
-unitId | Required | String | Valid unitId (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be fetched
-questionId | Required | String | Valid unique global question ID (1123, 1134...) | '000101' | The unique question ID of the student grade to be fetched
+sid | Required | String | Valid 14-digit student ID | '000-A600861002' | The sid of the student grade to be fetched 
+course_id | Required | String | Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be fetched
+unit_id | Required | String | Valid unit_id (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be fetched
+question_id | Required | String | Valid unique global question ID (1123, 1134...) | '000101' | The unique question ID of the student grade to be fetched
 
 ### Response Body
 
@@ -526,20 +526,21 @@ questionId | Required | String | Valid unique global question ID (1123, 1134...)
 
 ```json
   [{
-    "SID": "000-A600861002",
-    "courseId": "mba500-2023spring",
-    "unitId": "u1",
-    "questionID": "000101",
+    "sid": "000-A600861002",
+    "course_id": "mba500-2023spring",
+    "unit_id": "u1",
+    "question_id": "000101",
     "grade": 87,
     "note": "",
-    "lastUpdateTimestamp": 1618729540,
+    "edit_at": "2021-10-11",
+    "edit_by": "client_API",
   }]
 ```
 
 Parameter | Type | Example | Possible Return Type
 --------- | ----------- | ----------- | -----------
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
-grades | Array of Object | '[]' | If the grade with the SID,unitId, questionId does not exist, return value will be an empty array
+grades | Array of Object | '[]' | If the grade with the sid,unit_id, question_id does not exist, return value will be an empty array
 
 ## Get all grade records of a specific student
 
@@ -550,7 +551,7 @@ curl "<baseUrl>/grade/all" \
   -d '{...}'
 ```
 
-This endpoint fetch all grade records by using SID.
+This endpoint fetch all grade records by using sid.
 
 ### HTTP Request
 
@@ -561,7 +562,7 @@ This endpoint fetch all grade records by using SID.
 
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
-SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be fetched
+sid | Required | String | Valid 14-digit student ID | '000-A600861002' | The sid of the student grade to be fetched
 
 ### Response Body
 
@@ -569,22 +570,24 @@ SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID
 
 ```json
   [{
-    "SID": "000-A600861002",
-    "courseId": "mba500-2023spring",
-    "unitId": "u1",
-    "questionID": "000101",
+    "sid": "000-A600861002",
+    "course_id": "mba500-2023spring",
+    "unit_id": "u1",
+    "question_id": "000101",
     "grade": 87,
     "note": "",
-    "lastUpdateTimestamp": 1618729540,
+    "edit_at": "2021-10-11",
+    "edit_by": "client_API"
   },
   {
-    "SID": "000-A600861002",
-    "courseId": "mba500-2023spring",
-    "unitId": "u2",
-    "questionID": "000201",
+    "sid": "000-A600861002",
+    "course_id": "mba500-2023spring",
+    "unit_id": "u2",
+    "question_id": "000201",
     "grade": 90,
     "note": "",
-    "lastUpdateTimestamp": 1618733649,
+    "edit_at": "2021-10-11",
+    "edit_by": "client_API"
   },
   ]
 ```
@@ -592,7 +595,7 @@ SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID
 Parameter | Type | Example | Possible Return Type
 --------- | ----------- | ----------- | -----------
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
-grades | Array of Object | '[]' | If the grade with the SID,unitId, questionId does not exist, return value will be an empty array
+grades | Array of Object | '[]' | If the grade with the sid,unit_id, question_id does not exist, return value will be an empty array
 
 ## Update a specific grade record
 
@@ -614,10 +617,10 @@ This endpoint update a specific grade record.
 
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
-SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be fetched 
-courseId | Required | String | Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be fetched
-unitId | Required | String | Valid unitId (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be fetched
-questionId | Required | String | Valid unique global question ID (1123, 1134...) | '000101' | The unique question ID of the student grade to be fetched
+sid | Required | String | Valid 14-digit student ID | '000-A600861002' | The sid of the student grade to be fetched 
+course_id | Required | String | Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be fetched
+unit_id | Required | String | Valid unit_id (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be fetched
+question_id | Required | String | Valid unique global question ID (1123, 1134...) | '000101' | The unique question ID of the student grade to be fetched
 grade | Required | Number | Integer in range 0~100 | 87 | The grade of the question to be inserted
 
 ### Response Body
@@ -639,8 +642,8 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 curl "<baseUrl>/grade/finalpaper" \
   -X POST \
   -H "Authorization: JWT <token> Content-Type: multipart/form-data;" \
-  -F "SID=000-A600861002" \
-  -F "courseId=mba500-2023spring" \
+  -F "sid=000-A600861002" \
+  -F "course_id=mba500-2023spring" \
   -F "file=@/path/to/file"
 ```
 
@@ -654,8 +657,8 @@ This endpoint upload final paper for a specific course.
 
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
-SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student grade to be fetched 
-courseId | Required | String | Valid courseId (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be fetched
+sid | Required | String | Valid 14-digit student ID | '000-A600861002' | The sid of the student grade to be fetched 
+course_id | Required | String | Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be fetched
 file | Required | String | Available file local path. File must in fomart of pdf only. File size must be less than 5M. | 'example.pdf' | The local path of file to be uploaded
 
 ### Response Body
@@ -693,7 +696,7 @@ This endpoint finalize status of a new application.
 
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
-appID | Required | String | Valid application ID | '62' | The unique number of the application to be updated
+app_id | Required | String | Valid application ID | '62' | The unique number of the application to be updated
 status | Required | String | Allowed predefined status: 'pending_review'/'more_materials_needed'/ 'accepted'/'rejected' | 'accepted' | The final decision of the application by admission comittee
 committee_comment | Optional | String | maximum word length: 1024 bytes | 'need photo id' | The comment added by admission comittee
 
@@ -704,14 +707,14 @@ committee_comment | Optional | String | maximum word length: 1024 bytes | 'need 
 ```json
 {
   "status": 200,
-  "SID": null
+  "sid": null
 }
 ```
 
 Parameter | Type | Example | Possible Return Type
 --------- | ----------- | ----------- | -----------
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
-SID |  String | '000-A600861002' |  14-digit student ID or return null if not accepted
+sid |  String | '000-A600861002' |  14-digit student ID or return null if not accepted
 
 ## Retrieve uploaded files of a specific student
 
@@ -732,7 +735,7 @@ This endpoint retrieves uploaded files of  a specific student.
 
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
-appID | Required | String | Valid appID | '62' | The appID of the application to retrieve
+app_id | Required | String | Valid app_id | '62' | The app_id of the application to retrieve
 
 
 ### Response Body
@@ -741,7 +744,7 @@ appID | Required | String | Valid appID | '62' | The appID of the application to
 
 ```json
   [{
-    "appID": "62",
+    "app_id": "62",
     "photo_id": null,
     "resume": null,
     "english_language_proficiency": null
@@ -773,15 +776,16 @@ This endpoint opens new courses for enrollment.
 
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
-courseID | Required | String | Valid courseID | 'mba600-2023spring' | The courseID
-courseName | Required | String | Valid course name | 'Decision Analysis' | The appID of the application to retrieve
+course_id | Required | String | Valid course_id | 'mba600-2023spring' | The course_id
+course_name | Required | String | Valid course name | 'Decision Analysis' | The name of the course to register
 semester | Required | String | Valid semester | '2023 Spring' | The course open semester
-enrollment_open_at | Required | String | Valid timestamp | '2023-01-26' | The enrollment start date
-enrollment_close_at | Required | String | Valid timestamp | '2023-02-26' | The enrollment end date
-course_start_at | Required | String | Valid timestamp | '2023-03-01' | The course start date
-course_end_at | Required | String | Valid timestamp | '2023-06-26' | The course end date
+enrollment_open_at | Required | String | Date format in 'YYYY-MM-DD' | '2023-01-26' | The enrollment start date
+enrollment_close_at | Required | String | Date format in 'YYYY-MM-DD' | '2023-02-26' | The enrollment end date
+course_start_at | Required | String | Date format in 'YYYY-MM-DD' | '2023-03-01' | The course start date
+course_end_at | Required | String | Date format in 'YYYY-MM-DD' | '2023-06-26' | The course end date
 instructor | Required | String | Valid name | 'Jesse' | The instructor name
 stg_ta_email | Required | String | Valid email | 'stg@patten.edu' | The TA's email address to receive notification
+org | Required | String | Valid string | 'STG' | The partner organization ID
 
 ### Response Body
 
@@ -817,7 +821,7 @@ This endpoint review and verify a specific student gradebook.
 
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
-SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student to be updated
+sid | Required | String | Valid 14-digit student ID | '000-A600861002' | The sid of the student to be updated
 verify | Required | String | 'True'/'False' | 'True' | The verify status of the whole gradebook
 comment | Optional | String | maximum word length: 1024 bytes | '' | The comment added by the grade reviewer
 
@@ -858,13 +862,13 @@ This endpoint deletes a specific student.
 
 ### HTTP Request
 
-`POST <baseUrl>/student/delete/<SID>`
+`POST <baseUrl>/student/delete/<sid>`
 
 ### Request Body Parameters
 
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
-SID | Required | String | Valid 14-digit student ID | '000-A600861002' | The SID of the student to be updated
+sid | Required | String | Valid 14-digit student ID | '000-A600861002' | The sid of the student to be updated
 
 ### Response Body
 
