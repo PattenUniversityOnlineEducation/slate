@@ -475,8 +475,7 @@ This endpoint create new question.
 
 
 Parameter | Required | Type | Validation | Example | Description
---------- | ----------- | ----------- | ----------- | ----------- | -----------
-sid | Required | String | Valid 14-digit student ID | '000-A600861002' | The sid of the student grade to be inserted 
+--------- | ----------- | ----------- | ----------- | ----------- | ----------- 
 course_id | Required | String | Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be inserted
 unit_id | Required | String | Valid unit_id (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be inserted
 question | Required | String | Any string that is not empty | 'what is your name?' | Text body of the question
