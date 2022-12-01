@@ -455,6 +455,47 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 
 # Grades
 
+## Create new question
+
+```shell
+curl "<baseUrl>/grade/newquestion" \
+  -X POST \
+  -H "Authorization: JWT <token>" \
+  -H "Content-Type: application/json" \ 
+  -d '{...}'
+```
+
+This endpoint create new question.
+
+### HTTP Request
+
+`POST baseUrl/grade/newquestion`
+
+### Request Body Parameters
+
+
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+sid | Required | String | Valid 14-digit student ID | '000-A600861002' | The sid of the student grade to be inserted 
+course_id | Required | String | Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be inserted
+unit_id | Required | String | Valid unit_id (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be inserted
+question | Required | String | Any string that is not empty | 'what is your name?' | Text body of the question
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": 200,
+  "question_id": "1123"
+}
+```
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+question_id | String | '1123' | Return generated unique ID of question
+
 ## Insert new grade record
 
 ```shell
