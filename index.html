@@ -469,7 +469,6 @@
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
   </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HHx6D36OvqJ0QIYfbvDQ"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"expire"</span><span class="p">:</span><span class="w"> </span><span class="mi">78000</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -634,7 +633,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </code></pre></div>
 <p>This endpoint retrieve an application</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET baseUrl/application/62</code></p>
+<p><code>GET baseUrl/application/0000000016</code></p>
 <h3 id='request-body-parameters-2'>Request Body Parameters</h3>
 <table><thead>
 <tr>
@@ -651,7 +650,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>Required</td>
 <td>String</td>
 <td>Valid application ID</td>
-<td>&#39;62&#39;</td>
+<td>&#39;0000000016&#39;</td>
 <td>The app_id of the application to retrieve</td>
 </tr>
 </tbody></table>
@@ -659,17 +658,25 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">[{</span><span class="w">
-    </span><span class="nl">"app_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yu"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dong"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration - General Management"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/05/93"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending_review"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"committee_comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"create_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-26T23:47:59.598Z"</span><span class="w">
-  </span><span class="p">}]</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"application"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"app_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000000016"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20221117000000001671"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethan"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ma"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jm@patten.edu"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12012312232"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration - General Management"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01/02/1991"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"China"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accepted"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"finalized"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"edit_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STG-test4-API"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"edit_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-11-18T08:55:08.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"org"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STG"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"committee_comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"need transcript"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <table><thead>
 <tr>
@@ -687,9 +694,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tr>
 <tr>
 <td>application</td>
-<td>Array of Object</td>
-<td>&#39;[]&#39;</td>
-<td>If the application with the app_id is not exist, return value will be an empty array</td>
+<td>Object</td>
+<td>&#39;{}&#39;</td>
+<td>If the application with the app_id is not exist, return status 400</td>
 </tr>
 </tbody></table>
 <h2 id='retrieve-all-applications-created-by-the-client'>Retrieve all applications created by the client</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/application/all"</span> <span class="se">\</span>
@@ -716,29 +723,44 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">[{</span><span class="w">
-    </span><span class="nl">"app_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yu"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dong"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration - General Management"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/05/93"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending_review"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"committee_comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"create_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-26T23:47:59.598Z"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"app_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"63"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000-A600861002"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ma"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration - General Management"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01/03/92"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accepted"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"committee_comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"create_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-26T23:47:59.598Z"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"applications"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"app_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000000016"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20221117000000001671"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Two"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ma"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jm@patten.edu"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12012312232"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration - General Management"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01/02/1991"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"China"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accepted"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"finalized"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"edit_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STG-test4-API"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"edit_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-11-18T08:55:08.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"org"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STG"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"committee_comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"need transcript"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"app_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000000018"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"One"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ma"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jm@patten.edu"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12012312232"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration - General Management"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01/02/1991"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"China"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rejected"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"finalized"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"edit_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STG-partner-test1-API"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"edit_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-11-19T05:05:55.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"org"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STG"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"committee_comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"need transcript"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <table><thead>
 <tr>
@@ -961,29 +983,38 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">[{</span><span class="w">
-    </span><span class="nl">"course_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mba500-2023spring"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"course_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MBA Foundations"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"semester"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023 Spring"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"enrollment_open_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-26"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"enrollment_close_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-02-26"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"instructor"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"stg_ta_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stg@sv.patten.edu"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"course_start_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-03-01"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"course_end_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-06-01"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"course_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mba600-2023spring"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"course_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Decision Analysis"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"semester"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023 Spring"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"enrollment_open_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-26"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"enrollment_close_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-02-26"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"instructor"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"stg_ta_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stg@sv.patten.edu"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"course_start_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-03-01"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"course_end_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-06-01"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"courses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"course_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mba600-2029win-STG"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"course_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Decision Analysis"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"semester"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023 Spring"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"enrollment_open_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-26T08:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"enrollment_close_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-02-26T08:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"course_start_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-01T08:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"course_end_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-06-26T07:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"instructor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jess"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"org"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STG"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stg_ta_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stg@patten.edu"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"course_created_by"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"course_created_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"course_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mba600-2030win-STG"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"course_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Decision Analysis"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"semester"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023 Spring"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"enrollment_open_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-26T08:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"enrollment_close_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-02-26T08:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"course_start_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-11-10T08:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"course_end_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-06-26T07:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"instructor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jess"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"org"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STG"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stg_ta_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stg@patten.edu"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"course_created_by"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"course_created_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <table><thead>
 <tr>
