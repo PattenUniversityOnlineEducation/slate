@@ -23,9 +23,13 @@ meta:
 
 Welcome to the Patten One Platform Student Management API document! You can use these APIs to access student registry API endpoints, which can get information on student enrollment information, grades, and so on in our database.
 
-Request base url(baseUrl): 
+Request base url(baseUrl) for test: 
 
-`https://1.1.1.1/api/`
+`https://test.api.partner.patten.edu/`
+
+Request base url(baseUrl) for production: 
+
+`https://api.partner.patten.edu/`
 
 
 # Authentication
@@ -415,6 +419,51 @@ Parameter | Type | Example | Possible Return Type
 --------- | ----------- | ----------- | -----------
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
 
+## Get enrollment by course ID
+
+```shell
+curl "<baseUrl>/course/enrollment" \
+  -X GET \
+  -H "Authorization: JWT <token>" \
+  -H "Content-Type: application/json" \ 
+  -d '{...}'
+```
+
+This endpoint get course enrollment detail info.
+
+### HTTP Request
+
+`GET baseUrl/course/enrollment`
+
+### Request Body Parameters
+
+Parameter | Required | Type | Validation | Example | Description
+--------- | ----------- | ----------- | ----------- | ----------- | -----------
+sid | Required | String | Valid 14-digit student ID | '000-A600861002' | The sid of the student grade to be inserted 
+course_id | Required | String | Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be inserted
+
+### Response Body
+
+> The above command returns JSON structured like this:
+
+```json
+  {
+      "enrollment": {
+          "id": 1,
+          "sid": "000-A600861002",
+          "course_id": "mba600-2030win-STG",
+          "status": "drop",
+          "edit_at": "2022-11-19T08:53:08.000Z",
+          "edit_by": "STG-partner-test1-API",
+          "org": "STG"
+      }
+  }
+```
+Parameter | Type | Example | Possible Return Type
+--------- | ----------- | ----------- | -----------
+status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+enrollment | Object | {} | Json object of course enrollment info
+
 ## Drop/Withdraw/Extend
 
 ```shell
@@ -478,7 +527,7 @@ Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | ----------- 
 course_id | Required | String | Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be inserted
 unit_id | Required | String | Valid unit_id (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be inserted
-question | Required | String | Any string that is not empty | 'what is your name?' | Text body of the question
+question_body | Required | String | Any string that is not empty | 'what is your name?' | Text body of the question
 
 ### Response Body
 
@@ -513,13 +562,14 @@ This endpoint save a student grade record.
 
 ### Request Body Parameters
 
-
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
 sid | Required | String | Valid 14-digit student ID | '000-A600861002' | The sid of the student grade to be inserted 
 course_id | Required | String | Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be inserted
 unit_id | Required | String | Valid unit_id (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be inserted
 question_id | Required | String | Valid unique global question ID (1123, 1134...) | '000101' | The unique question ID of the student grade to be inserted
+answer_text | Optional | String | Any String | '' | The answer from student
+answer_attachment | Optional | String | Available file local path. File must in fomart of pdf only. File size must be less than 5M. | 'example.pdf' | The local path of student file to be uploaded
 grade | Required | Number | Integer in range 0~100 | 87 | The grade of the question to be inserted
 note | Optional | String | Any String | '' | The comment left by grader
 
@@ -536,7 +586,7 @@ Parameter | Type | Example | Possible Return Type
 --------- | ----------- | ----------- | -----------
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
 
-## Get a specific grade record
+## Get student course grade record
 
 ```shell
 curl "<baseUrl>/grade" \
@@ -545,7 +595,7 @@ curl "<baseUrl>/grade" \
   -d '{...}'
 ```
 
-This endpoint fetch a specific grade record by using sid, course_id, unit_id and question_id.
+This endpoint fetch a specific grade record by using sid, course_id.
 
 ### HTTP Request
 
@@ -557,111 +607,6 @@ Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
 sid | Required | String | Valid 14-digit student ID | '000-A600861002' | The sid of the student grade to be fetched 
 course_id | Required | String | Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be fetched
-unit_id | Required | String | Valid unit_id (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be fetched
-question_id | Required | String | Valid unique global question ID (1123, 1134...) | '000101' | The unique question ID of the student grade to be fetched
-
-### Response Body
-
-> The above command returns JSON structured like this:
-
-```json
-  [{
-    "sid": "000-A600861002",
-    "course_id": "mba500-2023spring",
-    "unit_id": "u1",
-    "question_id": "000101",
-    "grade": 87,
-    "note": "",
-    "edit_at": "2021-10-11",
-    "edit_by": "client_API",
-  }]
-```
-
-Parameter | Type | Example | Possible Return Type
---------- | ----------- | ----------- | -----------
-status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
-grades | Array of Object | '[]' | If the grade with the sid,unit_id, question_id does not exist, return value will be an empty array
-
-## Get all grade records of a specific student
-
-```shell
-curl "<baseUrl>/grade/all" \
-  -H "Authorization: JWT <token>" \
-  -H "Content-Type: application/json" \ 
-  -d '{...}'
-```
-
-This endpoint fetch all grade records by using sid.
-
-### HTTP Request
-
-`GET baseUrl/grade/all`
-
-### Request Body Parameters
-
-
-Parameter | Required | Type | Validation | Example | Description
---------- | ----------- | ----------- | ----------- | ----------- | -----------
-sid | Required | String | Valid 14-digit student ID | '000-A600861002' | The sid of the student grade to be fetched
-
-### Response Body
-
-> The above command returns JSON structured like this:
-
-```json
-  [{
-    "sid": "000-A600861002",
-    "course_id": "mba500-2023spring",
-    "unit_id": "u1",
-    "question_id": "000101",
-    "grade": 87,
-    "note": "",
-    "edit_at": "2021-10-11",
-    "edit_by": "client_API"
-  },
-  {
-    "sid": "000-A600861002",
-    "course_id": "mba500-2023spring",
-    "unit_id": "u2",
-    "question_id": "000201",
-    "grade": 90,
-    "note": "",
-    "edit_at": "2021-10-11",
-    "edit_by": "client_API"
-  },
-  ]
-```
-
-Parameter | Type | Example | Possible Return Type
---------- | ----------- | ----------- | -----------
-status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
-grades | Array of Object | '[]' | If the grade with the sid,unit_id, question_id does not exist, return value will be an empty array
-
-## Update a specific grade record
-
-```shell
-curl "<baseUrl>/grade/update" \
-  -X POST \
-  -H "Authorization: JWT <token>" \
-  -H "Content-Type: application/json" \ 
-  -d '{...}'
-```
-
-This endpoint update a specific grade record.
-
-### HTTP Request
-
-`POST <baseUrl>/grade/update`
-
-### Request Body Parameters
-
-Parameter | Required | Type | Validation | Example | Description
---------- | ----------- | ----------- | ----------- | ----------- | -----------
-sid | Required | String | Valid 14-digit student ID | '000-A600861002' | The sid of the student grade to be fetched 
-course_id | Required | String | Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be fetched
-unit_id | Required | String | Valid unit_id (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be fetched
-question_id | Required | String | Valid unique global question ID (1123, 1134...) | '000101' | The unique question ID of the student grade to be fetched
-grade | Required | Number | Integer in range 0~100 | 87 | The grade of the question to be inserted
 
 ### Response Body
 
@@ -669,12 +614,67 @@ grade | Required | Number | Integer in range 0~100 | 87 | The grade of the quest
 
 ```json
 {
-  "status": 200
+    "grades": [
+        {
+            "id": 5,
+            "sid": "20221117000000001726",
+            "course_id": "mba600-2029win-STG",
+            "unit_id": "u1",
+            "question_id": 1,
+            "answer_text": null,
+            "answer_attachment": null,
+            "grade": null,
+            "note": null,
+            "edit_by": "STG-partner-test1-API",
+            "edit_at": "2022-12-05T02:42:03.000Z"
+        },
+        {
+            "id": 9,
+            "sid": "20221117000000001726",
+            "course_id": "mba600-2029win-STG",
+            "unit_id": "u1",
+            "question_id": 4,
+            "answer_text": null,
+            "answer_attachment": null,
+            "grade": null,
+            "note": null,
+            "edit_by": "STG-partner-test1-API",
+            "edit_at": "2022-12-05T02:58:16.000Z"
+        },
+        {
+            "id": 10,
+            "sid": "20221117000000001726",
+            "course_id": "mba600-2029win-STG",
+            "unit_id": "u1",
+            "question_id": 3,
+            "answer_text": null,
+            "answer_attachment": null,
+            "grade": null,
+            "note": null,
+            "edit_by": "STG-partner-test1-API",
+            "edit_at": "2022-12-05T02:58:20.000Z"
+        },
+        {
+            "id": 14,
+            "sid": "20221117000000001726",
+            "course_id": "mba600-2029win-STG",
+            "unit_id": "u1",
+            "question_id": 5,
+            "answer_text": "D",
+            "answer_attachment": null,
+            "grade": null,
+            "note": null,
+            "edit_by": "STG-partner-test1-API",
+            "edit_at": "2022-12-05T03:50:48.000Z"
+        }
+    ]
 }
 ```
+
 Parameter | Type | Example | Possible Return Type
 --------- | ----------- | ----------- | -----------
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
+grades | Array of Object | '[]' | Array of grade records
 
 ## Upload final paper
 
