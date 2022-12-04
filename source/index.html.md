@@ -66,7 +66,6 @@ grant_type | Required | String | 'client_credentials' | 'client_credentials' | M
 
 ```json
 {
-  "status": 200,
   "token": "HHx6D36OvqJ0QIYfbvDQ",
   "expire": 78000
 }
@@ -155,13 +154,13 @@ This endpoint retrieve an application
 
 ### HTTP Request
 
-`GET baseUrl/application/62`
+`GET baseUrl/application/0000000016`
 
 ### Request Body Parameters
 
 Parameter | Required | Type | Validation | Example | Description
 --------- | ----------- | ----------- | ----------- | ----------- | -----------
-app_id | Required | String | Valid application ID | '62' | The app_id of the application to retrieve
+app_id | Required | String | Valid application ID | '0000000016' | The app_id of the application to retrieve
 
 
 ### Response Body
@@ -169,23 +168,31 @@ app_id | Required | String | Valid application ID | '62' | The app_id of the app
 > The above command returns JSON structured like this:
 
 ```json
-  [{
-    "app_id": "62",
-    "sid": "",
-    "first_name": "Yu",
-    "last_name": "Dong",
-    "major": "Master of Business Administration - General Management",
-    "birthday": "12/05/93",
-    "status": "pending_review",
-    "committee_comment": "",
-    "create_timestamp": "2020-07-26T23:47:59.598Z"
-  }]
+{
+    "application": {
+        "app_id": "0000000016",
+        "sid": "20221117000000001671",
+        "first_name": "Ethan",
+        "last_name": "Ma",
+        "email": "jm@patten.edu",
+        "phone": "+12012312232",
+        "major": "Master of Business Administration - General Management",
+        "birthday": "01/02/1991",
+        "country": "China",
+        "status": "accepted",
+        "finalized": "True",
+        "edit_by": "STG-test4-API",
+        "edit_at": "2022-11-18T08:55:08.000Z",
+        "org": "STG",
+        "committee_comment": "need transcript"
+    }
+}
 ```
 
 Parameter | Type | Example | Possible Return Type
 --------- | ----------- | ----------- | -----------
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
-application | Array of Object | '[]' | If the application with the app_id is not exist, return value will be an empty array
+application | Object | '{}' | If the application with the app_id is not exist, return status 400
 
 ## Retrieve all applications created by the client
 
@@ -213,29 +220,44 @@ Parameter | Required | Type | Validation | Example | Description
 > The above command returns JSON structured like this:
 
 ```json
-  [{
-    "app_id": "62",
-    "sid": "",
-    "first_name": "Yu",
-    "last_name": "Dong",
-    "major": "Master of Business Administration - General Management",
-    "birthday": "12/05/93",
-    "status": "pending_review",
-    "committee_comment": "",
-    "create_timestamp": "2020-07-26T23:47:59.598Z"
-  },
-  {
-    "app_id": "63",
-    "sid": "000-A600861002",
-    "first_name": "Ma",
-    "last_name": "Jack",
-    "major": "Master of Business Administration - General Management",
-    "birthday": "01/03/92",
-    "status": "accepted",
-    "committee_comment": "",
-    "create_timestamp": "2020-07-26T23:47:59.598Z"
-  },
-  ]
+{
+    "applications": [
+        {
+            "app_id": "0000000016",
+            "sid": "20221117000000001671",
+            "first_name": "Two",
+            "last_name": "Ma",
+            "email": "jm@patten.edu",
+            "phone": "+12012312232",
+            "major": "Master of Business Administration - General Management",
+            "birthday": "01/02/1991",
+            "country": "China",
+            "status": "accepted",
+            "finalized": "True",
+            "edit_by": "STG-test4-API",
+            "edit_at": "2022-11-18T08:55:08.000Z",
+            "org": "STG",
+            "committee_comment": "need transcript"
+        },
+        {
+            "app_id": "0000000018",
+            "sid": null,
+            "first_name": "One",
+            "last_name": "Ma",
+            "email": "jm@patten.edu",
+            "phone": "+12012312232",
+            "major": "Master of Business Administration - General Management",
+            "birthday": "01/02/1991",
+            "country": "China",
+            "status": "rejected",
+            "finalized": "True",
+            "edit_by": "STG-partner-test1-API",
+            "edit_at": "2022-11-19T05:05:55.000Z",
+            "org": "STG",
+            "committee_comment": "need transcript"
+        }
+    ]
+}
 ```
 
 Parameter | Type | Example | Possible Return Type
@@ -353,29 +375,38 @@ Parameter | Required | Type | Validation | Example | Description
 
 
 ```json
-  [{
-    "course_id": "mba500-2023spring",
-    "course_name": "MBA Foundations",
-    "semester": "2023 Spring",
-    "enrollment_open_at": "2023-01-26",
-    "enrollment_close_at": "2023-02-26",
-    "instructor": "",
-    "stg_ta_email": "stg@sv.patten.edu",
-    "course_start_at": "2023-03-01",
-    "course_end_at": "2023-06-01"
-  },
-  {
-    "course_id": "mba600-2023spring",
-    "course_name": "Decision Analysis",
-    "semester": "2023 Spring",
-    "enrollment_open_at": "2023-01-26",
-    "enrollment_close_at": "2023-02-26",
-    "instructor": "",
-    "stg_ta_email": "stg@sv.patten.edu",
-    "course_start_at": "2023-03-01",
-    "course_end_at": "2023-06-01"
-  },
-  ]
+{
+    "courses": [
+        {
+            "course_id": "mba600-2029win-STG",
+            "course_name": "Decision Analysis",
+            "semester": "2023 Spring",
+            "enrollment_open_at": "2021-01-26T08:00:00.000Z",
+            "enrollment_close_at": "2023-02-26T08:00:00.000Z",
+            "course_start_at": "2021-03-01T08:00:00.000Z",
+            "course_end_at": "2023-06-26T07:00:00.000Z",
+            "instructor": "Jess",
+            "org": "STG",
+            "stg_ta_email": "stg@patten.edu",
+            "course_created_by": null,
+            "course_created_at": null
+        },
+        {
+            "course_id": "mba600-2030win-STG",
+            "course_name": "Decision Analysis",
+            "semester": "2023 Spring",
+            "enrollment_open_at": "2021-01-26T08:00:00.000Z",
+            "enrollment_close_at": "2023-02-26T08:00:00.000Z",
+            "course_start_at": "2022-11-10T08:00:00.000Z",
+            "course_end_at": "2023-06-26T07:00:00.000Z",
+            "instructor": "Jess",
+            "org": "STG",
+            "stg_ta_email": "stg@patten.edu",
+            "course_created_by": null,
+            "course_created_at": null
+        }
+    ]
+}
 ```
 
 Parameter | Type | Example | Possible Return Type
