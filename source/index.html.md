@@ -584,7 +584,7 @@ curl "<baseUrl>/grade/create" \
   -H "Authorization: JWT <token> Content-Type: multipart/form-data;" \
   -F "sid=000-A600861002" \
   -F "course_id=mba500-2023spring" \
-  -F "answer_attachment=@/path/to/file"
+  -F "file=@/path/to/file"
 ```
 
 This endpoint save a student grade record.
@@ -602,7 +602,7 @@ course_id | Required | String | Valid course_id (e.g.: mba500-2023spring, mba600
 unit_id | Required | String | Valid unit_id (e.g.: u1, u2...) | 'u1' | The unit ID of the student grade to be inserted
 question_id | Required | String | Valid unique global question ID (1123, 1134...) | '000101' | The unique question ID of the student grade to be inserted
 answer_text | Optional | String | Any String | '' | The answer from student
-answer_attachment | Optional | String | Available file local path. File must in fomart of pdf only. File size must be less than 5M. | 'example.pdf' | The local path of student file to be uploaded
+file | Optional | String | Available file local path. File must in fomart of pdf only. File size must be less than 5M. | 'example.pdf' | The local path of student file to be uploaded
 grade | Required | Number | Integer in range 0~100 | 87 | The grade of the question to be inserted
 note | Optional | String | Any String | '' | The comment left by grader
 
