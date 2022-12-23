@@ -372,9 +372,6 @@
                   <li>
                     <a href="#get-student-course-grade-record" class="toc-h2 toc-link" data-title="Get student course grade record">Get student course grade record</a>
                   </li>
-                  <li>
-                    <a href="#upload-final-paper" class="toc-h2 toc-link" data-title="Upload final paper">Upload final paper</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -522,7 +519,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <h1 id='application'>Application</h1><h2 id='create-new-application'>Create new application</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/application/create"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: multipart/form-data"</span> <span class="se">\</span>
   <span class="nt">-d</span> <span class="s1">'{"first_name":"xyz","last_name":"xyz",...}'</span>
 </code></pre></div>
 <p>This endpoint create a new application.</p>
@@ -628,7 +625,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tbody></table>
 <h2 id='retrieve-a-specific-application'>Retrieve a specific application</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/application/62"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\ </span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: multipart/form-data"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint retrieve an application</p>
@@ -701,7 +698,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tbody></table>
 <h2 id='retrieve-all-applications-created-by-the-client'>Retrieve all applications created by the client</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/application/all"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: multipart/form-data"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint retrieve an application</p>
@@ -786,7 +783,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <h2 id='update-a-specific-application'>Update a specific application</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/application/update"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: multipart/form-data"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint update a specific application info.</p>
@@ -894,6 +891,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <h2 id='upload-required-documents'>Upload required documents</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/application/fileupload"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt; Content-Type: multipart/form-data;"</span> <span class="se">\</span>
+  <span class="nt">-F</span> <span class="s2">"file_type=photo_id"</span> <span class="se">\</span>
   <span class="nt">-F</span> <span class="s2">"file=@/path/to/file"</span>
 </code></pre></div>
 <p>This endpoint update a specific student enrollment info.</p>
@@ -961,7 +959,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <h1 id='course-enrollment'>Course Enrollment</h1><h2 id='list-courses-open-for-enrollment'>List courses open for enrollment</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/course/list"</span> <span class="se">\</span>
   <span class="nt">-X</span> GET <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: multipart/form-data; boundary="</span><span class="nt">----arbitrary</span> boundary<span class="s2">""</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint list currently available courses that are open for enrollment.</p>
@@ -1040,7 +1038,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <h2 id='enroll-student-into-courses'>Enroll student into courses</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/course/enroll"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: multipart/form-data"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint enroll a new student.</p>
@@ -1100,7 +1098,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <h2 id='get-enrollment-by-course-id'>Get enrollment by course ID</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/course/enrollment"</span> <span class="se">\</span>
   <span class="nt">-X</span> GET <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: multipart/form-data"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint get course enrollment detail info.</p>
@@ -1174,7 +1172,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <h2 id='drop-withdraw-extend'>Drop/Withdraw/Extend</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/course/change"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: multipart/form-data"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint change a course enrollment status.</p>
@@ -1242,7 +1240,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <h1 id='grades'>Grades</h1><h2 id='create-new-question'>Create new question</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade/newquestion"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: multipart/form-data"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint create new question.</p>
@@ -1316,9 +1314,10 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tbody></table>
 <h2 id='insert-new-grade-record'>Insert new grade record</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade/create"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
-  <span class="nt">-d</span> <span class="s1">'{...}'</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt; Content-Type: multipart/form-data;"</span> <span class="se">\</span>
+  <span class="nt">-F</span> <span class="s2">"sid=000-A600861002"</span> <span class="se">\</span>
+  <span class="nt">-F</span> <span class="s2">"course_id=mba500-2023spring"</span> <span class="se">\</span>
+  <span class="nt">-F</span> <span class="s2">"file=@/path/to/file"</span>
 </code></pre></div>
 <p>This endpoint save a student grade record.</p>
 <h3 id='http-request-12'>HTTP Request</h3>
@@ -1375,7 +1374,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The answer from student</td>
 </tr>
 <tr>
-<td>answer_attachment</td>
+<td>file</td>
 <td>Optional</td>
 <td>String</td>
 <td>Available file local path. File must in fomart of pdf only. File size must be less than 5M.</td>
@@ -1424,7 +1423,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tbody></table>
 <h2 id='get-student-course-grade-record'>Get student course grade record</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: multipart/form-data"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint fetch a specific grade record by using sid, course_id.</p>
@@ -1540,85 +1539,16 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>Array of grade records</td>
 </tr>
 </tbody></table>
-<h2 id='upload-final-paper'>Upload final paper</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/grade/finalpaper"</span> <span class="se">\</span>
-  <span class="nt">-X</span> POST <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt; Content-Type: multipart/form-data;"</span> <span class="se">\</span>
-  <span class="nt">-F</span> <span class="s2">"sid=000-A600861002"</span> <span class="se">\</span>
-  <span class="nt">-F</span> <span class="s2">"course_id=mba500-2023spring"</span> <span class="se">\</span>
-  <span class="nt">-F</span> <span class="s2">"file=@/path/to/file"</span>
-</code></pre></div>
-<p>This endpoint upload final paper for a specific course.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
-<p><code>POST &lt;baseUrl&gt;/grade/finalpaper</code></p>
-<h3 id='request-body-parameters-13'>Request Body Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Type</th>
-<th>Validation</th>
-<th>Example</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>sid</td>
-<td>Required</td>
-<td>String</td>
-<td>Valid 14-digit student ID</td>
-<td>&#39;000-A600861002&#39;</td>
-<td>The sid of the student grade to be fetched</td>
-</tr>
-<tr>
-<td>course_id</td>
-<td>Required</td>
-<td>String</td>
-<td>Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...)</td>
-<td>&#39;mba500-2023spring&#39;</td>
-<td>The course ID of the student grade to be fetched</td>
-</tr>
-<tr>
-<td>file</td>
-<td>Required</td>
-<td>String</td>
-<td>Available file local path. File must in fomart of pdf only. File size must be less than 5M.</td>
-<td>&#39;example.pdf&#39;</td>
-<td>The local path of file to be uploaded</td>
-</tr>
-</tbody></table>
-<h3 id='response-body-14'>Response Body</h3>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Example</th>
-<th>Possible Return Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>Number</td>
-<td>200</td>
-<td>200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)</td>
-</tr>
-</tbody></table>
 <h1 id='academic-admin'>Academic Admin</h1><h2 id='finalize-application-status'>Finalize application status</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/admin/application/finalize"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: multipart/form-data"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint finalize status of a new application.</p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>POST baseUrl/admin/application/finalize</code></p>
-<h3 id='request-body-parameters-14'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-13'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1654,7 +1584,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The comment added by admission comittee</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-15'>Response Body</h3>
+<h3 id='response-body-14'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1686,13 +1616,13 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </tbody></table>
 <h2 id='retrieve-uploaded-files-of-a-specific-student'>Retrieve uploaded files of a specific student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/admin/application/62"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: multipart/form-data"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint retrieves uploaded files of  a specific student.</p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>GET baseUrl/admin/application/62</code></p>
-<h3 id='request-body-parameters-15'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-14'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1712,7 +1642,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The app_id of the application to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-16'>Response Body</h3>
+<h3 id='response-body-15'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1747,13 +1677,13 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <h2 id='register-a-course'>Register a course</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/admin/course/register"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: multipart/form-data"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint opens new courses for enrollment.</p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>POST baseUrl/admin/course/register</code></p>
-<h3 id='request-body-parameters-16'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-15'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1845,7 +1775,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The partner organization ID</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-17'>Response Body</h3>
+<h3 id='response-body-16'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1871,13 +1801,13 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <h2 id='review-and-verify-student-39-s-gradebook'>Review and verify student&#39;s gradebook</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/admin/grade/review"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: multipart/form-data"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <p>This endpoint review and verify a specific student gradebook.</p>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>POST baseUrl/admin/grade/review</code></p>
-<h3 id='request-body-parameters-17'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-16'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1913,7 +1843,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The comment added by the grade reviewer</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-18'>Response Body</h3>
+<h3 id='response-body-17'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1939,7 +1869,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <h2 id='delete-a-specific-student'>Delete a Specific Student</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"&lt;baseUrl&gt;/student/delete"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: JWT &lt;token&gt;"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\ </span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: multipart/form-data"</span> <span class="se">\ </span>
   <span class="nt">-d</span> <span class="s1">'{...}'</span>
 </code></pre></div>
 <blockquote>
@@ -1951,9 +1881,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint deletes a specific student.</p>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>POST &lt;baseUrl&gt;/student/delete/&lt;sid&gt;</code></p>
-<h3 id='request-body-parameters-18'>Request Body Parameters</h3>
+<h3 id='request-body-parameters-17'>Request Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1973,7 +1903,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <td>The sid of the student to be updated</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-19'>Response Body</h3>
+<h3 id='response-body-18'>Response Body</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
