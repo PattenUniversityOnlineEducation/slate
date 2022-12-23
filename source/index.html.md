@@ -103,7 +103,7 @@ curl "api_endpoint_here" \
 curl "<baseUrl>/application/create" \
   -X POST \
   -H "Authorization: JWT <token>" \
-  -H "Content-Type: application/json" \
+  -H "Content-Type: multipart/form-data" \
   -d '{"first_name":"xyz","last_name":"xyz",...}'
 ```
 
@@ -146,7 +146,7 @@ app_id | String | '62' | Unique number.
 ```shell
 curl "<baseUrl>/application/62" \
   -H "Authorization: JWT <token>" \ 
-  -H "Content-Type: application/json" \ 
+  -H "Content-Type: multipart/form-data" \ 
   -d '{...}'
 ```
 
@@ -199,7 +199,7 @@ application | Object | '{}' | If the application with the app_id is not exist, r
 ```shell
 curl "<baseUrl>/application/all" \
   -H "Authorization: JWT <token>" \
-  -H "Content-Type: application/json" \ 
+  -H "Content-Type: multipart/form-data" \ 
   -d '{...}'
 ```
 
@@ -271,7 +271,7 @@ applications | Array of Object | '[]' | If no exist applications, return an empt
 curl "<baseUrl>/application/update" \
   -X POST \
   -H "Authorization: JWT <token>" \
-  -H "Content-Type: application/json" \ 
+  -H "Content-Type: multipart/form-data" \ 
   -d '{...}'
 ```
 
@@ -314,6 +314,7 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 curl "<baseUrl>/application/fileupload" \
   -X POST \
   -H "Authorization: JWT <token> Content-Type: multipart/form-data;" \
+  -F "file_type=photo_id" \
   -F "file=@/path/to/file"
 ```
 
@@ -353,7 +354,7 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 curl "<baseUrl>/course/list" \
   -X GET \
   -H "Authorization: JWT <token>" \
-  -H "Content-Type: application/json" \ 
+  -H "Content-Type: multipart/form-data; boundary="----arbitrary boundary"" \ 
   -d '{...}'
 ```
 
@@ -420,7 +421,7 @@ courses | Array of Object | '[]' | If no available courses, return an empty arra
 curl "<baseUrl>/course/enroll" \
   -X POST \
   -H "Authorization: JWT <token>" \
-  -H "Content-Type: application/json" \ 
+  -H "Content-Type: multipart/form-data" \ 
   -d '{...}'
 ```
 
@@ -456,7 +457,7 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 curl "<baseUrl>/course/enrollment" \
   -X GET \
   -H "Authorization: JWT <token>" \
-  -H "Content-Type: application/json" \ 
+  -H "Content-Type: multipart/form-data" \ 
   -d '{...}'
 ```
 
@@ -501,7 +502,7 @@ enrollment | Object | {} | Json object of course enrollment info
 curl "<baseUrl>/course/change" \
   -X POST \
   -H "Authorization: JWT <token>" \
-  -H "Content-Type: application/json" \ 
+  -H "Content-Type: multipart/form-data" \ 
   -d '{...}'
 ```
 
@@ -541,7 +542,7 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 curl "<baseUrl>/grade/newquestion" \
   -X POST \
   -H "Authorization: JWT <token>" \
-  -H "Content-Type: application/json" \ 
+  -H "Content-Type: multipart/form-data" \ 
   -d '{...}'
 ```
 
@@ -580,9 +581,10 @@ question_id | String | '1123' | Return generated unique ID of question
 ```shell
 curl "<baseUrl>/grade/create" \
   -X POST \
-  -H "Authorization: JWT <token>" \
-  -H "Content-Type: application/json" \ 
-  -d '{...}'
+  -H "Authorization: JWT <token> Content-Type: multipart/form-data;" \
+  -F "sid=000-A600861002" \
+  -F "course_id=mba500-2023spring" \
+  -F "answer_attachment=@/path/to/file"
 ```
 
 This endpoint save a student grade record.
@@ -622,7 +624,7 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 ```shell
 curl "<baseUrl>/grade" \
   -H "Authorization: JWT <token>" \
-  -H "Content-Type: application/json" \ 
+  -H "Content-Type: multipart/form-data" \ 
   -d '{...}'
 ```
 
@@ -707,44 +709,6 @@ Parameter | Type | Example | Possible Return Type
 status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
 grades | Array of Object | '[]' | Array of grade records
 
-## Upload final paper
-
-```shell
-curl "<baseUrl>/grade/finalpaper" \
-  -X POST \
-  -H "Authorization: JWT <token> Content-Type: multipart/form-data;" \
-  -F "sid=000-A600861002" \
-  -F "course_id=mba500-2023spring" \
-  -F "file=@/path/to/file"
-```
-
-This endpoint upload final paper for a specific course.
-
-### HTTP Request
-
-`POST <baseUrl>/grade/finalpaper`
-
-### Request Body Parameters
-
-Parameter | Required | Type | Validation | Example | Description
---------- | ----------- | ----------- | ----------- | ----------- | -----------
-sid | Required | String | Valid 14-digit student ID | '000-A600861002' | The sid of the student grade to be fetched 
-course_id | Required | String | Valid course_id (e.g.: mba500-2023spring, mba600-2023spring...) | 'mba500-2023spring' | The course ID of the student grade to be fetched
-file | Required | String | Available file local path. File must in fomart of pdf only. File size must be less than 5M. | 'example.pdf' | The local path of file to be uploaded
-
-### Response Body
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "status": 200
-}
-```
-Parameter | Type | Example | Possible Return Type
---------- | ----------- | ----------- | -----------
-status | Number | 200 | 200: success; 400: request url not accessible; ... (See other error codes explanation in Errors sections)
-
 # Academic Admin
 
 ## Finalize application status
@@ -753,7 +717,7 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 curl "<baseUrl>/admin/application/finalize" \
   -X POST \
   -H "Authorization: JWT <token>" \
-  -H "Content-Type: application/json" \ 
+  -H "Content-Type: multipart/form-data" \ 
   -d '{...}'
 ```
 
@@ -792,7 +756,7 @@ sid |  String | '000-A600861002' |  14-digit student ID or return null if not ac
 ```shell
 curl "<baseUrl>/admin/application/62" \
   -H "Authorization: JWT <token>" \
-  -H "Content-Type: application/json" \ 
+  -H "Content-Type: multipart/form-data" \ 
   -d '{...}'
 ```
 
@@ -833,7 +797,7 @@ files | Array of Object | '[]' | File Blob; If the student upload file is not ex
 curl "<baseUrl>/admin/course/register" \
   -X POST \
   -H "Authorization: JWT <token>" \
-  -H "Content-Type: application/json" \ 
+  -H "Content-Type: multipart/form-data" \ 
   -d '{...}'
 ```
 
@@ -878,7 +842,7 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 curl "<baseUrl>/admin/grade/review" \
   -X POST \
   -H "Authorization: JWT <token>" \
-  -H "Content-Type: application/json" \ 
+  -H "Content-Type: multipart/form-data" \ 
   -d '{...}'
 ```
 
@@ -916,7 +880,7 @@ status | Number | 200 | 200: success; 400: request url not accessible; ... (See 
 curl "<baseUrl>/student/delete" \
   -X POST \
   -H "Authorization: JWT <token>" \
-  -H "Content-Type: application/json" \ 
+  -H "Content-Type: multipart/form-data" \ 
   -d '{...}'
 ```
 
